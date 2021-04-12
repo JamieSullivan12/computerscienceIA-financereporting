@@ -4,8 +4,6 @@ import java.util.logging.*;
 import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Level;
-
-
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
@@ -14,10 +12,7 @@ public class Main {
 	
 	public static Log log;
 	
-	
-	//Logger
-	private final static Logger LOGGER = Logger.getLogger(Main.class.getName());
-	
+
 	
 	/**
 	 * Check the validity of the arguments given by the user
@@ -31,16 +26,17 @@ public class Main {
 		return valid;
 		
 	}
-	
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Log log = new Log("src/resources/log.txt");
+		log = new Log("src/resources/log.txt", 1000000, 1, false); //Initializing the initial load file
 		
-		log.logger.info("Program started");
+		ReadConfigFile.readConfigFile();
+		Config.loadConfigObjects();
 		
-		ReadPropertyFile.readPropertyFile();	
+		log = new Log("src/resources/log.txt", 1000000, 1, true); //Initializing the primary log file (with the preferences saved)
 	
 	}
 

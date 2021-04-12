@@ -10,12 +10,15 @@ import java.util.logging.*;
 /**
  * @author jamie
  *
+ *
+ *CREATES THE LOG FILE
  */
 public class Log {
 	public Logger logger;
 	FileHandler fh;
 	
-	public Log(String file_name) {
+	
+	public Log(String file_name, int fileSizeLimit, int maxFileCount, boolean override) {
 		
 		File f = new File(file_name);
 		if(!f.exists()) {
@@ -28,7 +31,8 @@ public class Log {
 		}
 		
 		try {
-			fh = new FileHandler(file_name, true);
+
+			fh = new FileHandler(file_name, fileSizeLimit, maxFileCount, override);
 		} catch (SecurityException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
