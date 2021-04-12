@@ -1,2 +1,0 @@
-Apr 11, 2021 4:30:22 PM com.github.financereporting.app.Main main
-INFO: Program started
