@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
-
+import com.github.financereporting.user.interfaces.*;
 
 
 
@@ -38,6 +38,8 @@ public class Main {
 			Log.logger.severe(e.getMessage());
 			Log.logger.severe("EXIT STATUS 1: Program Terminated");
 		}
+		
+		TextBasedUI.initializeMenu();
 		
 
 	}
