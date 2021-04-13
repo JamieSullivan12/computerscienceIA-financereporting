@@ -24,20 +24,19 @@ public class Log {
 
     
 
-	
-	public Log(String file_name, int fileSizeLimit, int maxFileCount, boolean override) {
+	/**
+	 * This method creates and initializes the log file
+	 * 
+	 * @param file_name		The location of the log file
+	 * @param fileSizeLimit	The max size of the log file (bytes). 1,000,000 bytes = 1 mb
+	 * @param maxFileCount	The number of log files that can be created
+	 * @param override		Boolean value indicating whether the log file will be overwritten each time
+	 * @return 
+	 */
+	public static void initializeLog(String file_name, int fileSizeLimit, int maxFileCount, boolean override) {
 		
-		//Loading the preferences for the logger
-		Properties preferences = new Properties();
-		try {
-		    FileInputStream configFileLog = new FileInputStream("/path/to/app.properties");
-		    preferences.load(configFileLog);
-		    LogManager.getLogManager().readConfiguration(configFileLog);
-		} catch(Exception e) {
-			
-		}
+		//See java.util.logger docs online for information on what the code below means
 		
-
 		logger = Logger.getLogger(Log.class.getName());
 
         try {
@@ -48,12 +47,13 @@ public class Log {
 			//DO NOTHING
 		}
 
-        // create a TXT formatter
+        // create a TXT (text) formatter - this creates a human-readable format in which the log file is written (instead of an XML file)
         formatterTxt = new SimpleFormatter();
         fileTxt.setFormatter(formatterTxt);
         logger.addHandler(fileTxt);
         
         
+        //Formatting the console logger (does not apply to the log file but is instead used for debugging)
         System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tF %1$tT] [%4$-7s] %5$s %n");
 

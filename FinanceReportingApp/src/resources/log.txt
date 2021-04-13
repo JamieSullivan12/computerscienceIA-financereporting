@@ -1,14 +1,8 @@
-Apr 13, 2021 4:21:17 PM com.github.financereporting.app.ReadConfigFile readConfigFile
-INFO: Reading Config File
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem <init>
-INFO: Reading log.limit from the configuration file
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem setInteger
-INFO: Successfully read log.limit from the configuration file
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem <init>
-INFO: Reading log.count from the configuration file
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem setInteger
-INFO: Successfully read log.count from the configuration file
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem <init>
-INFO: Reading log.append from the configuration file
-Apr 13, 2021 4:21:18 PM com.github.financereporting.app.Config$ConfigItem setInteger
-INFO: Successfully read log.count from the configuration file
+Apr 14, 2021 12:24:52 AM com.github.financereporting.app.ExtractConfig readAllConfigContents
+INFO: Reading data from the configuration file
+Apr 14, 2021 12:24:52 AM com.github.financereporting.app.ExtractConfig writeLoggerSuccessfulRetrievalInfo
+INFO: Configuration file: Successfully retrieved the 'name' field from the configuration file - value: 'Funding App'
+Apr 14, 2021 12:24:52 AM com.github.financereporting.app.ExtractConfig writeLoggerSuccessfulRetrievalInfo
+INFO: Configuration file: Successfully retrieved the 'contractsFileNamesMonthEnd' field from the configuration file - value: 'contracts_LLC_UDF.csv, contracts_WRF_UDF.csv'
+Apr 14, 2021 12:24:52 AM com.github.financereporting.app.ExtractConfig writeLoggerSuccessfulRetrievalInfo
+INFO: Configuration file: Successfully retrieved the 'transactionFileNamesMonthEnd' field from the configuration file - value: 'transactions_LLC.csv, transactions_WRF.csv'

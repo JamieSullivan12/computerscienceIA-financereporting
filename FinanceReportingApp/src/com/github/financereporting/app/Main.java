@@ -16,38 +16,34 @@ import java.time.LocalDateTime;
 
 public class Main {
 	
-	public static Log log;
-	
-
-	
-	
-	
-	
-	/**
-	 * Check the validity of the arguments given by the user
-	 * 
-	 * @param args		the array of arguments passed into the program when it is run
-	 * @return valid	the value which indicates whether the arguments provided are valid
-	 */
-	private static boolean checkArgs(String[] args) {
-		boolean valid = false;
-		
-		return valid;
-		
-	}
-
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		/**
+		 * Creating the log file
+		 * initializeLog(Log file location, maximum size of log file in bytes, maximum number of log files which can be created, Whether the log file should be overwritten each time the program is run); 
+		 */
+		Log.initializeLog("src/resources/log.txt", 1000000, 1, false); 
+
+		//Creating a configuration object (where all the configuration settings and methods will be stored
+		Property configObj = new Property();
+		//Calling the readConfigFile method which reads the configuration file from the directory below, and saves its contents to the object
+		configObj.readConfigFile("src/resources/config.properties");
 		
-		log = new Log("src/resources/log.txt", 1000000, 1, false); //Initializing the initial load file
 		
-		ReadConfigFile.readConfigFile();
-		Config.loadConfigObjects();
+		//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
+		try {
+			ExtractConfig.readAllConfigContents(configObj);
+		} catch (ExitStatus1Exception e) {
+			Log.logger.severe(e.getMessage());
+			Log.logger.severe("EXIT STATUS 1: Program Terminated");
+		}
 		
-		//log = new Log("src/resources/log.txt", 1000000, 1, true); //Initializing the primary log file (with the preferences saved)
-	
+
 	}
+
+
+
 
 }
 
