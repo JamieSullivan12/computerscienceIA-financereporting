@@ -8,11 +8,20 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;    
 
 
+
+
+
+
+
+
 public class Main {
 	
 	public static Log log;
 	
 
+	
+	
+	
 	
 	/**
 	 * Check the validity of the arguments given by the user
@@ -36,7 +45,7 @@ public class Main {
 		ReadConfigFile.readConfigFile();
 		Config.loadConfigObjects();
 		
-		log = new Log("src/resources/log.txt", 1000000, 1, true); //Initializing the primary log file (with the preferences saved)
+		//log = new Log("src/resources/log.txt", 1000000, 1, true); //Initializing the primary log file (with the preferences saved)
 	
 	}
 
