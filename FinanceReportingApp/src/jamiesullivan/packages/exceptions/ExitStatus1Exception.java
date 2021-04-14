@@ -1,4 +1,4 @@
-package com.github.financereporting.app;
+package jamiesullivan.packages.exceptions;
 
 /**
  * 
