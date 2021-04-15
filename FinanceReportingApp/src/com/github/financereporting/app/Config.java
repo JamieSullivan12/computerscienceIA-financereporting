@@ -1,39 +1,54 @@
 package com.github.financereporting.app;
 
+import java.util.Arrays;
+import java.util.List;
+
 import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 public class Config {
 	
 	private static Property configObj;
 	
-	
-	
+
 	private static String name;
-	private static String contractFileNamesME;
-	private static String transactionFileNamesME;
+	private static List<String> contractFileNamesFunding;
+	private static List<String> transactionFileNamesMonthEnd;
+	private static List<String> contractFileNamesMonthEnd;
+	private static String defaultInputDirectoryFunding;
 	
 	
-	
+	/**
+	 * @return the contractsFileNamesMonthEnd
+	 */
+	public static List<String> getContractFileNamesMonthEnd() {
+		return contractFileNamesMonthEnd;
+	}
+	/**
+	 * @return the defaultInputDirectoryFunding
+	 */
+	public static String getDefaultInputDirectoryFunding() {
+		return defaultInputDirectoryFunding;
+	}
 	/**
 	 * @return the name
 	 */
 	public static String getName() {
 		return name;
 	}
+
 	/**
-	 * @return the contractFileNamesME
+	 * @return the contractFileNamesFunding
 	 */
-	public static String getContractFileNamesME() {
-		return contractFileNamesME;
+	public static List<String> getContractFileNamesFunding() {
+		return contractFileNamesFunding;
 	}
 	/**
-	 * @return the transactionFileNamesME
+	 * @return the transactionFileNamesFunding
 	 */
-	public static String getTransactionFileNamesME() {
-		return transactionFileNamesME;
+	public static List<String> getTransactionFileNamesMonthEnd() {
+		return transactionFileNamesMonthEnd;
 	}
-	
-	
+
 	
 	
 	/**
@@ -55,9 +70,11 @@ public class Config {
 		
 		
 	
-		name = ReadPropertiesMethods.readPropertiesString(configObj, "name", "Funding App", configFileLocation);
-		contractFileNamesME = ReadPropertiesMethods.readPropertiesString(configObj, "contractsFileNamesMonthEnd", null, configFileLocation);
-		transactionFileNamesME = ReadPropertiesMethods.readPropertiesString(configObj, "transactionFileNamesMonthEnd", null, configFileLocation);
+		name = ReadPropertiesMethods.readPropertiesString(configObj, "Name", "Funding App", configFileLocation);
+		defaultInputDirectoryFunding = ReadPropertiesMethods.readPropertiesString(configObj, "DefaultInputDirectoryFunding", null, configFileLocation);
+		contractFileNamesFunding = Arrays.asList(ReadPropertiesMethods.readPropertiesString(configObj, "ContractFileNamesFunding", null, configFileLocation).split(",")); 
+		transactionFileNamesMonthEnd = Arrays.asList(ReadPropertiesMethods.readPropertiesString(configObj, "TransactionFileNamesMonthEnd", "", configFileLocation).split(","));
+		contractFileNamesMonthEnd = Arrays.asList(ReadPropertiesMethods.readPropertiesString(configObj, "ContractFileNamesMonthEnd", "", configFileLocation).split(","));
 		
 	}
 	

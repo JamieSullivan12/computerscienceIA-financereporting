@@ -5,6 +5,7 @@ package com.github.financereporting.app;
 import java.util.Objects;
 import java.util.Properties;
 
+import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -30,7 +31,7 @@ public class Property {
 	 * This method reads the configuration file and saves it in a Java Property object
 	 * @throws ConfigFileNotFound 
 	 */
-	public void readConfigFile(String c_location) {
+	public void readConfigFile(String c_location) throws ExitStatus1Exception {
 		//"src/resources/config.properties"
 		configLocation = c_location;
 
@@ -60,8 +61,7 @@ public class Property {
 				@SuppressWarnings("unused")
 				OutputStream newConfigStream = new FileOutputStream(configLocation);
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				throw new ExitStatus1Exception("CONFIGURATION FILENOTFOUND ERROR. Path '" + configLocation + "'. Please restart the program. If the issue persists, contact your system administrator");
 			}
 			
 		}
@@ -88,31 +88,32 @@ public class Property {
 		
 	}
 	
-	private void updatePropertiesFile() {
+	private void updatePropertiesFile() throws ExitStatus1Exception{
 		FileOutputStream out = null;
+
 		try {
 			out = new FileOutputStream(configLocation);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException e1) {
+			throw new ExitStatus1Exception("UPDATING CONFIGURATION FILENOTFOUNG ERROR: There is no configuration file in the path '" + configLocation + "'; Please restart the program. If this issue persists, contact your system administrator");
 		}
+
 		
 		try {
 			properties.store(out, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.logWarning(e.toString());
 		}
 		try {
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.logWarning(e.toString());
 		}
 	}
 	
 	
-	public void setPropertiesValue (String key, String value) {
+	public void setPropertiesValue (String key, String value) throws ExitStatus1Exception {
 		properties.setProperty(key, value);
 		updatePropertiesFile();
 	}

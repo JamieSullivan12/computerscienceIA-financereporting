@@ -59,7 +59,8 @@ public class Main {
 			try {
 				Config.readAllConfigContents();
 				fileMappings.contractFileMappings();
-			
+				ReadContracts.readContracts();
+				
 			} catch (ExitStatus1Exception e) {
 				
 				Log.logSevere(e.getMessage());
@@ -69,6 +70,9 @@ public class Main {
 				
 				
 			}
+			
+			
+			
 		
 			TextBasedUI.initializeMenu();
 		

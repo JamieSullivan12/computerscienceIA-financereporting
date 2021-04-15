@@ -1,5 +1,6 @@
 package com.github.financereporting.app;
 
+import java.io.FileNotFoundException;
 import java.util.Objects;
 
 import jamiesullivan.packages.exceptions.ExitStatus1Exception;
@@ -47,16 +48,23 @@ public class ReadPropertiesMethods {
 		 * 		Something '###' - key does exist with a value
 		 */
 		String temp = propertiesObj.getPropertiesValue(key); //Temporary string in which the value fom the configuration file is held
-		value = temp;
-		
+		try {
+			value = temp.trim();
+		} catch (Exception e) {
+			//DO NOTHING
+		}
 		//If there is no value (null or empty)
 		if (Objects.isNull(temp) || temp.isEmpty()) {
 			
 			if (!Objects.isNull(defaultValue)) {
 				//If there is a default value, insert it into the file and warn the user
 
-				propertiesObj.setPropertiesValue(key, defaultValue); //Set the default value in the properties file
-				value = temp; //Insert the value into the return variable
+
+				propertiesObj.setPropertiesValue(key, defaultValue);
+				temp = defaultValue;
+				
+				//Set the default value in the properties file
+				value = temp.trim(); //Insert the value into the return variable. Trim the whitespace
 				
 				//Log the issue in the log file
 				writeLoggerDefaultValueWarning(key, defaultValue, propertiesFileLocation);
@@ -72,6 +80,8 @@ public class ReadPropertiesMethods {
 			//Success
 			writeLoggerSuccessfulRetrievalInfo(key, value, propertiesFileLocation);	
 		}
+		
+		
 		
 		return value;
 		

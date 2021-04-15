@@ -1,4 +1,4 @@
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
+Apr 16, 2021 2:03:32 AM com.github.financereporting.app.Log logInfo
 INFO: Resources Directory Files:
 src/resources/logging.properties
 src/resources/contractFileMappings.properties
@@ -6,135 +6,143 @@ src/resources/serverSocket.properties
 src/resources/log.txt
 src/resources/config.properties
 
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
 INFO: Resources Deleted Files:
 
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
 INFO: 
 ####################
-Program Started on Port: 34567
+Program Started on Port: 32567
 ####################
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
 INFO: Reading data from the src/resources/config.properties file
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/config.properties: Successfully retrieved 'name' field from the 'src/resources/config.properties' file; 'Funding App'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/config.properties: Successfully retrieved 'contractsFileNamesMonthEnd' field from the 'src/resources/config.properties' file; 'contracts_LLC_UDF.csv, contracts_WRF_UDF.csv'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/config.properties: Successfully retrieved 'transactionFileNamesMonthEnd' field from the 'src/resources/config.properties' file; 'transactions_LLC.csv, transactions_WRF.csv'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: Reading data from the src/resources/contractFileMappings.properties file
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ContractNumber' field from the 'src/resources/contractFileMappings.properties' file; 'ContractNumber'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CustomerCode' field from the 'src/resources/contractFileMappings.properties' file; 'CustomerCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LargeLongstandingClient' field from the 'src/resources/contractFileMappings.properties' file; 'LargeLongstandingClient'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CustomerPostalCode' field from the 'src/resources/contractFileMappings.properties' file; 'CustomerPostalCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OcupationCode' field from the 'src/resources/contractFileMappings.properties' file; 'OcupationCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OccupationDescription' field from the 'src/resources/contractFileMappings.properties' file; 'OccupationDescription'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ContractDate' field from the 'src/resources/contractFileMappings.properties' file; 'ContractDate'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ExpiryDate' field from the 'src/resources/contractFileMappings.properties' file; 'ExpiryDate'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PrincipalInvoicePriceTotalRep' field from the 'src/resources/contractFileMappings.properties' file; 'PrincipalInvoicePriceTotalRep'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Brokerage_StampDuty_AgreeFee' field from the 'src/resources/contractFileMappings.properties' file; 'Brokerage_StampDuty_AgreeFee'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OtherCharges' field from the 'src/resources/contractFileMappings.properties' file; 'OtherCharges'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TermsCharges' field from the 'src/resources/contractFileMappings.properties' file; 'TermsCharges'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'NewContractPayment' field from the 'src/resources/contractFileMappings.properties' file; 'NewContractPayment'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CutOffDate' field from the 'src/resources/contractFileMappings.properties' file; 'CutOffDate'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'FundingDate' field from the 'src/resources/contractFileMappings.properties' file; 'FundingDate'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'FundingAmount' field from the 'src/resources/contractFileMappings.properties' file; 'FundingAmount'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LegalEntityCode' field from the 'src/resources/contractFileMappings.properties' file; 'LegalEntityCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LegalEntity' field from the 'src/resources/contractFileMappings.properties' file; 'LegalEntity'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'seller_code' field from the 'src/resources/contractFileMappings.properties' file; 'seller_code'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'OutstandingBalance_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'OutstandingBalance_lastMonthEnd_minus1'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnearnedIncome_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'UnearnedIncome_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnearnedIncome_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'UnearnedIncome_lastMonthEnd_minus1'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_outstandingBalance_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'GST_outstandingBalance_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_outstandingBalance_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'GST_outstandingBalance_lastMonthEnd_minus1'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_date_lastMontEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_date_lastMontEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Current_arrears_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Current_arrears_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_30_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_30_days_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_60_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_60_days_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_90_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_90_days_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_120_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_120_days_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_150plus_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_150plus_days_lastMonthEnd'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance' field from the 'src/resources/contractFileMappings.properties' file; 'OutstandingBalance'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnexpiredInterest' field from the 'src/resources/contractFileMappings.properties' file; 'UnexpiredInterest'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_Outstanding' field from the 'src/resources/contractFileMappings.properties' file; 'GST_Outstanding'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TheoreticalPrincipal' field from the 'src/resources/contractFileMappings.properties' file; 'TheoreticalPrincipal'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MaxLimit' field from the 'src/resources/contractFileMappings.properties' file; 'MaxLimit'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PDI_Outstanding' field from the 'src/resources/contractFileMappings.properties' file; 'PDI_Outstanding'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TotalArrears' field from the 'src/resources/contractFileMappings.properties' file; 'TotalArrears'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CurrentArrears' field from the 'src/resources/contractFileMappings.properties' file; 'CurrentArrears'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_30_Days' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_30_Days'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_60_Days' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_60_Days'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_90_Days' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_90_Days'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_120plus_Days' field from the 'src/resources/contractFileMappings.properties' file; 'Arrears_120plus_Days'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OldestDueDate' field from the 'src/resources/contractFileMappings.properties' file; 'OldestDueDate'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ProductCode' field from the 'src/resources/contractFileMappings.properties' file; 'ProductCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'InterestType' field from the 'src/resources/contractFileMappings.properties' file; 'InterestType'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'DealerCode' field from the 'src/resources/contractFileMappings.properties' file; 'DealerCode'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'DealerName' field from the 'src/resources/contractFileMappings.properties' file; 'DealerName'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaidOutWrittenOff_Flag' field from the 'src/resources/contractFileMappings.properties' file; 'PaidOutWrittenOff_Flag'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaidOutWrittenOff_date' field from the 'src/resources/contractFileMappings.properties' file; 'PaidOutWrittenOff_date'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MonthlyRental' field from the 'src/resources/contractFileMappings.properties' file; 'MonthlyRental'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaymentFrequency' field from the 'src/resources/contractFileMappings.properties' file; 'PaymentFrequency'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/config.properties: Successfully retrieved 'Name' field from the 'src/resources/config.properties' file; 'Funding App'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/config.properties: Successfully retrieved 'DefaultInputDirectoryFunding' field from the 'src/resources/config.properties' file; '/Users/jamiesullivan/git/finance-reporting/FinanceReportingApp/test-data'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/config.properties: Successfully retrieved 'ContractFileNamesFunding' field from the 'src/resources/config.properties' file; 'contracts_LLC_UDG.csv, contracts_WRF_UDG.csv'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/config.properties: Successfully retrieved 'TransactionFileNamesMonthEnd' field from the 'src/resources/config.properties' file; 'transactions_LLC.csv, transactions_WRF.csv'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/config.properties: Successfully retrieved 'ContractFileNamesMonthEnd' field from the 'src/resources/config.properties' file; 'contracts_LLC_UDF.csv, contracts_WRF_UDF.csv'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: Reading data from the null file
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ContractNumber' field from the 'src/resources/contractFileMappings.properties' file; 'Contract Number'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CustomerCode' field from the 'src/resources/contractFileMappings.properties' file; 'Customer Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LargeLongstandingClient' field from the 'src/resources/contractFileMappings.properties' file; 'Large Longstanding Client'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CustomerPostalCode' field from the 'src/resources/contractFileMappings.properties' file; 'Customer Postal Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OccupationCode' field from the 'src/resources/contractFileMappings.properties' file; 'Ocupation Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OccupationDescription' field from the 'src/resources/contractFileMappings.properties' file; 'Occupation Description'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ContractDate' field from the 'src/resources/contractFileMappings.properties' file; 'Contract Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ExpiryDate' field from the 'src/resources/contractFileMappings.properties' file; 'Expiry Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PrincipalInvoicePriceTotalRep' field from the 'src/resources/contractFileMappings.properties' file; 'Principal Inv Price Total Rep'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Brokerage_StampDuty_AgreeFee' field from the 'src/resources/contractFileMappings.properties' file; 'Brokerage/Stamp Duty/Agree Fee'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OtherCharges' field from the 'src/resources/contractFileMappings.properties' file; 'Other Charges'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TermsCharges' field from the 'src/resources/contractFileMappings.properties' file; 'Terms Charges'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'NewContractPayment' field from the 'src/resources/contractFileMappings.properties' file; 'New Contract Payment'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CutOffDate' field from the 'src/resources/contractFileMappings.properties' file; 'Cut Off Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'FundingDate' field from the 'src/resources/contractFileMappings.properties' file; 'Funding Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'FundingAmount' field from the 'src/resources/contractFileMappings.properties' file; 'Funding Amount'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LegalEntityCode' field from the 'src/resources/contractFileMappings.properties' file; 'Legal Entity Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'LegalEntity' field from the 'src/resources/contractFileMappings.properties' file; 'Legal Entity'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'seller_code' field from the 'src/resources/contractFileMappings.properties' file; 'Seller Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'O/S Balance (last month end)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'O/S Balance (last mth end -1)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnearnedIncome_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Unearned Inc (last month end)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnearnedIncome_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'Unearned Inc (last mth end -1)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_outstandingBalance_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'GST O/s (last month end)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_outstandingBalance_lastMonthEnd_minus1' field from the 'src/resources/contractFileMappings.properties' file; 'GST O/s (last month end -1)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_date_lastMontEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end Arrears Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Current_arrears_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end Current Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_30_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end 30 Days Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_60_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end 60 Days Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_90_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end 90 Days Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_120_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end 120 Days Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_150plus_days_lastMonthEnd' field from the 'src/resources/contractFileMappings.properties' file; 'Last mth end 150+ Days Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OutstandingBalance' field from the 'src/resources/contractFileMappings.properties' file; 'Outstanding Balance'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'UnexpiredInterest' field from the 'src/resources/contractFileMappings.properties' file; 'Unexpired Interest'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'GST_Outstanding' field from the 'src/resources/contractFileMappings.properties' file; 'GST Outstanding'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TheoreticalPrincipal' field from the 'src/resources/contractFileMappings.properties' file; 'Theoretical Principal'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MaxLimit' field from the 'src/resources/contractFileMappings.properties' file; 'Max Limit'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PDI_Outstanding' field from the 'src/resources/contractFileMappings.properties' file; 'PDI Outstanding'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TotalArrears' field from the 'src/resources/contractFileMappings.properties' file; 'Total Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'CurrentArrears' field from the 'src/resources/contractFileMappings.properties' file; 'Current Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_30_Days' field from the 'src/resources/contractFileMappings.properties' file; '30 Day Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_60_Days' field from the 'src/resources/contractFileMappings.properties' file; '60 Day Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_90_Days' field from the 'src/resources/contractFileMappings.properties' file; '90 Day Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Arrears_120plus_Days' field from the 'src/resources/contractFileMappings.properties' file; '120+ Day Arrears'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'OldestDueDate' field from the 'src/resources/contractFileMappings.properties' file; 'Oldest Due Date'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'ProductCode' field from the 'src/resources/contractFileMappings.properties' file; 'Product Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'InterestType' field from the 'src/resources/contractFileMappings.properties' file; 'Interest Type'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'DealerCode' field from the 'src/resources/contractFileMappings.properties' file; 'Dealer Code'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'DealerName' field from the 'src/resources/contractFileMappings.properties' file; 'Dealer Name'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaidOutWrittenOff_Flag' field from the 'src/resources/contractFileMappings.properties' file; 'Paid OutWritten Off Flag'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaidOutWrittenOff_date' field from the 'src/resources/contractFileMappings.properties' file; 'Status Date (Paid Out/W Off)'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MonthlyRental' field from the 'src/resources/contractFileMappings.properties' file; 'Monthly Rental'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'PaymentFrequency' field from the 'src/resources/contractFileMappings.properties' file; 'Payment Frequency'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
 INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'Term' field from the 'src/resources/contractFileMappings.properties' file; 'Term'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MonthsExpired' field from the 'src/resources/contractFileMappings.properties' file; 'MonthsExpired'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TermRemaining' field from the 'src/resources/contractFileMappings.properties' file; 'TermRemaining'
-Apr 15, 2021 3:26:24 AM com.github.financereporting.app.Log logInfo
-INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'InterestRate' field from the 'src/resources/contractFileMappings.properties' file; 'InterestRate'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'MonthsExpired' field from the 'src/resources/contractFileMappings.properties' file; 'Months Expired'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'TermRemaining' field from the 'src/resources/contractFileMappings.properties' file; 'Term Remaining'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: src/resources/contractFileMappings.properties: Successfully retrieved 'InterestRate' field from the 'src/resources/contractFileMappings.properties' file; 'Interest Rate'
+Apr 16, 2021 2:03:33 AM com.github.financereporting.app.Log logInfo
+INFO: Successfully read a contract file from /Users/jamiesullivan/git/finance-reporting/FinanceReportingApp/test-data/contracts_LLC_UDG.csv
+Apr 16, 2021 2:03:34 AM com.github.financereporting.app.Log logInfo
+INFO: Successfully read a contract file from /Users/jamiesullivan/git/finance-reporting/FinanceReportingApp/test-data/contracts_WRF_UDG.csv
