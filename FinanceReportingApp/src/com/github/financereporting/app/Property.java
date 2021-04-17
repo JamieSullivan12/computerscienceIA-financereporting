@@ -5,8 +5,9 @@ package com.github.financereporting.app;
 import java.util.Objects;
 import java.util.Properties;
 
-import jamiesullivan.packages.exceptions.ExitStatus1Exception;
+import jamiesullivan.packages.exceptions.LimitedAccessException;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -15,95 +16,95 @@ import java.io.IOException;
 
 
 /**
+ * 
  * @author jamie
- *
+ * Class contains everything to do with reading a properties file and extracting information into the program
  */
 public class Property {
-	private String configLocation;
+	private String propertiesPath;
 	private Properties properties;
 
 
-	public static void main() {
+	
+	public static void main(String path) {
 		
 	}
 	
+	
 	/**
-	 * This method reads the configuration file and saves it in a Java Property object
-	 * @throws ConfigFileNotFound 
+	 * Reads a .properties file from a specified path, and loads it into a Java properties object
+	 * If there is no properties file in the destination, one will be created
+	 * @param path		the path to the properties file
 	 */
-	public void readConfigFile(String c_location) throws ExitStatus1Exception {
-		//"src/resources/config.properties"
-		configLocation = c_location;
+	public void readConfigFile(String path) {
+		propertiesPath = path;
 
-		properties = new Properties(); //Properties is a Java class which is used to store elements from a .properties file
-		
-		
+		//New properties object (java class)
+		properties = new Properties();
+
+		//Will try and read the .properties file from the specified path. If it cannot be found, a FileNotFoundException will be handled by creating a new config file
 		try {
-			
-			//This will try to read the properties file, then feed it into the properties object
-			FileInputStream configStream = new FileInputStream(configLocation);
-			
+			FileInputStream configStream = new FileInputStream(propertiesPath);
 			
 			try {
 				properties.load(configStream); 
-			
-			} catch (IOException e) {
-				//DO NOTHING
-			}
-			
-			
-			
-		} catch (FileNotFoundException e) {
-			
-			//If no properties file could be found, create one and return an error 
-			
-			try {
-				@SuppressWarnings("unused")
-				OutputStream newConfigStream = new FileOutputStream(configLocation);
-			} catch (FileNotFoundException e1) {
-				throw new ExitStatus1Exception("CONFIGURATION FILENOTFOUND ERROR. Path '" + configLocation + "'. Please restart the program. If the issue persists, contact your system administrator");
-			}
-			
-		}
-		
-	}
+			} catch (IOException e) {}
 	
-	/**
-	 * Method returns a value from the properties file based on a key that was given
-	 * @param key		The key to reference in the properties file
-	 * @return			The value
-	 */
-	public String getPropertiesValue (String key) {
-		
-		String value = null;
-		try {
-			value = properties.getProperty(key);
-			if (Objects.isNull(value)) {
-				properties.setProperty(key, "");
-			} else {
+		} catch (FileNotFoundException e) {
+			//If no properties file could be found, create one and report it to the Warning class (which will later notify the user of the issue
+
+			try {
+				@SuppressWarnings({ "unused", "resource" })
+				OutputStream newConfigStream = new FileOutputStream(path);
+			} catch (FileNotFoundException e1) {
+			    
+				//Attempting to create the directory
+				File file = new File(path);
+				//Creating the directory
+				try {
+					file.mkdir();
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					Log.logSevere("Attempt to fix fatal configuration file path error failed: " + e2.getLocalizedMessage());
+				}
+			      
+				//If the program cannot make a new output configuration file (for whatever reason), the application will try fixing the issue and will have to quit and throw an error
+				Main.endProgramUnsuccessful(3, "Program files have been modified externally. Please restart the program. If this error persists, plese reinstall the application ", e1);
 				
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return value;
-		
+		}	
 	}
+	
+	
+	
+	
+	/**
+	 * Returns a value from the properties object that this class has been initialized around
+	 * @param key		The key to reference in the properties file
+	 * @return			The value from the properties file
+	 */
+	public String getPropertiesValue (String key) {
+		String value = null;
+
+		return value;	
+	}
+	
+	
+	
+	
 	
 	
 	/**
 	 * This will change a field in the properties file (It is not called directly from outside, but rather from another method below (setPropertiesValue)
-	 * @throws ExitStatus1Exception		If something goes wrong, exit
+	 * @throws LimitedAccessException		If something goes wrong, exit
 	 */
-	private void updatePropertiesFile() throws ExitStatus1Exception{
+	private void updatePropertiesFile() {
 		FileOutputStream out = null;
 
 		try {
-			out = new FileOutputStream(configLocation);
+			out = new FileOutputStream(propertiesPath);
 		} catch (FileNotFoundException e1) {
-			throw new ExitStatus1Exception("UPDATING CONFIGURATION FILENOTFOUND ERROR: There is no configuration file in the path '" + configLocation + "'; Please restart the program. If this issue persists, contact your system administrator");
+			Main.endProgramUnsuccessful(3, "UPDATING CONFIGURATION FILENOTFOUND ERROR: There is no configuration file in the path '" + propertiesPath + "'; Please restart the program. If this issue persists, contact your system administrator", e1);
 		}
 
 		
@@ -121,11 +122,97 @@ public class Property {
 	
 	
 	
-	public void setPropertiesValue (String key, String value) throws ExitStatus1Exception {
+	public void setPropertiesValue (String key, String value) {
 		properties.setProperty(key, value);
 		updatePropertiesFile();
 	}
 	
 	
 
+	
+	/**
+	 * Reads an item prom a properties object. Will automatically set any warnings or error messages regarding the retrieval of the value
+	 * @param key			The key of the item from the configuration file
+	 * @param defaultValue	The default value of that item (if null, then there is no default value, meaning if it doesn't exist in the configuration file, the program will terminate
+
+	 * @param propertiesObj a Property object (another class in this package)
+	 * @see Property
+	 * 
+	 * @return value		the value of the item from the configuration file
+	 */
+	public String readProperties(String key, String defaultValue, String propertiesFileLocation, int dataType) {
+		
+		boolean successfulCompletion = true;
+		
+		
+		//Getting the value from the properties object based on a key given by the user
+		String value = null;
+		try {
+			String temp = properties.getProperty(key); //trim removes whitespace
+			try {
+				value = temp.trim();
+			} catch (Exception e3) {
+				value = temp;
+			}
+			if (Objects.isNull(value)) {
+				//If the the key does not exist, create it with an empty value
+				properties.setProperty(key, "");
+			}
+			
+		} catch (Exception e) {
+			Main.endProgramUnsuccessful(1, "Unknown error occured", e);
+		}
+		
+	
+		//If there is no value (null or empty)
+		if (Objects.isNull(value) || value.isEmpty()) {
+			if (!Objects.isNull(defaultValue)) {
+				//If there is a default value, insert it into the file and continue as normal
+				setPropertiesValue(key, defaultValue);
+				
+				try {
+					value = defaultValue.trim();
+				} catch (Exception e) {
+					value = defaultValue;
+				}
+
+				
+			} else { 
+				//If there is no default value, warn the user to take action
+				Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " does not have a value");	
+				successfulCompletion = false;
+			}
+			
+		} 
+		
+		//If the value variable is not empty, complete some error checking based on the required datatype
+		else {
+			//NOTE: DataType 0 is a string, and thus no further action needs to be taken to check its validity
+			
+			//If the datatype for this field is 1 (an integer), check if it can be an integer and act accordingly
+			if (dataType == 1) {
+				try { Integer.parseInt(value); //Try converting to an integer and potentially catch an error
+				} catch (NumberFormatException e) {
+					Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " must be a number (without decimal places)");
+					successfulCompletion = false;
+				} 
+			}
+			
+			//If the datatype for this field is 2 (a float), check if it can be a float and act accordingly
+			else if (dataType == 2) {
+				try { Float.parseFloat(value); //Try converting to a float and potentially catch an error
+				} catch (NumberFormatException e) {
+					Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " must be a number");
+					successfulCompletion = false;
+				}
+			}
+			
+			if (successfulCompletion) {
+				Log.logInfo("Successful retrieval from properties file " + propertiesPath + ": key: '" + key + "'; value: '" + value + "'");
+			} else {
+				Log.logWarning("Unsuccessful retrieval from properties file " + propertiesPath + ": key: '" + key + "' with the value '" + value + "'");
+			}
+		}
+		return value;
+	}
 }

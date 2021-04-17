@@ -2,22 +2,15 @@ package com.github.financereporting.app;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import jamiesullivan.packages.exceptions.*;
 import jamiesullivan.packages.code.*;
 public class ReadContracts{
 	
-	private static void loggerSuccessMessage(String message) {
-		Log.logInfo(message);
-	}
-	
-	
-	//Throw a file not foung error if the ReadCSV method throws one
-	private static void fileNotFound(String path) throws ExitStatus1Exception {
-		throw new ExitStatus1Exception("FILE NOT FOUND ERROR; '" + path + "'; the file and/or folder does not exist. Please change the directory in the default directory and try again");
-	}
-	
-	
-	public static void readContracts() throws ExitStatus1Exception{
+
+	/**
+	 * Reads contracts from the contracts file (requires the file mappings and other configuration settings to be extracted first)
+	 * 
+	 */
+	public static void readContracts() {
 		ArrayList<ArrayList<String>> contractDataArray = new ArrayList<ArrayList<String>>();
 		
 		String individualContractFileName;
@@ -36,9 +29,9 @@ public class ReadContracts{
 			//Reading the file from that path - passing an exception if the file couldnt be found
 			try {
 				contractDataArray.addAll(ReadCSV.initReadCSV(path, disincludedCharacters));
-				loggerSuccessMessage("Successfully read a contract file from " + path);
+				Log.logInfo("Successfully read a contract file from " + path);
 			} catch (FileNotFoundException e) {
-				fileNotFound(path);
+				Warning.addAttentionRequiredMessage("File not found error: '" + path + "' does not exist");
 			}
 		}
 		

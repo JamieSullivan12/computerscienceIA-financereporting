@@ -1,4 +1,4 @@
-package jamiesullivan.packages.code;
+package jamiesullivan.packages.code.userinterface;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;

@@ -59,6 +59,7 @@ public class ReadCSV {
 		//parsing a CSV file into Scanner class constructor  
 		Scanner fileScanner;
 
+		
 		fileScanner = new Scanner(new File(path));
 
 		

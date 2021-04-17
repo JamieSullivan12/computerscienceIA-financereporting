@@ -5,7 +5,6 @@ package com.github.financereporting.app;
 
 import java.util.LinkedHashMap;
 
-import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 /**
  * @author jamiesullivan
@@ -21,12 +20,25 @@ public class fileMappings {
 	private static String contractFileMappingLocation;
 	
 	
-	private static void readMappings(String key) throws ExitStatus1Exception {
-		mappings.put(key, ReadPropertiesMethods.readProperties(contractMappingObj, key, null, contractFileMappingLocation, 0));
+	
+	private static void readMappings(String key) {
+		mappings.put(key, contractMappingObj.readProperties(key, null, contractFileMappingLocation, 0));
+	}
+	
+	/**
+	 * Returns the mappings object with all the mappings for a specific file
+	 * @return LinkedHashMap<String, String>
+	 */
+	public LinkedHashMap<String, String> getMappings() {
+		return mappings;
 	}
 	
 	
-	public static void contractFileMappings() throws ExitStatus1Exception{
+	
+	/**
+	 * Reads all the contract file mappings and saves them to a LinkedHashMap<String, String>
+	 */
+	public static void contractFileMappings() {
 		Log.logInfo("Reading data from the " + contractFileMappingLocation + " file");
 
 		//Will contain all the fields from the properties file
@@ -94,10 +106,5 @@ public class fileMappings {
 	    readMappings("MonthsExpired");
 	    readMappings("TermRemaining");
 	    readMappings("InterestRate");
-	    
-	    
-
 	}
-	
-	
 }

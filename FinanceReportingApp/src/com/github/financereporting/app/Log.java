@@ -111,24 +111,40 @@ public class Log {
    
 	}
 	
-	
+	/**
+	 * Will log an 'info' level severity to the logger
+	 * @param message the message which needs to be logged
+	 */
 	public static void logInfo(String message) {
 		try {
 			logger.info(message);
 		} catch (Exception e) { }
 	}
+	/**
+	 * Will log a 'warning' level severity to the logger
+	 * @param message the message which needs to be logged
+	 */
 	public static void logWarning(String message) {
 		try {
 			logger.warning(message);
 		} catch (Exception e) { }
 	}
+	/**
+	 * Will log a 'severe' level severity to the logger
+	 * @param message the message which needs to be logged
+	 */
 	public static void logSevere(String message) {
 		try {
 			logger.severe(message);
 		} catch (Exception e) { }
+		
+
 	}
 	
-	//Close the file handler at the end of the program excecution (removes the lock file from the logger allowing for it to be edited next time the program is run)
+
+	/**
+	 * Closes the file handler at the end of the program excecution (removes the lock file from the logger allowing for it to be edited next time the program is run)
+	 */
 	public static void fileHandlerClose() {
 		//Remove ALL the handlers
 		

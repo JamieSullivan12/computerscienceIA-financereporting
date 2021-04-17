@@ -4,7 +4,7 @@ package com.github.financereporting.app;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import jamiesullivan.packages.exceptions.ExitStatus1Exception;
+
 
 public class Config {
 	
@@ -37,12 +37,12 @@ public class Config {
 	/**
 	 * Method uses the LinkedHashMap to call a method from another class which interacts directly with the configuration file
 	 * NOTE: CI is the LinkedHashMap
-	 * @throws ExitStatus1Exception  	This will terminate the program it could be called for many reasons such as an unexpected error, an incorrect datatype in the configuration file or a non-existing field in the configuration file 
+	 * @throws LimitedAccessException  	This will terminate the program it could be called for many reasons such as an unexpected error, an incorrect datatype in the configuration file or a non-existing field in the configuration file 
 	 */
-	private static void getConfigContents() throws ExitStatus1Exception {
+	private static void getConfigContents() {
 		Set<String> keys = CI.keySet();
 		for (String key : keys) {
-			CI.get(key).put("value", ReadPropertiesMethods.readProperties(configObj, key, CI.get(key).get("defaultValue"), configFileLocation,  Integer.parseInt(CI.get(key).get("dataTypeCode")) ));
+			CI.get(key).put("value", configObj.readProperties(key, CI.get(key).get("defaultValue"), configFileLocation,  Integer.parseInt(CI.get(key).get("dataTypeCode")) ));
 		}
 	}
 	
@@ -51,7 +51,7 @@ public class Config {
 	/**
 	 * Initiates the process to read files from the configuration file
 	 */
-	public static void readAllConfigContents () throws ExitStatus1Exception{
+	public static void readAllConfigContents () {
 		
 		//Creating a configuration object (where all the configuration settings and methods will be stored
 		configObj = new Property();
@@ -85,18 +85,25 @@ public class Config {
 	//GETTERS
 	
 	/**
-	 * @return the contractsFileNamesMonthEnd
+	 * @return the contractsFileNamesMonthEnd as a String Array. Will return null if empty
 	 */
 	public static String[] getContractFileNamesMonthEnd() {
-		return CI.get("contractFileNamesMonthEnd").get("value").split(",");
+		String returnValue = CI.get("contractFileNamesMonthEnd").get("value");
+		
+		try {
+			return returnValue.split(",");
+		} catch (Exception e) {
+			return null;
+		}		
 	}
+	
 	/**
 	 * @return the defaultInputDirectoryFunding
 	 */
 	public static String getDefaultInputDirectoryFunding() {
-		//out.println(CI.get("DefaultInputDirectoryFunding")CI.get("value"));
 		return CI.get("DefaultInputDirectoryFunding").get("value");
 	}
+	
 	/**
 	 * @return the name
 	 */
@@ -105,18 +112,40 @@ public class Config {
 	}
 
 	/**
-	 * @return the contractFileNamesFunding
+	 * @return the contractFileNamesFunding as a String Array. Will return null if empty
 	 */
+	
 	public static String[] getContractFileNamesFunding() {
-		return CI.get("ContractFileNamesFunding").get("value").split(",");
-	}
-	/**
-	 * @return the transactionFileNamesFunding
-	 */
-	public static String[] getTransactionFileNamesMonthEnd() {
-		return CI.get("transactionFileNamesMonthEnd").get("value").split(",");
+		String returnValue = CI.get("ContractFileNamesFunding").get("value");
+		
+		try {
+			return returnValue.split(",");
+		} catch (Exception e) {
+			return null;
+		}
+		 
 	}
 	
+	/**
+	 * @return the transactionFileNamesFunding as a String Array. Will return null if empty
+	 */
+	public static String[] getTransactionFileNamesMonthEnd() {
+		String returnValue = CI.get("transactionFileNamesMonthEnd").get("value");
+		
+		try {
+			return returnValue.split(",");
+		} catch (Exception e) {
+			return null;
+		}
+		
+		
+	}
+	
+	/**
+	 * Returns the hashed map which contains all the fields of a config file plus additional information such as: Name, Value, Default Value and Data Type
+	 * To access an item, use hashMap.get("Name of key in quotes").get("Name of value item - eg. value, defaultValue, dataTypeCode")
+	 * @return LinkedHashMap<String, LinkedHashMap<String, String>> 
+	 */
 	public static LinkedHashMap<String, LinkedHashMap<String, String>> getHashMap() {
 		return CI;
 	}

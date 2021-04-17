@@ -1,16 +1,13 @@
 package com.github.financereporting.app;
 
-import java.awt.Desktop;
 import java.io.*;
 import java.net.ServerSocket;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 
 import com.github.financereporting.user.interfaces.*;
 
-import jamiesullivan.packages.code.OpenDialogueExplorer;
-import jamiesullivan.packages.exceptions.ExitStatus1Exception;
+
+import jamiesullivan.packages.exceptions.LimitedAccessException;
 
 
 
@@ -18,15 +15,23 @@ import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 public class Main {
 	
+
+	
+	
+	
+	
+	
 	private static ServerSocket socket;
+	
+	
+	
 	
 	public static void main(String[] args) {
 		socket = null;
 	    
 		try {
 			
-			
-			
+
 			//This ServerSocket allows the program to check if it is already running
 			//If it is running, it will throw an IOException which is caught below
 
@@ -34,7 +39,7 @@ public class Main {
 			
 			try {
 				ServerSocketInit.readServerSocketProperties();
-			} catch (ExitStatus1Exception e1) {
+			} catch (LimitedAccessException e1) {
 				//Catch invalid ports (eg. ports with letters)
 		    	System.out.println("\n\tWARNING: There was an error starting the program:");
 		    	System.out.println("\n\t* The port in 'src/resources/serverSocket.properties > port' is invalid because it contains characters other than numbers"
@@ -53,27 +58,6 @@ public class Main {
 			//
 			// MAIN CODE BELOW
 			
-			/**
-			// on Windows, retrieve the path of the "Program Files" folder
-		    File file = new File(System.getenv("programfiles"));
-
-		    try {
-		      if (Desktop.isDesktopSupported()) {
-		         Desktop desktop = Desktop.getDesktop();
-		         desktop.open(file);
-		      } else {
-		    	  Log.logInfo("Desktop not supported");
-		      }
-		    } catch(Exception e) {
-		    	Log.logWarning(e.toString());
-		    }
-		    **/
-		    
-			
-		    
-			
-			
-			
 			
 			/**
 			 * Creating the log file
@@ -85,32 +69,17 @@ public class Main {
 	
 			
 			//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
-			try {
 
-				Config.readAllConfigContents();
+			Config.readAllConfigContents();
 
-				fileMappings.contractFileMappings();
-				ReadContracts.readContracts();
+
+			fileMappings.contractFileMappings();
 				
-			} catch (ExitStatus1Exception e) {
-				//If a known exit error occurs, print it and exit
-				Log.logSevere(e.getMessage());
-				Log.logSevere("EXIT STATUS 1: Program Terminated");
-				Log.fileHandlerClose();
-				System.exit(1);
-				
-				
-			} catch (Exception e) {
-				//If a random error occurs, print it and exit
-				Log.logSevere(e.fillInStackTrace().toString());
-				Log.logSevere("EXIT STATUS 1: Program Terminated");
-				Log.fileHandlerClose();
-				System.exit(1);
-			}
+
 			
 
 			
-
+			
 			TextBasedUI.initializeUI();
 
 			
@@ -154,11 +123,56 @@ public class Main {
 
 	    }
 		
-		
-		
-		
 	}
 	
+	
+	
+	
+	/**
+	 * Ends the program properly in case of an error/issue during the running of the code.
+	 * Special exit status codes may be used in the case of an unsuccessful termination of the program
+	 * @param exitStatus		A code from 0-255 (any code greater than 255 will default to 128). See src/resources/ErrorCodes/properties for more details
+	 * @param optionalMessage	An optional message to print to the error log
+	 * @param traceBack			An error traceback (MUST be a part of the Exception class)
+	 */
+	public static void endProgramUnsuccessful (int exitStatus, String optionalMessage, Exception traceBack) {
+		if (!(exitStatus > 0) || !(exitStatus < 256) ) {
+			exitStatus = 128;
+		}
+		if (!optionalMessage.isBlank()) {
+			Log.logSevere("ERROR CODE " + exitStatus + ": A fatal error has occured. \nMessage: " + optionalMessage);
+			System.out.println("ERROR CODE " + exitStatus + ": A fatal error has occured. \nMessage: " + optionalMessage);
+		} else {
+			Log.logSevere("ERROR CODE " + exitStatus + ": A fatal error has occured.");
+			System.out.println("ERROR CODE " + exitStatus + ": A fatal error has occured.");
+		}
+		if (!traceBack.toString().isBlank()) {
+			Log.logInfo("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
+			System.out.println("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
+		} else {
+			Log.logInfo("No traceback found");
+			System.out.println("No traceback found");
+		}
+		
+		try {
+			Log.fileHandlerClose();
+		} catch (Exception e) {
+			Log.logWarning("Unable to close fileHandler:\n" + e.getLocalizedMessage());
+			System.out.println("Unable to close fileHandler:\n" + e.getLocalizedMessage());
+		}
+		
+		System.out.println("Program Terminated");
+		Log.logSevere("Program Terminated");
+		
+		System.exit(exitStatus);
+	}
+	
+	
+	
+	
+	/**
+	 * Will successfully terminate the program, shutting down all processes which need to be shut down, then terminating on exit status 0
+	 */
 	public static void exitProgramSuccess () {
 		//Print final message to logger, then close it
 		try { Log.logInfo("EXIT STATUS 0: Successful completion of the program"); } catch (Exception e) {}
