@@ -68,7 +68,11 @@ public class Property {
 		
 	}
 	
-	
+	/**
+	 * Method returns a value from the properties file based on a key that was given
+	 * @param key		The key to reference in the properties file
+	 * @return			The value
+	 */
 	public String getPropertiesValue (String key) {
 		
 		String value = null;
@@ -88,29 +92,33 @@ public class Property {
 		
 	}
 	
+	
+	/**
+	 * This will change a field in the properties file (It is not called directly from outside, but rather from another method below (setPropertiesValue)
+	 * @throws ExitStatus1Exception		If something goes wrong, exit
+	 */
 	private void updatePropertiesFile() throws ExitStatus1Exception{
 		FileOutputStream out = null;
 
 		try {
 			out = new FileOutputStream(configLocation);
 		} catch (FileNotFoundException e1) {
-			throw new ExitStatus1Exception("UPDATING CONFIGURATION FILENOTFOUNG ERROR: There is no configuration file in the path '" + configLocation + "'; Please restart the program. If this issue persists, contact your system administrator");
+			throw new ExitStatus1Exception("UPDATING CONFIGURATION FILENOTFOUND ERROR: There is no configuration file in the path '" + configLocation + "'; Please restart the program. If this issue persists, contact your system administrator");
 		}
 
 		
 		try {
 			properties.store(out, null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			Log.logWarning(e.toString());
 		}
 		try {
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			Log.logWarning(e.toString());
 		}
 	}
+	
 	
 	
 	public void setPropertiesValue (String key, String value) throws ExitStatus1Exception {

@@ -10,31 +10,32 @@ import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 /**
  * @author jamiesullivan
  *
+ * This class reads all the mappings for the contract file. The mappings are to link variable names in the program with headings in the excel file (in no particular order)
  */
 public class fileMappings {
 	
 
-	
+	//A linkedHashMap of all the mappings: Key: Variable Name, Value: User defined mapping from the heading in the database
 	private static LinkedHashMap<String, String>  mappings;
 	private static Property contractMappingObj;
 	private static String contractFileMappingLocation;
 	
+	
 	private static void readMappings(String key) throws ExitStatus1Exception {
-		mappings.put(key, ReadPropertiesMethods.readPropertiesString(contractMappingObj, key, null, contractFileMappingLocation));
+		mappings.put(key, ReadPropertiesMethods.readProperties(contractMappingObj, key, null, contractFileMappingLocation, 0));
 	}
 	
 	
 	public static void contractFileMappings() throws ExitStatus1Exception{
 		Log.logInfo("Reading data from the " + contractFileMappingLocation + " file");
 
-		
+		//Will contain all the fields from the properties file
 		contractMappingObj = new Property();
 		contractFileMappingLocation = "src/resources/contractFileMappings.properties";
 		contractMappingObj.readConfigFile(contractFileMappingLocation);
-		mappings = new LinkedHashMap<String, String> ();
 		
-	    
-
+		
+		mappings = new LinkedHashMap<String, String> ();
 
 	    readMappings("ContractNumber");
 	    readMappings("CustomerCode");

@@ -25,14 +25,15 @@ public class ReadContracts{
 		
 		String disincludedCharacters = "$"; //The characters in the excel file which must be ignored or else they may break the program
 		
+		
 		//Looping through each contract file name from the config file (because the user may have given more than one contracts file if they have two data sources)
-		for (var i=0; i < Config.getContractFileNamesFunding().size(); i++) {
-			individualContractFileName = Config.getContractFileNamesFunding().get(i);
+		for (var i=0; i < Config.getContractFileNamesFunding().length; i++) {
+			individualContractFileName = Config.getContractFileNamesFunding()[i];
 			//Merging the directory and file name into a single path
 			//Trim removes any whitespace around the variables
 			path = Config.getDefaultInputDirectoryFunding().trim() + "/" + individualContractFileName.trim(); 
 			
-			//Reading the file from that path - passing an exception if the file couldnt be foung
+			//Reading the file from that path - passing an exception if the file couldnt be found
 			try {
 				contractDataArray.addAll(ReadCSV.initReadCSV(path, disincludedCharacters));
 				loggerSuccessMessage("Successfully read a contract file from " + path);

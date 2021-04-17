@@ -1,9 +1,15 @@
 package com.github.financereporting.app;
 
+import java.awt.Desktop;
 import java.io.*;
 import java.net.ServerSocket;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import com.github.financereporting.user.interfaces.*;
 
+import jamiesullivan.packages.code.OpenDialogueExplorer;
 import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 
@@ -12,11 +18,15 @@ import jamiesullivan.packages.exceptions.ExitStatus1Exception;
 
 public class Main {
 	
+	private static ServerSocket socket;
 	
 	public static void main(String[] args) {
-		ServerSocket socket = null;
+		socket = null;
 	    
 		try {
+			
+			
+			
 			//This ServerSocket allows the program to check if it is already running
 			//If it is running, it will throw an IOException which is caught below
 
@@ -35,13 +45,32 @@ public class Main {
 
 			
 			int serverSocketPort = ServerSocketInit.getPort();
-			
+
 			socket = new ServerSocket(serverSocketPort);
+			
 			//
 			//
 			//
 			// MAIN CODE BELOW
 			
+			/**
+			// on Windows, retrieve the path of the "Program Files" folder
+		    File file = new File(System.getenv("programfiles"));
+
+		    try {
+		      if (Desktop.isDesktopSupported()) {
+		         Desktop desktop = Desktop.getDesktop();
+		         desktop.open(file);
+		      } else {
+		    	  Log.logInfo("Desktop not supported");
+		      }
+		    } catch(Exception e) {
+		    	Log.logWarning(e.toString());
+		    }
+		    **/
+		    
+			
+		    
 			
 			
 			
@@ -57,28 +86,33 @@ public class Main {
 			
 			//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
 			try {
+
 				Config.readAllConfigContents();
+
 				fileMappings.contractFileMappings();
 				ReadContracts.readContracts();
 				
 			} catch (ExitStatus1Exception e) {
-				
+				//If a known exit error occurs, print it and exit
 				Log.logSevere(e.getMessage());
 				Log.logSevere("EXIT STATUS 1: Program Terminated");
 				Log.fileHandlerClose();
 				System.exit(1);
 				
 				
+			} catch (Exception e) {
+				//If a random error occurs, print it and exit
+				Log.logSevere(e.fillInStackTrace().toString());
+				Log.logSevere("EXIT STATUS 1: Program Terminated");
+				Log.fileHandlerClose();
+				System.exit(1);
 			}
 			
+
 			
-			
-		
-			TextBasedUI.initializeMenu();
-		
-			
-			
-			
+
+			TextBasedUI.initializeUI();
+
 			
 			// MAIN CODE ABOVE ^^
 			//
@@ -116,12 +150,22 @@ public class Main {
 
 	    	//If the code has finished properly (when socket doesnt equal null), activate proper exit procedures
 	    	if (socket != null)
-	    		//Print final message to logger, then close it
-	    		try { Log.logInfo("EXIT STATUS 0: Successful completion of the program"); } catch (Exception e) {}
-	    		try { Log.fileHandlerClose(); } catch (Exception e) {}
-	    		//Properly close the port so that the program can run again
-	    		try{ socket.close(); } catch(Exception e){}
+	    		exitProgramSuccess();
+
 	    }
+		
+		
+		
+		
+	}
+	
+	public static void exitProgramSuccess () {
+		//Print final message to logger, then close it
+		try { Log.logInfo("EXIT STATUS 0: Successful completion of the program"); } catch (Exception e) {}
+		try { Log.fileHandlerClose(); } catch (Exception e) {}
+		//Properly close the port so that the program can run again
+		try{ socket.close(); } catch(Exception e){}
+		System.exit(0);
 	}
 
 
