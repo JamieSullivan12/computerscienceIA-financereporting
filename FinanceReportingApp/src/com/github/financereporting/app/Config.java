@@ -117,6 +117,10 @@ public class Config {
 		return CI.get("transactionFileNamesMonthEnd").get("value").split(",");
 	}
 	
+	public static LinkedHashMap<String, LinkedHashMap<String, String>> getHashMap() {
+		return CI;
+	}
+	
 
 
 	
