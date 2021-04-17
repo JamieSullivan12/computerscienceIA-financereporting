@@ -7,11 +7,6 @@ import java.net.ServerSocket;
 import com.github.financereporting.user.interfaces.*;
 
 
-import jamiesullivan.packages.exceptions.LimitedAccessException;
-
-
-
-
 
 public class Main {
 	
@@ -37,16 +32,7 @@ public class Main {
 
 			
 			
-			try {
-				ServerSocketInit.readServerSocketProperties();
-			} catch (LimitedAccessException e1) {
-				//Catch invalid ports (eg. ports with letters)
-		    	System.out.println("\n\tWARNING: There was an error starting the program:");
-		    	System.out.println("\n\t* The port in 'src/resources/serverSocket.properties > port' is invalid because it contains characters other than numbers"
-		    			+ "\n\t\t- TO FIX: Change the port value in the 'serverSocket.properties' file (Must be between 1 and 65535)"
-		    			+ "\n\t\t- If this still does not work, contact your system administrator");
-		    	System.exit(1);
-			}
+			ServerSocketInit.readServerSocketProperties("src/resources/serverSocket.properties");
 
 			
 			int serverSocketPort = ServerSocketInit.getPort();

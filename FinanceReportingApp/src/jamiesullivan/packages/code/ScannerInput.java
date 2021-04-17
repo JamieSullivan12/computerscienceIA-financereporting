@@ -24,13 +24,14 @@ public class ScannerInput {
 	 * @return			The user input as a string
 	 */
 	 public static String stringInput(String message) {
-		 Scanner in = new Scanner(System.in);
+		
+		Scanner in = new Scanner(System.in);
 		 if (!Objects.isNull(message) && !message.equals("")) {
 			 System.out.print(message);
 		 }
 		 
 		 String input = in.nextLine();
-		 in.close();
+
 	     return input;
 	 }
 	 
@@ -40,13 +41,14 @@ public class ScannerInput {
 		 * @return			The user input as an integer
 		 */
 	 public static int intInput(String message) {
+		 @SuppressWarnings("resource")
 		 Scanner in = new Scanner(System.in);
 		 if (!Objects.isNull(message) && !message.equals("")) {
 			 System.out.print(message);
 		 }
 		 
 		 int input = in.nextInt();
-		 in.close();
+
 	     return input;
 	 }
 	 
@@ -56,13 +58,14 @@ public class ScannerInput {
 		 * @return			The user input as a float
 		 */
 	 public static float floatInput(String message) {
+		 @SuppressWarnings("resource")
 		 Scanner in = new Scanner(System.in);
 		 if (!Objects.isNull(message) && !message.equals("")) {
 			 System.out.print(message);
 		 }
 		 
 		 float input = in.nextFloat();
-		 in.close();
+
 	     return input;
 	 }
 }

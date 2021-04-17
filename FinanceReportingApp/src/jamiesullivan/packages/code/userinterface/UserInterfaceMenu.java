@@ -37,7 +37,7 @@ public class UserInterfaceMenu {
 	}
 	
 	/**
-	 * Creates a menu which is printed onto the screen. The menu uses number selections
+	 * Creates a menu which is printed onto the screen. The menu uses number selections. It will loop until the user enters a valid number
 	 * @param options		The options which the menu will show in the format: (0).... (1).... Note that the numbers are generated automatically and that the string array simply needs to have the names of the options
 	 * @param heading		The heading/title of the menu - Is shown on top when printed. Required to be filled in
 	 * @param message		The message which is shown where the user needs to input a number. NOTE instructions are already printed for the user so this field may be left blank
