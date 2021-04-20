@@ -33,10 +33,7 @@ public class Main {
 			
 			
 			ServerSocketInit.readServerSocketProperties("src/resources/serverSocket.properties");
-
-			
 			int serverSocketPort = ServerSocketInit.getPort();
-
 			socket = new ServerSocket(serverSocketPort);
 			
 			//

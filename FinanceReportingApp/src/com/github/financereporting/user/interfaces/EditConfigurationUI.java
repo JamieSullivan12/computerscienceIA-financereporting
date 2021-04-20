@@ -4,7 +4,8 @@ import java.util.Set;
 
 import com.github.financereporting.app.*;
 
-import jamiesullivan.packages.code.userinterface.UserInterfaceMenu;
+import jamiesullivan.packages.code.userinterface.*;
+import jamiesullivan.packages.code.*;
 
 public class EditConfigurationUI {
 	
@@ -40,10 +41,10 @@ public class EditConfigurationUI {
 			System.out.println("GOING BACK");
 			TextBasedUI.initializeUI();
 		} else {
-			//Do stuff here
-			System.out.println("Editing: " + keys.toArray()[result-1] + configItems.get(keys.toArray()[result-1]).get("value"));
+			//System.out.println("Editing: " + keys.toArray()[result-1].toString() + configItems.get(keys.toArray()[result-1]).get("value"));
 			
-		
+			String newValue = ScannerInput.stringInput("Enter new value for " + keys.toArray()[result-1] + ": ");
+			Config.changeConfigField(keys.toArray()[result-1].toString(), newValue);
 		
 		
 		

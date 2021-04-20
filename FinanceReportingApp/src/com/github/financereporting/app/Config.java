@@ -150,6 +150,19 @@ public class Config {
 		return CI;
 	}
 	
+	
+	/**
+	 * Updates a configuration key with a new value. 
+	 * 
+	 * @param key
+	 * @param newValue
+	 * @warning This will not save the changes, but rather save them to memory. The changes must be pushed to the configuration file through a different method
+	 */
+	public static void changeConfigField(String key, String newValue) {
+		CI.get(key).put("value", newValue);
+		System.out.println(CI);
+	}
+	
 
 
 	
