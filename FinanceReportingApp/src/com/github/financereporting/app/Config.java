@@ -12,6 +12,7 @@ public class Config {
 	
 
 	private static LinkedHashMap<String, LinkedHashMap<String, String>> CI;
+	private static LinkedHashMap<String, LinkedHashMap<String, String>> CI_STATIC;
 	private static String configFileLocation;
 	
 	
@@ -76,6 +77,8 @@ public class Config {
 		
 		//Uses the LinkedHashMap from above and populates the value section using the Properties class
 		getConfigContents();
+		
+		CI_STATIC = new LinkedHashMap<String, LinkedHashMap<String, String>>();
 		
 	}
 	
@@ -159,8 +162,35 @@ public class Config {
 	 * @warning This will not save the changes, but rather save them to memory. The changes must be pushed to the configuration file through a different method
 	 */
 	public static void changeConfigField(String key, String newValue) {
-		CI.get(key).put("value", newValue);
+		CI.get(key).put("newValue", newValue);
 		System.out.println(CI);
+	}
+	
+	
+	public static String getUnsavedChanges() {
+		String returnString = "";
+		
+		//Used to loop through the map (creates a list of keys as a set object)
+		Set<String> keys = CI.keySet();
+		
+
+		int i = 0;
+		for (String key : keys) {
+			if (!CI.get(key).get("value").toString().equals(CI.get(key).get("newValue"))) { 
+				returnString += key + "\t...\t" + CI.get(key).get("value");
+				i += 1;
+			}
+			
+		return returnString;
+			
+		}
+				
+
+		
+		
+		readAllConfigContents();
+		
+		return returnString;
 	}
 	
 
