@@ -95,7 +95,7 @@ public class Log {
         
         
         // DISABLE CONSOLE LOGGER FOR PRODUCTION CODE (set to true)
-        boolean disableConsoleLogger = false;
+        boolean disableConsoleLogger = true;
         
         if (disableConsoleLogger) {
         	logger.setUseParentHandlers(false);

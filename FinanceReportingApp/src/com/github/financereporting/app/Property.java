@@ -123,8 +123,14 @@ public class Property {
 	
 	
 	public void setPropertiesValue (String key, String value) {
-		properties.setProperty(key, value);
+
+		if (value == null) {
+			properties.setProperty(key, "");
+		} else {
+			properties.setProperty(key, value);
+		}
 		updatePropertiesFile();
+		
 	}
 	
 	
@@ -167,6 +173,7 @@ public class Property {
 		//If there is no value (null or empty)
 		if (Objects.isNull(value) || value.isEmpty()) {
 			if (!Objects.isNull(defaultValue)) {
+				
 				//If there is a default value, insert it into the file and continue as normal
 				setPropertiesValue(key, defaultValue);
 				
@@ -174,45 +181,19 @@ public class Property {
 					value = defaultValue.trim();
 				} catch (Exception e) {
 					value = defaultValue;
-				}
-
-				
-			} else { 
-				//If there is no default value, warn the user to take action
-				Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " does not have a value");	
-				successfulCompletion = false;
-			}
-			
-		} 
-		
-		//If the value variable is not empty, complete some error checking based on the required datatype
-		else {
-			//NOTE: DataType 0 is a string, and thus no further action needs to be taken to check its validity
-			
-			//If the datatype for this field is 1 (an integer), check if it can be an integer and act accordingly
-			if (dataType == 1) {
-				try { Integer.parseInt(value); //Try converting to an integer and potentially catch an error
-				} catch (NumberFormatException e) {
-					Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " must be a number (without decimal places)");
-					successfulCompletion = false;
-				} 
-			}
-			
-			//If the datatype for this field is 2 (a float), check if it can be a float and act accordingly
-			else if (dataType == 2) {
-				try { Float.parseFloat(value); //Try converting to a float and potentially catch an error
-				} catch (NumberFormatException e) {
-					Warning.addAttentionRequiredMessage("WARNING: Update your configuration preferences: " + key + " must be a number");
-					successfulCompletion = false;
-				}
-			}
-			
-			if (successfulCompletion) {
-				Log.logInfo("Successful retrieval from properties file " + propertiesPath + ": key: '" + key + "'; value: '" + value + "'");
-			} else {
-				Log.logWarning("Unsuccessful retrieval from properties file " + propertiesPath + ": key: '" + key + "' with the value '" + value + "'");
-			}
+				}		
 		}
+		
+		
+		}
+		Log.logInfo("Successful retrieval from properties file " + propertiesPath + ": key: '" + key + "'; value: '" + value + "'");
+
 		return value;
+	
 	}
+	
+	
+	
+	
+	
 }

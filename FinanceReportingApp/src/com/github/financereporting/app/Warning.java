@@ -8,6 +8,12 @@ package com.github.financereporting.app;
 public class Warning {
 	
 	private static String attentionRequiredMessage = "";
+	
+	
+	public static void resetAttentionRequiredMessage() {
+		attentionRequiredMessage = "";
+	}
+	
 	/**
 	 * Appends to the string that controls the attention required message variable. 
 	 * This message will be shown in the user interface if the user interface if the user

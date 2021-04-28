@@ -36,43 +36,15 @@ public class Main {
 			int serverSocketPort = ServerSocketInit.getPort();
 			socket = new ServerSocket(serverSocketPort);
 			
-			//
-			//
-			//
-			// MAIN CODE BELOW
-			
 			
 			/**
 			 * Creating the log file
 			 * initializeLog(Log file location, maximum size of log file in bytes, maximum number of log files which can be created, Whether the log file should be overwritten each time the program is run); 
 			 */
 			Log.initializeLog("src/resources/", "log.txt", false); 
-			
 			Log.logInfo("\n####################\nProgram Started on Port: " + serverSocketPort + "\n####################");
-	
 			
-			//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
-
-			Config.readAllConfigContents();
-
-
-			fileMappings.contractFileMappings();
-				
-
-			
-
-			
-			
-			TextBasedUI.initializeUI();
-
-			
-			// MAIN CODE ABOVE ^^
-			//
-			//
-			//
-			
-		
-	    } catch (IOException ex) {
+		} catch (IOException ex) {
 	    	//If the port is already running or is invalid
 	    	
 	    	//Theoretically, the file handler wont have been initialized yet, but in case it has...
@@ -96,6 +68,45 @@ public class Main {
 	    			+ "\n\t\t- If this still does not work, contact your system administrator");
 	    	System.exit(1);
 	    }
+			
+			
+			//
+			//
+			//
+			// MAIN CODE BELOW
+			
+			
+
+
+			
+			//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
+
+			Config.readAllConfigContents();
+
+
+			fileMappings.contractFileMappings();
+				
+
+			
+
+			
+			
+			try {
+				TextBasedUI.initializeUI();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				endProgramUnsuccessful(3, "Unknown error occured", e);
+			}
+
+			
+			// MAIN CODE ABOVE ^^
+			//
+			//
+			//
+			
+		
+	    
 		
 		
 	    finally {

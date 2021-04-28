@@ -2,6 +2,7 @@ package com.github.financereporting.app;
 
 
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -16,8 +17,6 @@ public class Config {
 	private static String configFileLocation;
 	
 	
-
-
 	
 	/**
 	 * Method is used to populate the LinkedHashMap (CI = the LinkedHashMap) with a few values:
@@ -32,13 +31,13 @@ public class Config {
 		configItem.put("defaultValue", defaultValue);
 		configItem.put("dataTypeCode", dataTypeCode);
 		configItem.put("value", "");
+		configItem.put("warningFlag", "false");
 		CI.put(key, configItem);
 	}
 	
 	/**
 	 * Method uses the LinkedHashMap to call a method from another class which interacts directly with the configuration file
 	 * NOTE: CI is the LinkedHashMap
-	 * @throws LimitedAccessException  	This will terminate the program it could be called for many reasons such as an unexpected error, an incorrect datatype in the configuration file or a non-existing field in the configuration file 
 	 */
 	private static void getConfigContents() {
 		Set<String> keys = CI.keySet();
@@ -77,8 +76,7 @@ public class Config {
 		
 		//Uses the LinkedHashMap from above and populates the value section using the Properties class
 		getConfigContents();
-		
-		CI_STATIC = new LinkedHashMap<String, LinkedHashMap<String, String>>();
+		checkConfigValidity();
 		
 	}
 	
@@ -157,47 +155,145 @@ public class Config {
 	/**
 	 * Updates a configuration key with a new value. 
 	 * 
-	 * @param key
-	 * @param newValue
+	 * @param key	the key of the field needing to be changed
+	 * @param newValue	The new value of that field
 	 * @warning This will not save the changes, but rather save them to memory. The changes must be pushed to the configuration file through a different method
+	 * 
+	 * @see saveChanges()
 	 */
 	public static void changeConfigField(String key, String newValue) {
+		Log.logInfo("Changing config field: " + key + ". New value: " + newValue);
 		CI.get(key).put("newValue", newValue);
+		
+
 	}
 	
 	
-	public static String getUnsavedChanges() {
+	
+	/**
+	 * Returns a list of unsaved changes in the configuration file
+	 * 
+	 * @return a string with each unsaved change on a new line
+	 */
+	public static String getUnsavedChanges() throws Exception {
 		String returnString = "";
 		
-		//Used to loop through the map (creates a list of keys as a set object)
+		//Used to loop through the configuration items
 		Set<String> keys = CI.keySet();
-		
-		System.out.println("Y");
-		int i = 0;
 		for (String key : keys) {
-			System.out.println(key);
-			System.out.println(CI.get(key).get("value").equals(CI.get(key).get("newValue")));
-			if (!CI.get(key).get("value").equals(CI.get(key).get("newValue"))) { 
-				System.out.println("H");
-				System.out.println(key + "\t...\t" + CI.get(key).get("newValue"));
-				returnString += key + "\t...\t" + CI.get(key).get("newValue").toString();
-				i += 1;
+			//If there is a value in the newValue section (a field which when populated, means the field has been updated) which is different from the old value, then note the disrepency (which means a change has been made)
+			if (!CI.get(key).get("value").equals(CI.get(key).get("newValue")) && CI.get(key).get("newValue") != null) { 
+				returnString += key + "\t...\t" + CI.get(key).get("newValue").toString() + "\n";
 			}
-		System.out.println(returnString);
-		return returnString;
-			
 		}
-				
+		Log.logInfo("Unsaved configuration changes (if nothing, then empty): " + returnString);
 
-		
-		
-		readAllConfigContents();
-		
 		return returnString;
 	}
 	
+	
+	
+	/**
+	 * Saves any unsaved changes in the configuration object. These changes will have been made using the changeConfigField() method
+	 * 
+	 * @see changeConfigField
+	 */
+	public static void saveChanges() {
+		//Loop through each of the configuration fields
+		Set<String> keys = CI.keySet();
+		for (String key : keys) {
+			//If there is a value in the newValue section (a field which when populated, means the field has been updated), then save the change
+			if (!CI.get(key).get("value").equals(CI.get(key).get("newValue")) && CI.get(key).get("newValue") != null) { 
+				
+				Log.logInfo("Saving configuration changes: " + key + ". Old value: " + CI.get(key).get("value") + ". New value: " + CI.get(key).get("newValue"));
 
+				CI.get(key).put("value", CI.get(key).get("newValue") );
+				configObj.setPropertiesValue(key, CI.get(key).get("newValue"));
+				
+				Log.logInfo("Successfully saved change for " + key);
 
+			}
+		}
+		checkConfigValidity();	//Checks the new fields are valid
+	}
+	
+	
+	
+	/**
+	 * Resets all fields in the configuration file to their default values. 
+	 * 
+	 * It will also complete validity checks and call on methods to update the warnings after the reset has occured
+	 */
+	public static void resetDefault() {
+		Log.logInfo("RESETTING TO DEFAULT CONFIGURATION SETTINGS");
+
+		//Used to loop through each of the fields
+		Set<String> keys = CI.keySet();
+		for (String key : keys) {
+			//Set the value of that field to the default value
+			configObj.setPropertiesValue(key, CI.get(key).get("defaultValue"));
+			Log.logInfo("Reset " + key + ", to: " + CI.get(key).get("defaultValue"));
+		}
+		//Because it is such a large scale change, the readAllConfigContents method is read to ensure all parallel arrays are up to date, and all validity checks have been done properly
+		readAllConfigContents();
+			
+	}
+	
+
+	
+	
+	
+	/**
+	 * Checks if there are any fields in the configuration file that are empty but are not allowed to be (using the default values).
+	 * If the default value for a field is null, that means it MUST be filled by the user.
+	 * If the default value for a field is an empty string, that means it is allowed to be empty.
+	 */
+	private static void checkConfigValidity() {
+		Set<String> keys = CI.keySet();
+		
+		
+		Warning.resetAttentionRequiredMessage(); //will reset the warning message (removes any warning messages which have been fixed and prepares the attribute of the class to be filled with new warning messages)
+		//Loop through each configuration item
+		for (String key : keys) {
+			String warningMessage = ""; //Any warning messages will be added to this streng, then will be sent to the Warning class later
+			String value = CI.get(key).get("value"); //Variable is used a lot in this piece of code so better to pre-define it
+			
+			//If the field is empty and the default value is null, this means it MUST have a user defined field
+			if (Objects.isNull(value) || value.isEmpty() && Objects.isNull(CI.get(key).get("defaultValue"))) {
+				warningMessage += "WARNING: Update your configuration preferences: " + key + " does not have a value or a default value";	
+				
+			} else {
+
+				//If the datatype for this field is 1 (an integer), check if it can be an integer and act accordingly
+				if (Integer.parseInt(CI.get(key).get("dataTypeCode")) == 1) {
+					try { Integer.parseInt(value); //Try converting to an integer and potentially catch an error
+					} catch (NumberFormatException e) {
+						warningMessage += "WARNING: Update your configuration preferences: " + key + " must be a number (without decimal places)";
+					} 
+				}
+				
+				//If the datatype for this field is 2 (a float), check if it can be a float and act accordingly
+				else if (Integer.parseInt(CI.get(key).get("dataTypeCode")) == 2) {
+					try { Float.parseFloat(value); //Try converting to a float and potentially catch an error
+					} catch (NumberFormatException e) {
+						warningMessage += "WARNING: Update your configuration preferences: " + key + " must be a number";
+					}
+				}
+			}
+			
+			//Write the message to the warning class (if there is a warning) and flag the configuration field which has the issue
+			if (!warningMessage.isBlank()) {
+				Warning.addAttentionRequiredMessage(warningMessage);
+				CI.get(key).put("warningFlag", "true");
+			} else {
+				CI.get(key).put("warningFlag", "false");
+			}
+		}
+		
+		
+
+		
+	} 
 	
 	
 

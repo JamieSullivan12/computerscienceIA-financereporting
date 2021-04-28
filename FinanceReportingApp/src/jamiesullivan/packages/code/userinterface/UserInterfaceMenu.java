@@ -27,7 +27,10 @@ public class UserInterfaceMenu {
 		
 		int i = 0;
 		while (i < options.length) {
+			if ( options[i] != null) {
 			menuString += "\t>> (" + (i+1) + ") " + options[i] + '\n';
+			
+			}
 			i = i + 1;
 		}
 		
