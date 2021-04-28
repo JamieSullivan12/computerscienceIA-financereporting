@@ -163,7 +163,6 @@ public class Config {
 	 */
 	public static void changeConfigField(String key, String newValue) {
 		CI.get(key).put("newValue", newValue);
-		System.out.println(CI);
 	}
 	
 	
@@ -173,14 +172,18 @@ public class Config {
 		//Used to loop through the map (creates a list of keys as a set object)
 		Set<String> keys = CI.keySet();
 		
-
+		System.out.println("Y");
 		int i = 0;
 		for (String key : keys) {
-			if (!CI.get(key).get("value").toString().equals(CI.get(key).get("newValue"))) { 
-				returnString += key + "\t...\t" + CI.get(key).get("value");
+			System.out.println(key);
+			System.out.println(CI.get(key).get("value").equals(CI.get(key).get("newValue")));
+			if (!CI.get(key).get("value").equals(CI.get(key).get("newValue"))) { 
+				System.out.println("H");
+				System.out.println(key + "\t...\t" + CI.get(key).get("newValue"));
+				returnString += key + "\t...\t" + CI.get(key).get("newValue").toString();
 				i += 1;
 			}
-			
+		System.out.println(returnString);
 		return returnString;
 			
 		}
