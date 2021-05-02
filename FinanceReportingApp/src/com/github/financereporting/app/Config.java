@@ -10,16 +10,13 @@ import java.util.Set;
 public class Config {
 	
 	private static Property configObj;
-	
-
 	private static LinkedHashMap<String, LinkedHashMap<String, String>> CI;
-	private static LinkedHashMap<String, LinkedHashMap<String, String>> CI_STATIC;
 	private static String configFileLocation;
 	
 	
 	
 	/**
-	 * Method is used to populate the LinkedHashMap (CI = the LinkedHashMap) with a few values:
+	 * Method is used to populate the configuration item with each configuration field. These are then populated later:
 	 * @param key				The name of the property from the configuration file (this is also used as the key for the linkedhashMap
 	 * @param defaultValue		The default value (null if there is no default value)
 	 * @param dataTypeCode		The data type code:	0=String, 1=int, 2=float
@@ -69,10 +66,11 @@ public class Config {
 		
 		//This creates a LinkedHashMap (similair to a dictionary in python) of keys from the configuration file, with the values containing information such as the default value, actual value (which is populated later) and the datatype
 		updateConfigItems("Name", "Funding App", "0");
-		updateConfigItems("DefaultInputDirectoryFunding", null, "0");
-		updateConfigItems("ContractFileNamesFunding", null, "0");
-		updateConfigItems("TransactionFileNamesMonthEnd", "", "0");
-		updateConfigItems("ContractFileNamesMonthEnd", "", "0");
+		updateConfigItems("DefaultInputDirectoryFunding", "", "0");
+		updateConfigItems("ContractFileNamesFunding", "", "0");
+		updateConfigItems("TransactionFileNamesMonthEnd", null, "0");
+		updateConfigItems("ContractFileNamesMonthEnd", null, "0");
+		
 		
 		//Uses the LinkedHashMap from above and populates the value section using the Properties class
 		getConfigContents();
@@ -83,7 +81,11 @@ public class Config {
 	
 	
 	
-	//GETTERS
+
+	
+	
+	
+	
 	
 	/**
 	 * @return the contractsFileNamesMonthEnd as a String Array. Will return null if empty
@@ -289,10 +291,6 @@ public class Config {
 				CI.get(key).put("warningFlag", "false");
 			}
 		}
-		
-		
-
-		
 	} 
 	
 	
