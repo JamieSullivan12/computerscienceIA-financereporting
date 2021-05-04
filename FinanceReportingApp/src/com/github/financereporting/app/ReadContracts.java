@@ -54,10 +54,7 @@ public class ReadContracts{
 
 					for (String key : contractItems.keySet())
 					{
-						//System.out.println(contractItems.get(key).get("map"));
 						if (!Objects.isNull(contractItems.get(key).get("map")) && !Objects.isNull(headings.get(j))) {
-							//System.out.println(contractItems.get(key).get("map").toString());
-							//System.out.println(headings.get(j).toString().replaceAll("^\"|\"$", ""));
 
 							if( contractItems.get(key).get("map").toString().equals(headings.get(j).toString().replaceAll("^\"|\"$", ""))) {
 								contractItems.get(key).put("index", Integer.toString(j));
