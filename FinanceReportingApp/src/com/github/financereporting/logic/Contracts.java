@@ -1,8 +1,19 @@
 package com.github.financereporting.logic;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 
 public class Contracts {
+	
+	private static ArrayList<String> contractNames = new ArrayList<String> ();
+	
+	private LinkedHashMap<String, LinkedHashMap<String, String>> contractValues = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
+	
+	public static void setContractNames(ArrayList<String> cn) {
+		contractNames = cn;
+	}
+	
 	
 	
 	String contractNumber;
@@ -84,7 +95,12 @@ public class Contracts {
 	}
 
 
-
+	
+	public void set(String type, String value) {
+		
+	}
+	
+	
 
 	public void setValues(String contractNumber_value, String customerCode_value, 
 			String largeLongstandingClient_value, int customerPostalCode_value, 

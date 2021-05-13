@@ -49,20 +49,22 @@ public class ReadContracts{
 				
 				ArrayList<String> headings = contractDataArray.get(0);
 
-				for (var g=0; g < headings.size(); g++) {
+				for (int g=0; g < headings.size(); g++) {
 					final int j = g;
-
 					for (String key : contractItems.keySet())
 					{
 						if (!Objects.isNull(contractItems.get(key).get("map")) && !Objects.isNull(headings.get(j))) {
-
 							if( contractItems.get(key).get("map").toString().equals(headings.get(j).toString().replaceAll("^\"|\"$", ""))) {
 								contractItems.get(key).put("index", Integer.toString(j));
 								System.out.println(contractItems.get(key) + " " + contractItems.get(key).get("index"));
 							}
 						}
 						
-					};
+					}
+				}
+				
+				for (int g=1; g < contractDataArray.size(); g++) {
+					//System.out.println(contractDataArray.get(g));
 				}
 		
 				Log.logInfo("Successfully read a contract file from " + path);
