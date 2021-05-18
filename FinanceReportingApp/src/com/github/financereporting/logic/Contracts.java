@@ -1,7 +1,12 @@
 package com.github.financereporting.logic;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 
 public class Contracts {
@@ -15,204 +20,610 @@ public class Contracts {
 	}
 	
 	
+	private boolean invalid = false;
+	private int id;
 	
-	String contractNumber;
-	String customerCode;
-	String largeLongstandingClient;
-	int customerPostalCode;
-	String occupationCode;
-	String occupationDescription;
-	Date contractDate;
-	Date expiryDate;
-	double principalInvoicePriceTotalRep;
-	double brokerageStampDutyAgreeFee;
-	double otherCharges;
-	double termsCharges;
-	double newContractPayment;
-	Date cutOffDate;
-	Date fundingdate;
-	double fundingAmount;
-	int legalEntityCode;
-	String legalEntity;
-	int sellerCode;
-	double outstandingBalanceLME;
-	double outstandingBalanceLME_M1;
-	double unearnedIncomeLME;
-	double unearnedIncomeLME_M1;
-	double GSTOutstandingBalanceLME;
-	double GSTOutstandingBalanceLME_M1;
-	Date arrearsDateLME;
-	double currentArrearsLME;
-	double arrears30DaysLME;
-	double arrears60DaysLME;
-	double arrears90DaysLME;
-	double arrears120DaysLME;
-	double arrears150PlusDaysLME;
-	double outstandingBalance;
-	double unexpiredInterest;
-	double GSTOutstanding;
-	double theoreticalPrincipal;
-	double maxLimit;
-	double PDIOutstanding;
-	double totalArrears;
-	double currentArrears;
-	double arrears30Days;
-	double arrears60Days;
-	double arrears90Days;
-	double arrears120PlusDays;
-	Date oldestDueDate;
-	String productCode;
-	String interestType;
-	String dealerCode;
-	String dealerName;
-	String paidOutWrittenOffFlag;
-	Date paidOutWrittenOffDate;
-	double monthlyRental;
-	String paymentFrequency;
-	int term;
-	int monthsExpired;
-	int termsRemaining;
-	double interestRate;
-	String principalBalanceLME_M1;
-	String principalBalance;
-	String newFundingAmount;
-	String groupExposureLLS_exclRTR;
-	String groupExposureOther;
-	String advanceRate;
-	String rtraa;
-	String cappedRtraa;
-	String adjustmentRate;
-	String advanceAmount;
-	String creditEnchancement;
-	String adjustedExposure;
-	String newCutoffDate;
-	String Transactions;
+	public Contracts(int identifier) {
+		id = identifier;
+	}
+	
+	
+	private String contractNumber;
+	private String customerCode;
+	private String largeLongstandingClient;
+	private String customerPostalCode;
+	private String occupationCode;
+	private String occupationDescription;
+	private Date contractDate;
+	private Date expiryDate;
+	private BigDecimal principalInvoicePriceTotalRep;
+	private BigDecimal brokerageStampDutyAgreeFee;
+	private BigDecimal otherCharges;
+	private BigDecimal termsCharges;
+	private BigDecimal newContractPayment;
+	private Date cutOffDate;
+	private Date fundingdate;
+	private BigDecimal fundingAmount;
+	private String legalEntityCode;
+	private String legalEntity;
+	private String sellerCode;
+	private BigDecimal outstandingBalanceLME;
+	private BigDecimal outstandingBalanceLME_M1;
+	private BigDecimal unearnedIncomeLME;
+	private BigDecimal unearnedIncomeLME_M1;
+	private BigDecimal GSTOutstandingBalanceLME;
+	private BigDecimal GSTOutstandingBalanceLME_M1;
+	private Date arrearsDateLME;
+	private BigDecimal currentArrearsLME;
+	private BigDecimal arrears30DaysLME;
+	private BigDecimal arrears60DaysLME;
+	private BigDecimal arrears90DaysLME;
+	private BigDecimal arrears120DaysLME;
+	private BigDecimal arrears150PlusDaysLME;
+	private BigDecimal outstandingBalance;
+	private BigDecimal unexpiredInterest;
+	private BigDecimal GSTOutstanding;
+	private BigDecimal theoreticalPrincipal;
+	private BigDecimal maxLimit;
+	private BigDecimal PDIOutstanding;
+	private BigDecimal totalArrears;
+	private BigDecimal currentArrears;
+	private BigDecimal arrears30Days;
+	private BigDecimal arrears60Days;
+	private BigDecimal arrears90Days;
+	private BigDecimal arrears120PlusDays;
+	private Date oldestDueDate;
+	private String productCode;
+	private String interestType;
+	private String dealerCode;
+	private String dealerName;
+	private String paidOutWrittenOffFlag;
+	private Date paidOutWrittenOffDate;
+	private BigDecimal monthlyRental;
+	private String paymentFrequency;
+	private BigDecimal term;
+	private BigDecimal monthsExpired;
+	private BigDecimal termsRemaining;
+	private BigDecimal interestRate;
+	private String principalBalanceLME_M1;
+	private String principalBalance;
+	private String newFundingAmount;
+	private String groupExposureLLS_exclRTR;
+	private String groupExposureOther;
+	private String advanceRate;
+	private String rtraa;
+	private String cappedRtraa;
+	private String adjustmentRate;
+	private String advanceAmount;
+	private String creditEnchancement;
+	private String adjustedExposure;
+	private String newCutoffDate;
+	private String Transactions;
 
+	
+	
 
-
-	public static void main(String[] args) {
-
+	
+	LinkedHashMap<String, LinkedHashMap<String, String>> values = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
+	
+	
+	public static ArrayList<String> getContractNames() {
+		return contractNames;
 	}
 
 
+	public LinkedHashMap<String, LinkedHashMap<String, String>> getContractValues() {
+		return contractValues;
+	}
+
+
+	public boolean isInvalid() {
+		return invalid;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getContractNumber() {
+		return contractNumber;
+	}
+
+
+	public String getCustomerCode() {
+		return customerCode;
+	}
+
+
+	public String getLargeLongstandingClient() {
+		return largeLongstandingClient;
+	}
+
+
+	public String getCustomerPostalCode() {
+		return customerPostalCode;
+	}
+
+
+	public String getOccupationCode() {
+		return occupationCode;
+	}
+
+
+	public String getOccupationDescription() {
+		return occupationDescription;
+	}
+
+
+	public Date getContractDate() {
+		return contractDate;
+	}
+
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+
+	public BigDecimal getPrincipalInvoicePriceTotalRep() {
+		return principalInvoicePriceTotalRep;
+	}
+
+
+	public BigDecimal getBrokerageStampDutyAgreeFee() {
+		return brokerageStampDutyAgreeFee;
+	}
+
+
+	public BigDecimal getOtherCharges() {
+		return otherCharges;
+	}
+
+
+	public BigDecimal getTermsCharges() {
+		return termsCharges;
+	}
+
+
+	public BigDecimal getNewContractPayment() {
+		return newContractPayment;
+	}
+
+
+	public Date getCutOffDate() {
+		return cutOffDate;
+	}
+
+
+	public Date getFundingdate() {
+		return fundingdate;
+	}
+
+
+	public BigDecimal getFundingAmount() {
+		return fundingAmount;
+	}
+
+
+	public String getLegalEntityCode() {
+		return legalEntityCode;
+	}
+
+
+	public String getLegalEntity() {
+		return legalEntity;
+	}
+
+
+	public String getSellerCode() {
+		return sellerCode;
+	}
+
+
+	public BigDecimal getOutstandingBalanceLME() {
+		return outstandingBalanceLME;
+	}
+
+
+	public BigDecimal getOutstandingBalanceLME_M1() {
+		return outstandingBalanceLME_M1;
+	}
+
+
+	public BigDecimal getUnearnedIncomeLME() {
+		return unearnedIncomeLME;
+	}
+
+
+	public BigDecimal getUnearnedIncomeLME_M1() {
+		return unearnedIncomeLME_M1;
+	}
+
+
+	public BigDecimal getGSTOutstandingBalanceLME() {
+		return GSTOutstandingBalanceLME;
+	}
+
+
+	public BigDecimal getGSTOutstandingBalanceLME_M1() {
+		return GSTOutstandingBalanceLME_M1;
+	}
+
+
+	public Date getArrearsDateLME() {
+		return arrearsDateLME;
+	}
+
+
+	public BigDecimal getCurrentArrearsLME() {
+		return currentArrearsLME;
+	}
+
+
+	public BigDecimal getArrears30DaysLME() {
+		return arrears30DaysLME;
+	}
+
+
+	public BigDecimal getArrears60DaysLME() {
+		return arrears60DaysLME;
+	}
+
+
+	public BigDecimal getArrears90DaysLME() {
+		return arrears90DaysLME;
+	}
+
+
+	public BigDecimal getArrears120DaysLME() {
+		return arrears120DaysLME;
+	}
+
+
+	public BigDecimal getArrears150PlusDaysLME() {
+		return arrears150PlusDaysLME;
+	}
+
+
+	public BigDecimal getOutstandingBalance() {
+		return outstandingBalance;
+	}
+
+
+	public BigDecimal getUnexpiredInterest() {
+		return unexpiredInterest;
+	}
+
+
+	public BigDecimal getGSTOutstanding() {
+		return GSTOutstanding;
+	}
+
+
+	public BigDecimal getTheoreticalPrincipal() {
+		return theoreticalPrincipal;
+	}
+
+
+	public BigDecimal getMaxLimit() {
+		return maxLimit;
+	}
+
+
+	public BigDecimal getPDIOutstanding() {
+		return PDIOutstanding;
+	}
+
+
+	public BigDecimal getTotalArrears() {
+		return totalArrears;
+	}
+
+
+	public BigDecimal getCurrentArrears() {
+		return currentArrears;
+	}
+
+
+	public BigDecimal getArrears30Days() {
+		return arrears30Days;
+	}
+
+
+	public BigDecimal getArrears60Days() {
+		return arrears60Days;
+	}
+
+
+	public BigDecimal getArrears90Days() {
+		return arrears90Days;
+	}
+
+
+	public BigDecimal getArrears120PlusDays() {
+		return arrears120PlusDays;
+	}
+
+
+	public Date getOldestDueDate() {
+		return oldestDueDate;
+	}
+
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+
+	public String getInterestType() {
+		return interestType;
+	}
+
+
+	public String getDealerCode() {
+		return dealerCode;
+	}
+
+
+	public String getDealerName() {
+		return dealerName;
+	}
+
+
+	public String getPaidOutWrittenOffFlag() {
+		return paidOutWrittenOffFlag;
+	}
+
+
+	public Date getPaidOutWrittenOffDate() {
+		return paidOutWrittenOffDate;
+	}
+
+
+	public BigDecimal getMonthlyRental() {
+		return monthlyRental;
+	}
+
+
+	public String getPaymentFrequency() {
+		return paymentFrequency;
+	}
+
+
+	public BigDecimal getTerm() {
+		return term;
+	}
+
+
+	public BigDecimal getMonthsExpired() {
+		return monthsExpired;
+	}
+
+
+	public BigDecimal getTermsRemaining() {
+		return termsRemaining;
+	}
+
+
+	public BigDecimal getInterestRate() {
+		return interestRate;
+	}
+
+
+	public String getPrincipalBalanceLME_M1() {
+		return principalBalanceLME_M1;
+	}
+
+
+	public String getPrincipalBalance() {
+		return principalBalance;
+	}
+
+
+	public String getNewFundingAmount() {
+		return newFundingAmount;
+	}
+
+
+	public String getGroupExposureLLS_exclRTR() {
+		return groupExposureLLS_exclRTR;
+	}
+
+
+	public String getGroupExposureOther() {
+		return groupExposureOther;
+	}
+
+
+	public String getAdvanceRate() {
+		return advanceRate;
+	}
+
+
+	public String getRtraa() {
+		return rtraa;
+	}
+
+
+	public String getCappedRtraa() {
+		return cappedRtraa;
+	}
+
+
+	public String getAdjustmentRate() {
+		return adjustmentRate;
+	}
+
+
+	public String getAdvanceAmount() {
+		return advanceAmount;
+	}
+
+
+	public String getCreditEnchancement() {
+		return creditEnchancement;
+	}
+
+
+	public String getAdjustedExposure() {
+		return adjustedExposure;
+	}
+
+
+	public String getNewCutoffDate() {
+		return newCutoffDate;
+	}
+
+
+	public String getTransactions() {
+		return Transactions;
+	}
+
+
+	public LinkedHashMap<String, LinkedHashMap<String, String>> getValues() {
+		return values;
+	}
+
 	
-	public void set(String type, String value) {
+	private Date convertToDate(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
+		
+		Date date = new Date();
+
+		String stringDate = null;
+		try {
+			stringDate = temp.get(Integer.parseInt(mappings.get(valueName).get("index")));
+		} catch (Exception e1) {
+		}
+		
+		
+		try { 
+		
+			if (!Objects.isNull(stringDate) && !stringDate.replaceAll("^\"|\"$", "").trim().isBlank()) {
+				
+				String[] listDate = stringDate.replaceAll("^\"|\"$", "").split("/");
+	
+				if (listDate[0].length() == 1) {
+					listDate[0] = "0" + listDate[0];
+				}
+				if (listDate[1].length() == 1) {
+					listDate[1] = "0" + listDate[1];
+				}
+				
+			
+				date = new SimpleDateFormat("dd/MM/yy").parse(listDate[0] + "/" + listDate[1] + "/" + listDate[2]); 
+			
+		
+				}
+				
+				
+				else {
+					date = null;
+				}
+		
+		
+		} catch (Exception e) { 
+			
+			invalid = true;
+			errMsg += "Data ERROR: Contract: " + contractNumber + " - " + mappings.get("contractDate").get("map") + " is invalid" ; 
+		
+		
+		
+		}
+		
+		return date;
 		
 	}
 	
+	private String errMsg = "";
+	private BigDecimal convertToBigDecimal(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
+		
+		
+		BigDecimal newValue = null;
+		try {
+			newValue = new BigDecimal(temp.get(Integer.parseInt(mappings.get(valueName).get("index"))).replaceAll("^\"|\"$", "").replaceAll("%", "").trim());
+		} catch (Exception e) {
+			invalid = true;
+			errMsg += "Data ERROR: " + "Contract: " + contractNumber + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number";
+		}
+	
+		return newValue;
+	}
+	
+	
+	public void fillValues(ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
+		
+		contractNumber = temp.get(Integer.parseInt(mappings.get("contractNumber").get("index")));
+		customerCode = temp.get(Integer.parseInt(mappings.get("customerCode").get("index")));
+		largeLongstandingClient = temp.get(Integer.parseInt(mappings.get("largeLongstandingClient").get("index")));
+		customerPostalCode = temp.get(Integer.parseInt(mappings.get("customerPostalCode").get("index")));
+		legalEntityCode = temp.get(Integer.parseInt(mappings.get("legalEntityCode").get("index")));
+		sellerCode = temp.get(Integer.parseInt(mappings.get("sellerCode").get("index")));
+		fundingAmount = convertToBigDecimal("fundingAmount", temp, mappings);
+		interestRate = convertToBigDecimal("interestRate", temp, mappings);
+		occupationCode = temp.get(Integer.parseInt(mappings.get("occupationCode").get("index")));
+		occupationDescription = temp.get(Integer.parseInt(mappings.get("occupationDescription").get("index")));
+		principalInvoicePriceTotalRep = convertToBigDecimal("principalInvoicePriceTotalRep", temp, mappings);
+		brokerageStampDutyAgreeFee = convertToBigDecimal("brokerageStampDutyAgreeFee", temp, mappings);
+		otherCharges = convertToBigDecimal("otherCharges", temp, mappings);
+		termsCharges = convertToBigDecimal("termsCharges", temp, mappings);
+		newContractPayment = convertToBigDecimal("newContractPayment", temp, mappings);
+		legalEntity = temp.get(Integer.parseInt(mappings.get("legalEntity").get("index")));
+		outstandingBalanceLME = convertToBigDecimal("outstandingBalanceLME", temp, mappings);
+		outstandingBalanceLME_M1 = convertToBigDecimal("outstandingBalanceLME_M1", temp, mappings);
+		unearnedIncomeLME = convertToBigDecimal("unearnedIncomeLME", temp, mappings);
+		unearnedIncomeLME_M1 = convertToBigDecimal("unearnedIncomeLME_M1", temp, mappings);
+		GSTOutstandingBalanceLME = convertToBigDecimal("GSTOutstandingBalanceLME", temp, mappings);
+		GSTOutstandingBalanceLME_M1 = convertToBigDecimal("GSTOutstandingBalanceLME_M1", temp, mappings);
+		currentArrearsLME = convertToBigDecimal("currentArrearsLME", temp, mappings);
+		arrears30DaysLME = convertToBigDecimal("arrears30DaysLME", temp, mappings);
+		arrears60DaysLME = convertToBigDecimal("arrears60DaysLME", temp, mappings);
+		arrears90DaysLME = convertToBigDecimal("arrears90DaysLME", temp, mappings);
+		arrears120DaysLME = convertToBigDecimal("arrears120DaysLME", temp, mappings);
+		arrears150PlusDaysLME = convertToBigDecimal("arrears150PlusDaysLME", temp, mappings);
+		outstandingBalance = convertToBigDecimal("outstandingBalance", temp, mappings);
+		unexpiredInterest = convertToBigDecimal("unexpiredInterest", temp, mappings);
+		GSTOutstanding = convertToBigDecimal("GSTOutstanding", temp, mappings);
+		theoreticalPrincipal = convertToBigDecimal("theoreticalPrincipal", temp, mappings);
+		maxLimit = convertToBigDecimal("maxLimit", temp, mappings);
+		PDIOutstanding = convertToBigDecimal("PDIOutstanding", temp, mappings);
+		totalArrears = convertToBigDecimal("totalArrears", temp, mappings);
+		currentArrears = convertToBigDecimal("currentArrears", temp, mappings);
+		arrears30Days = convertToBigDecimal("arrears30Days", temp, mappings);
+		arrears60Days = convertToBigDecimal("arrears60Days", temp, mappings);
+		arrears90Days = convertToBigDecimal("arrears90Days", temp, mappings);
+		arrears120PlusDays = convertToBigDecimal("arrears120PlusDays", temp, mappings);
+		contractDate = convertToDate("contractDate", temp, mappings);
+		expiryDate = convertToDate("expiryDate", temp, mappings);
+		cutOffDate = convertToDate("cutOffDate", temp, mappings);
+		fundingdate = convertToDate("fundingdate", temp, mappings);
+		arrearsDateLME = convertToDate("arrearsDateLME", temp, mappings);
+		oldestDueDate = convertToDate("oldestDueDate", temp, mappings);
+		paidOutWrittenOffDate = convertToDate("paidOutWrittenOffDate", temp, mappings);
+		productCode = temp.get(Integer.parseInt(mappings.get("productCode").get("index")));
+		interestType = temp.get(Integer.parseInt(mappings.get("interestType").get("index")));
+		dealerCode = temp.get(Integer.parseInt(mappings.get("dealerCode").get("index")));
+		dealerName = temp.get(Integer.parseInt(mappings.get("dealerName").get("index")));
+		paidOutWrittenOffFlag = temp.get(Integer.parseInt(mappings.get("paidOutWrittenOffFlag").get("index")));
+		monthlyRental = convertToBigDecimal("monthlyRental", temp, mappings);
+		paymentFrequency = temp.get(Integer.parseInt(mappings.get("paymentFrequency").get("index")));
+		term = convertToBigDecimal("term", temp, mappings);
+		monthsExpired = convertToBigDecimal("monthsExpired", temp, mappings);
+		termsRemaining = convertToBigDecimal("termsRemaining", temp, mappings);
+
+
+
+
+		
+		if (!errMsg.equals("")) { 
+			
+			System.out.println(errMsg);
+		}
+	}
+	
 	
 
-	public void setValues(String contractNumber_value, String customerCode_value, 
-			String largeLongstandingClient_value, int customerPostalCode_value, 
-			String occupationCode_value, String occupationDescription_value, Date contractDate_value, 
-			Date expiryDate_value, double principalInvoicePriceTotalRep_value, double brokerageStampDutyAgreeFee_value, 
-			double otherCharges_value, double termsCharges_value, double newContractPayment_value, 
-			Date cutOffDate_value, Date fundingdate_value, double fundingAmount_value, int legalEntityCode_value, 
-			String legalEntity_value, int sellerCode_value, double outstandingBalanceLME_value, 
-			double outstandingBalanceLME_M1_value, double unearnedIncomeLME_value, 
-			double unearnedIncomeLME_M1_value, double GSTOutstandingBalanceLME_value, 
-			double GSTOutstandingBalanceLME_M1_value, Date arrearsDateLME_value, 
-			double currentArrearsLME_value, double arrears30DaysLME_value, 
-			double arrears60DaysLME_value, double arrears90DaysLME_value, 
-			double arrears120DaysLME_value, double arrears150PlusDaysLME_value, 
-			double outstandingBalance_value, double unexpiredInterest_value, double GSTOutstanding_value, 
-			double theoreticalPrincipal_value, double maxLimit_value, double PDIOutstanding_value, 
-			double totalArrears_value, double currentArrears_value, double arrears30Days_value, 
-			double arrears60Days_value, double arrears90Days_value, double arrears120PlusDays_value, 
-			Date oldestDueDate_value, String productCode_value, String interestType_value, String dealerCode_value, 
-			String dealerName_value, String paidOutWrittenOffFlag_value, Date paidOutWrittenOffDate_value, 
-			double monthlyRental_value, String paymentFrequency_value, int term_value, int monthsExpired_value, 
-			int termsRemaining_value, double interestRate_value, String principalBalanceLME_M1_value, 
-			String principalBalance_value, String newFundingAmount_value, String groupExposureLLS_exclRTR_value, 
-			String groupExposureOther_value, String advanceRate_value, String rtraa_value, String cappedRtraa_value, 
-			String adjustmentRate_value, String advanceAmount_value, String creditEnchancement_value, 
-			String adjustedExposure_value, String newCutoffDate_value, String Transactions_value
-			) { 
-        
-        this.contractNumber = contractNumber_value;
-        this.customerCode = customerCode_value;
-        this.largeLongstandingClient = largeLongstandingClient_value;
-        this.customerPostalCode = customerPostalCode_value;
-        this.occupationCode = occupationCode_value;
-        this.occupationDescription = occupationDescription_value;
-        
-        //This later needs to be moved to an addons file
-        if (occupationDescription_value.toLowerCase().equals("to be advised")){
-            this.occupationDescription = "Consumer Rentals";
-        } else {
-        	occupationDescription = occupationDescription_value;
-        }
-        
-        this.contractDate = contractDate_value;
-        this.expiryDate = expiryDate_value;
-        this.principalInvoicePriceTotalRep = principalInvoicePriceTotalRep_value;
-        this.brokerageStampDutyAgreeFee = brokerageStampDutyAgreeFee_value;
-        this.otherCharges = otherCharges_value;
-        this.termsCharges = termsCharges_value;
-        this.newContractPayment = newContractPayment_value;
-        this.cutOffDate = cutOffDate_value;
-        this.fundingdate = fundingdate_value;
-        this.fundingAmount = fundingAmount_value;
-        this.legalEntityCode = legalEntityCode_value;
-        this.legalEntity = legalEntity_value;
-        this.sellerCode = sellerCode_value;
-        this.outstandingBalanceLME = outstandingBalanceLME_value;
-        this.outstandingBalanceLME_M1 = outstandingBalanceLME_M1_value;
-        this.unearnedIncomeLME = unearnedIncomeLME_value;
-        this.unearnedIncomeLME_M1 = unearnedIncomeLME_M1_value;
-        this.GSTOutstandingBalanceLME = GSTOutstandingBalanceLME_value;
-        this.GSTOutstandingBalanceLME_M1 = GSTOutstandingBalanceLME_M1_value;
-        this.arrearsDateLME = arrearsDateLME_value;
-        this.currentArrearsLME = currentArrearsLME_value;
-        this.arrears30DaysLME = arrears30DaysLME_value;
-        this.arrears60DaysLME = arrears60DaysLME_value;
-        this.arrears90DaysLME = arrears90DaysLME_value;
-        this.arrears120DaysLME = arrears120DaysLME_value;
-        this.arrears150PlusDaysLME = arrears150PlusDaysLME_value;
-        this.outstandingBalance = outstandingBalance_value;
-        this.unexpiredInterest = unexpiredInterest_value;
-        this.GSTOutstanding = GSTOutstanding_value;
-        this.theoreticalPrincipal = theoreticalPrincipal_value;
-        this.maxLimit = maxLimit_value;
-        this.PDIOutstanding = PDIOutstanding_value;
-        this.totalArrears = totalArrears_value;
-        this.currentArrears = currentArrears_value;
-        this.arrears30Days = arrears30Days_value;
-        this.arrears60Days = arrears60Days_value;
-        this.arrears90Days = arrears90Days_value;
-        this.arrears120PlusDays = arrears120PlusDays_value;
-        this.oldestDueDate = oldestDueDate_value;
-        this.productCode = productCode_value;
-        this.interestType = interestType_value;
-        this.dealerCode = dealerCode_value;
-        this.dealerName = dealerName_value;
-        this.paidOutWrittenOffFlag = paidOutWrittenOffFlag_value;
-        this.paidOutWrittenOffDate = paidOutWrittenOffDate_value;
-        this.monthlyRental = monthlyRental_value;
-        this.paymentFrequency = paymentFrequency_value;
-        this.term = term_value;
-        this.monthsExpired = monthsExpired_value;
-        this.termsRemaining = termsRemaining_value;
-        this.interestRate = interestRate_value;
-        this.principalBalanceLME_M1 = principalBalanceLME_M1_value;
-        this.principalBalance = principalBalance_value;
-        this.newFundingAmount = newFundingAmount_value;
-        this.groupExposureLLS_exclRTR = groupExposureLLS_exclRTR_value;
-        this.groupExposureOther = groupExposureOther_value;
-        this.advanceRate = advanceRate_value;
-        this.rtraa = rtraa_value;
-        this.cappedRtraa = cappedRtraa_value;
-        this.adjustmentRate = adjustmentRate_value;
-        this.advanceAmount = advanceAmount_value;
-        this.creditEnchancement = creditEnchancement_value;
-        this.adjustedExposure = adjustedExposure_value;
-        this.newCutoffDate = newCutoffDate_value;
-        this.Transactions = Transactions_value;
-
-
-
-        
-		
-	}
+	
 	
 }

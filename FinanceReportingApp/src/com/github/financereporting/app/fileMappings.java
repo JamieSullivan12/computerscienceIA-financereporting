@@ -102,19 +102,7 @@ public class fileMappings {
 		contractNames.add("monthsExpired");
 		contractNames.add("termsRemaining");
 		contractNames.add("interestRate");
-		contractNames.add("principalBalanceLME_M1");
-		contractNames.add("principalBalance");
-		contractNames.add("newFundingAmount");
-		contractNames.add("groupExposureLLS_exclRTR");
-		contractNames.add("groupExposureOther");
-		contractNames.add("advanceRate");
-		contractNames.add("rtraa");
-		contractNames.add("cappedRtraa");
-		contractNames.add("adjustmentRate");
-		contractNames.add("advanceAmount");
-		contractNames.add("creditEnchancement");
-		contractNames.add("adjustedExposure");
-		contractNames.add("newCutoffDate");
+
 	}
 	
 	

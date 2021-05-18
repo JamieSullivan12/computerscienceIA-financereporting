@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
+import com.github.financereporting.logic.Contracts;
+
 import jamiesullivan.packages.code.*;
 public class ReadContracts{
 	
@@ -49,32 +51,58 @@ public class ReadContracts{
 				
 				ArrayList<String> headings = contractDataArray.get(0);
 
+				
 				for (int g=0; g < headings.size(); g++) {
 					final int j = g;
-					for (String key : contractItems.keySet())
+
+					Object[] keyset = contractItems.keySet().toArray();
+					for (int k = 0; k < keyset.length; k++)
 					{
-						if (!Objects.isNull(contractItems.get(key).get("map")) && !Objects.isNull(headings.get(j))) {
-							if( contractItems.get(key).get("map").toString().equals(headings.get(j).toString().replaceAll("^\"|\"$", ""))) {
-								contractItems.get(key).put("index", Integer.toString(j));
-								System.out.println(contractItems.get(key) + " " + contractItems.get(key).get("index"));
+						
+						if (!Objects.isNull(contractItems.get(keyset[k]).get("map")) && !Objects.isNull(headings.get(j))) {
+								
+							if( contractItems.get(keyset[k]).get("map").toString().replaceAll("\\n",",").trim().equals(headings.get(j).toString().replaceAll("^\"|\"$", "").replaceAll("\\n","").trim())) {
+								contractItems.get(keyset[k]).put("index", Integer.toString(j));
+								
+	
 							}
+						} else {
+
 						}
 						
 					}
 				}
+
 				
-				for (int g=1; g < contractDataArray.size(); g++) {
-					//System.out.println(contractDataArray.get(g));
-				}
 		
 				Log.logInfo("Successfully read a contract file from " + path);
+			
 			} catch (FileNotFoundException e) {
 				Warning.addAttentionRequiredMessage("File not found error: '" + path + "' does not exist");
+			
+			} catch (Exception f) {
+				f.printStackTrace();
 			}
 			
 		
 		}
+		Contracts[] contracts = new Contracts[contractDataArray.size()-1];
 		
+		for (int j=0; j < contractDataArray.size(); j++) {
+			//System.out.println(contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))));
+			//System.out.println(contractItems.get("contractNumber").get("map"));
+			if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
+				//System.out.println(contractDataArray.get(j).get(0));
+				contracts[j-1] = new Contracts(j-1);
+				//System.out.println(g);
+				//System.out.println(contractDataArray.get(g));
+				contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
+				
+
+			} 
+
+		}
+
 		
 		
 	}

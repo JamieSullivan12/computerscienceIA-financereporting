@@ -68,8 +68,8 @@ public class Config {
 		updateConfigItems("Name", "Funding App", "0");
 		updateConfigItems("DefaultInputDirectoryFunding", "", "0");
 		updateConfigItems("ContractFileNamesFunding", "", "0");
-		updateConfigItems("TransactionFileNamesMonthEnd", null, "0");
-		updateConfigItems("ContractFileNamesMonthEnd", null, "0");
+		updateConfigItems("TransactionFileNamesMonthEnd", "", "0");
+		updateConfigItems("ContractFileNamesMonthEnd", "", "0");
 		
 		
 		//Uses the LinkedHashMap from above and populates the value section using the Properties class
