@@ -19,7 +19,7 @@ public class Config {
 	 * Method is used to populate the configuration item with each configuration field. These are then populated later:
 	 * @param key				The name of the property from the configuration file (this is also used as the key for the linkedhashMap
 	 * @param defaultValue		The default value (null if there is no default value)
-	 * @param dataTypeCode		The data type code:	0=String, 1=int, 2=float
+	 * @param dataTypeCode		The data type code:	0=String, 1=int, 2=decimal number
 	 * 
 	 * NOTE: The linkedHashMap has this structure: String(key): Another LinkedHashMap (the value for the first key) with defaultValue, dataTypeCode, value 
 	 */

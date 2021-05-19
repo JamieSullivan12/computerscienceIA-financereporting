@@ -1,30 +1,19 @@
 package com.github.financereporting.user.interfaces;
+
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import com.github.financereporting.app.*;
+import com.github.financereporting.app.Config;
+import com.github.financereporting.app.Warning;
 
-import jamiesullivan.packages.code.userinterface.*;
-import jamiesullivan.packages.code.*;
+import jamiesullivan.packages.code.ScannerInput;
+import jamiesullivan.packages.code.userinterface.BlankLines;
+import jamiesullivan.packages.code.userinterface.Divider;
+import jamiesullivan.packages.code.userinterface.UserInterfaceMenu;
 
-public class EditConfigurationUI {
-	private static String unsavedChanges = "";
-	/**
-	 * Indicates whether there are any unsaved changes in the configuration file
-	 * @return true if there are unsaved changes and false if there are no unsaved changes
-	 */
-	public static boolean unsavedChangesFlag() {
-		if (unsavedChanges.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	/**
-	 * Load the UI for editing configuration. Needs to be done AFTER initial configuration extraction
-	 */
-	public static void initializeConfigurationUI() throws Exception {
+public class EditFileMappingsUI {
+
+	public static void initializeMappingsUI() {
 		
 		boolean goBack = false;
 		//Endless loop until the user decides to break out of it
@@ -38,6 +27,8 @@ public class EditConfigurationUI {
 			if(Warning.getAttentionRequiredFlag()) {
 				System.out.println(Warning.getAttentionRequiredMessage());
 			}
+			
+			
 			
 			//If there are unsaved changes that need attending to, print the message(s)
 			unsavedChanges = Config.getUnsavedChanges();
@@ -156,4 +147,6 @@ public class EditConfigurationUI {
 		//Once broken out of the for loop (when the user selects "BACK"), return back to the menu
 		return;
 	}
+	}
+	
 }

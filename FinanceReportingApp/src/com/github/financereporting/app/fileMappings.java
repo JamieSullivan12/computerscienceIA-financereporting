@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 
 
 /**
- * @author jamiesullivan
+ * @author jacontractMappingsesullivan
  *
  * This class reads all the mappings for the contract file. The mappings are to link variable names in the program with headings in the excel file (in no particular order)
  */
@@ -17,6 +17,8 @@ public class fileMappings {
 
 	//A linkedHashMap of all the mappings: Key: Variable Name, Value: User defined mapping from the heading in the database
 	private static LinkedHashMap<String, LinkedHashMap<String, String>>  contractMappings;
+	private static LinkedHashMap<String, LinkedHashMap<String, String>>  contractMappingsHolder;
+
 	private static Property contractMappingObj;
 	private static String contractFileMappingLocation;
 	
@@ -44,69 +46,19 @@ public class fileMappings {
 	
 	private static ArrayList<String> contractNames = new ArrayList<String>();
 	
-	private static void setContractFields() {
-		contractNames.add("contractNumber");
-		contractNames.add("customerCode");
-		contractNames.add("largeLongstandingClient");
-		contractNames.add("customerPostalCode");
-		contractNames.add("occupationCode");
-		contractNames.add("occupationDescription");
-		contractNames.add("contractDate");
-		contractNames.add("expiryDate");
-		contractNames.add("principalInvoicePriceTotalRep");
-		contractNames.add("brokerageStampDutyAgreeFee");
-		contractNames.add("otherCharges");
-		contractNames.add("termsCharges");
-		contractNames.add("newContractPayment");
-		contractNames.add("cutOffDate");
-		contractNames.add("fundingDate");
-		contractNames.add("fundingAmount");
-		contractNames.add("legalEntityCode");
-		contractNames.add("legalEntity");
-		contractNames.add("sellerCode");
-		contractNames.add("outstandingBalanceLME");
-		contractNames.add("outstandingBalanceLME_M1");
-		contractNames.add("unearnedIncomeLME");
-		contractNames.add("unearnedIncomeLME_M1");
-		contractNames.add("GSTOutstandingBalanceLME");
-		contractNames.add("GSTOutstandingBalanceLME_M1");
-		contractNames.add("arrearsDateLME");
-		contractNames.add("currentArrearsLME");
-		contractNames.add("arrears30DaysLME");
-		contractNames.add("arrears60DaysLME");
-		contractNames.add("arrears90DaysLME");
-		contractNames.add("arrears120DaysLME");
-		contractNames.add("arrears150PlusDaysLME");
-		contractNames.add("outstandingBalance");
-		contractNames.add("unexpiredInterest");
-		contractNames.add("GSTOutstanding");
-		contractNames.add("theoreticalPrincipal");
-		contractNames.add("maxLimit");
-		contractNames.add("PDIOutstanding");
-		contractNames.add("totalArrears");
-		contractNames.add("currentArrears");
-		contractNames.add("arrears30Days");
-		contractNames.add("arrears60Days");
-		contractNames.add("arrears90Days");
-		contractNames.add("arrears120PlusDays");
-		contractNames.add("oldestDueDate");
-		contractNames.add("productCode");
-		contractNames.add("interestType");
-		contractNames.add("dealerCode");
-		contractNames.add("dealerName");
-		contractNames.add("paidOutWrittenOffFlag");
-		contractNames.add("paidOutWrittenOffDate");
-		contractNames.add("monthlyRental");
-		contractNames.add("paymentFrequency");
-		contractNames.add("term");
-		contractNames.add("monthsExpired");
-		contractNames.add("termsRemaining");
-		contractNames.add("interestRate");
-
+	private static void setContractMappingValues(String key, String defaultValue, String dataTypeCode) {
+		LinkedHashMap<String, String> mappingItem = new  LinkedHashMap<String, String>();
+		mappingItem.put("defaultValue", defaultValue);
+		mappingItem.put("dataTypeCode", dataTypeCode);
+		mappingItem.put("value", "");
+		mappingItem.put("warningFlag", "false");
+		contractMappingsHolder.put(key, mappingItem);
 	}
 	
 	
 	
+
+
 	
 	
 	
@@ -123,15 +75,75 @@ public class fileMappings {
 		contractMappingObj.readConfigFile(contractFileMappingLocation);
 		
 		
+		contractMappingsHolder = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
+
+		setContractMappingValues("contractNumber", "", "0");
+		setContractMappingValues("customerCode", "", "0");
+		setContractMappingValues("largeLongstandingClient", "", "0");
+		setContractMappingValues("customerPostalCode", "", "0");
+		setContractMappingValues("occupationCode", "", "0");
+		setContractMappingValues("occupationDescription", "", "0");
+		setContractMappingValues("contractDate", "", "0");
+		setContractMappingValues("expiryDate", "", "0");
+		setContractMappingValues("principalInvoicePriceTotalRep", "", "0");
+		setContractMappingValues("brokerageStampDutyAgreeFee", "", "0");
+		setContractMappingValues("otherCharges", "", "0");
+		setContractMappingValues("termsCharges", "", "0");
+		setContractMappingValues("newContractPayment", "", "0");
+		setContractMappingValues("cutOffDate", "", "0");
+		setContractMappingValues("fundingdate", "", "0");
+		setContractMappingValues("fundingAmount", "", "0");
+		setContractMappingValues("legalEntityCode", "", "0");
+		setContractMappingValues("legalEntity", "", "0");
+		setContractMappingValues("sellerCode", "", "0");
+		setContractMappingValues("outstandingBalanceLME", "", "0");
+		setContractMappingValues("outstandingBalanceLME_M1", "", "0");
+		setContractMappingValues("unearnedIncomeLME", "", "0");
+		setContractMappingValues("unearnedIncomeLME_M1", "", "0");
+		setContractMappingValues("GSTOutstandingBalanceLME", "", "0");
+		setContractMappingValues("GSTOutstandingBalanceLME_M1", "", "0");
+		setContractMappingValues("arrearsDateLME", "", "0");
+		setContractMappingValues("currentArrearsLME", "", "0");
+		setContractMappingValues("arrears30DaysLME", "", "0");
+		setContractMappingValues("arrears60DaysLME", "", "0");
+		setContractMappingValues("arrears90DaysLME", "", "0");
+		setContractMappingValues("arrears120DaysLME", "", "0");
+		setContractMappingValues("arrears150PlusDaysLME", "", "0");
+		setContractMappingValues("outstandingBalance", "", "0");
+		setContractMappingValues("unexpiredInterest", "", "0");
+		setContractMappingValues("GSTOutstanding", "", "0");
+		setContractMappingValues("theoreticalPrincipal", "", "0");
+		setContractMappingValues("maxLimit", "", "0");
+		setContractMappingValues("PDIOutstanding", "", "0");
+		setContractMappingValues("totalArrears", "", "0");
+		setContractMappingValues("currentArrears", "", "0");
+		setContractMappingValues("arrears30Days", "", "0");
+		setContractMappingValues("arrears60Days", "", "0");
+		setContractMappingValues("arrears90Days", "", "0");
+		setContractMappingValues("arrears120PlusDays", "", "0");
+		setContractMappingValues("oldestDueDate", "", "0");
+		setContractMappingValues("productCode", "", "0");
+		setContractMappingValues("interestType", "", "0");
+		setContractMappingValues("dealerCode", "", "0");
+		setContractMappingValues("dealerName", "", "0");
+		setContractMappingValues("paidOutWrittenOffFlag", "", "0");
+		setContractMappingValues("paidOutWrittenOffDate", "", "0");
+		setContractMappingValues("monthlyRental", "", "0");
+		setContractMappingValues("paymentFrequency", "", "0");
+		setContractMappingValues("term", "", "0");
+		setContractMappingValues("monthsExpired", "", "0");
+		setContractMappingValues("termsRemaining", "", "0");
+		setContractMappingValues("interestRate", "", "0");
+		
+		
 		contractMappings = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
+		Object[] contractMappingsKeyset = contractMappingsHolder.keySet().toArray();
+		for (var i=0; i < contractMappingsKeyset.length; i++) {
 
-		setContractFields();
-		contractNames.forEach((mapping) -> {
-			readMappings(mapping.toString());	
-		});
+			readMappings(contractMappingsKeyset[i].toString());	
 			
-
-
+		}
+		
 
 
 

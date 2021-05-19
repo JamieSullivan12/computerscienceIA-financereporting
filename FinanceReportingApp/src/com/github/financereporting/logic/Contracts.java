@@ -545,6 +545,7 @@ public class Contracts {
 			newValue = new BigDecimal(temp.get(Integer.parseInt(mappings.get(valueName).get("index"))).replaceAll("^\"|\"$", "").replaceAll("%", "").trim());
 		} catch (Exception e) {
 			invalid = true;
+
 			errMsg += "Data ERROR: " + "Contract: " + contractNumber + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number";
 		}
 	
