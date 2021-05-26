@@ -101,7 +101,7 @@ public class Contracts {
 	private String Transactions;
 
 	
-	
+	private String errMsg = "";
 
 	
 	LinkedHashMap<String, LinkedHashMap<String, String>> values = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
@@ -485,146 +485,82 @@ public class Contracts {
 	public LinkedHashMap<String, LinkedHashMap<String, String>> getValues() {
 		return values;
 	}
-
-	
-	private Date convertToDate(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
-		
-		Date date = new Date();
-
-		String stringDate = null;
-		try {
-			stringDate = temp.get(Integer.parseInt(mappings.get(valueName).get("index")));
-		} catch (Exception e1) {
-		}
-		
-		
-		try { 
-		
-			if (!Objects.isNull(stringDate) && !stringDate.replaceAll("^\"|\"$", "").trim().isBlank()) {
-				
-				String[] listDate = stringDate.replaceAll("^\"|\"$", "").split("/");
-	
-				if (listDate[0].length() == 1) {
-					listDate[0] = "0" + listDate[0];
-				}
-				if (listDate[1].length() == 1) {
-					listDate[1] = "0" + listDate[1];
-				}
-				
-			
-				date = new SimpleDateFormat("dd/MM/yy").parse(listDate[0] + "/" + listDate[1] + "/" + listDate[2]); 
-			
-		
-				}
-				
-				
-				else {
-					date = null;
-				}
-		
-		
-		} catch (Exception e) { 
-			
-			invalid = true;
-			errMsg += "Data ERROR: Contract: " + contractNumber + " - " + mappings.get("contractDate").get("map") + " is invalid" ; 
-		
-		
-		
-		}
-		
-		return date;
-		
-	}
-	
-	private String errMsg = "";
-	private BigDecimal convertToBigDecimal(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
-		
-		
-		BigDecimal newValue = null;
-		try {
-			newValue = new BigDecimal(temp.get(Integer.parseInt(mappings.get(valueName).get("index"))).replaceAll("^\"|\"$", "").replaceAll("%", "").trim());
-		} catch (Exception e) {
-			invalid = true;
-
-			errMsg += "Data ERROR: " + "Contract: " + contractNumber + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number";
-		}
-	
-		return newValue;
-	}
 	
 	
+	
+	
+	/**
+	 * Fills the contract object values with data from the following fields
+	 * @param temp	is a list of data for a specific contract (in no particular order - however the indexes are stored in the mappings object)
+	 * @param mappings are the file mappings (indexes) generated when reading the contracts file which are used to retrieve the correct data from the temp variable 
+	 */
 	public void fillValues(ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
 		
+		
+		
 		contractNumber = temp.get(Integer.parseInt(mappings.get("contractNumber").get("index")));
+		
+		DataManipulationFunctions dataManipFunctionsObj = new DataManipulationFunctions("Contracts Data Error ... Contract number '" + contractNumber + "'");
+		
 		customerCode = temp.get(Integer.parseInt(mappings.get("customerCode").get("index")));
 		largeLongstandingClient = temp.get(Integer.parseInt(mappings.get("largeLongstandingClient").get("index")));
 		customerPostalCode = temp.get(Integer.parseInt(mappings.get("customerPostalCode").get("index")));
 		legalEntityCode = temp.get(Integer.parseInt(mappings.get("legalEntityCode").get("index")));
 		sellerCode = temp.get(Integer.parseInt(mappings.get("sellerCode").get("index")));
-		fundingAmount = convertToBigDecimal("fundingAmount", temp, mappings);
-		interestRate = convertToBigDecimal("interestRate", temp, mappings);
+		fundingAmount = dataManipFunctionsObj.convertToBigDecimal("fundingAmount", temp, mappings);
+		interestRate = dataManipFunctionsObj.convertToBigDecimal("interestRate", temp, mappings);
 		occupationCode = temp.get(Integer.parseInt(mappings.get("occupationCode").get("index")));
 		occupationDescription = temp.get(Integer.parseInt(mappings.get("occupationDescription").get("index")));
-		principalInvoicePriceTotalRep = convertToBigDecimal("principalInvoicePriceTotalRep", temp, mappings);
-		brokerageStampDutyAgreeFee = convertToBigDecimal("brokerageStampDutyAgreeFee", temp, mappings);
-		otherCharges = convertToBigDecimal("otherCharges", temp, mappings);
-		termsCharges = convertToBigDecimal("termsCharges", temp, mappings);
-		newContractPayment = convertToBigDecimal("newContractPayment", temp, mappings);
+		principalInvoicePriceTotalRep = dataManipFunctionsObj.convertToBigDecimal("principalInvoicePriceTotalRep", temp, mappings);
+		brokerageStampDutyAgreeFee = dataManipFunctionsObj.convertToBigDecimal("brokerageStampDutyAgreeFee", temp, mappings);
+		otherCharges = dataManipFunctionsObj.convertToBigDecimal("otherCharges", temp, mappings);
+		termsCharges = dataManipFunctionsObj.convertToBigDecimal("termsCharges", temp, mappings);
+		newContractPayment = dataManipFunctionsObj.convertToBigDecimal("newContractPayment", temp, mappings);
 		legalEntity = temp.get(Integer.parseInt(mappings.get("legalEntity").get("index")));
-		outstandingBalanceLME = convertToBigDecimal("outstandingBalanceLME", temp, mappings);
-		outstandingBalanceLME_M1 = convertToBigDecimal("outstandingBalanceLME_M1", temp, mappings);
-		unearnedIncomeLME = convertToBigDecimal("unearnedIncomeLME", temp, mappings);
-		unearnedIncomeLME_M1 = convertToBigDecimal("unearnedIncomeLME_M1", temp, mappings);
-		GSTOutstandingBalanceLME = convertToBigDecimal("GSTOutstandingBalanceLME", temp, mappings);
-		GSTOutstandingBalanceLME_M1 = convertToBigDecimal("GSTOutstandingBalanceLME_M1", temp, mappings);
-		currentArrearsLME = convertToBigDecimal("currentArrearsLME", temp, mappings);
-		arrears30DaysLME = convertToBigDecimal("arrears30DaysLME", temp, mappings);
-		arrears60DaysLME = convertToBigDecimal("arrears60DaysLME", temp, mappings);
-		arrears90DaysLME = convertToBigDecimal("arrears90DaysLME", temp, mappings);
-		arrears120DaysLME = convertToBigDecimal("arrears120DaysLME", temp, mappings);
-		arrears150PlusDaysLME = convertToBigDecimal("arrears150PlusDaysLME", temp, mappings);
-		outstandingBalance = convertToBigDecimal("outstandingBalance", temp, mappings);
-		unexpiredInterest = convertToBigDecimal("unexpiredInterest", temp, mappings);
-		GSTOutstanding = convertToBigDecimal("GSTOutstanding", temp, mappings);
-		theoreticalPrincipal = convertToBigDecimal("theoreticalPrincipal", temp, mappings);
-		maxLimit = convertToBigDecimal("maxLimit", temp, mappings);
-		PDIOutstanding = convertToBigDecimal("PDIOutstanding", temp, mappings);
-		totalArrears = convertToBigDecimal("totalArrears", temp, mappings);
-		currentArrears = convertToBigDecimal("currentArrears", temp, mappings);
-		arrears30Days = convertToBigDecimal("arrears30Days", temp, mappings);
-		arrears60Days = convertToBigDecimal("arrears60Days", temp, mappings);
-		arrears90Days = convertToBigDecimal("arrears90Days", temp, mappings);
-		arrears120PlusDays = convertToBigDecimal("arrears120PlusDays", temp, mappings);
-		contractDate = convertToDate("contractDate", temp, mappings);
-		expiryDate = convertToDate("expiryDate", temp, mappings);
-		cutOffDate = convertToDate("cutOffDate", temp, mappings);
-		fundingdate = convertToDate("fundingdate", temp, mappings);
-		arrearsDateLME = convertToDate("arrearsDateLME", temp, mappings);
-		oldestDueDate = convertToDate("oldestDueDate", temp, mappings);
-		paidOutWrittenOffDate = convertToDate("paidOutWrittenOffDate", temp, mappings);
+		outstandingBalanceLME = dataManipFunctionsObj.convertToBigDecimal("outstandingBalanceLME", temp, mappings);
+		outstandingBalanceLME_M1 = dataManipFunctionsObj.convertToBigDecimal("outstandingBalanceLME_M1", temp, mappings);
+		unearnedIncomeLME = dataManipFunctionsObj.convertToBigDecimal("unearnedIncomeLME", temp, mappings);
+		unearnedIncomeLME_M1 = dataManipFunctionsObj.convertToBigDecimal("unearnedIncomeLME_M1", temp, mappings);
+		GSTOutstandingBalanceLME = dataManipFunctionsObj.convertToBigDecimal("GSTOutstandingBalanceLME", temp, mappings);
+		GSTOutstandingBalanceLME_M1 = dataManipFunctionsObj.convertToBigDecimal("GSTOutstandingBalanceLME_M1", temp, mappings);
+		currentArrearsLME = dataManipFunctionsObj.convertToBigDecimal("currentArrearsLME", temp, mappings);
+		arrears30DaysLME = dataManipFunctionsObj.convertToBigDecimal("arrears30DaysLME", temp, mappings);
+		arrears60DaysLME = dataManipFunctionsObj.convertToBigDecimal("arrears60DaysLME", temp, mappings);
+		arrears90DaysLME = dataManipFunctionsObj.convertToBigDecimal("arrears90DaysLME", temp, mappings);
+		arrears120DaysLME = dataManipFunctionsObj.convertToBigDecimal("arrears120DaysLME", temp, mappings);
+		arrears150PlusDaysLME = dataManipFunctionsObj.convertToBigDecimal("arrears150PlusDaysLME", temp, mappings);
+		outstandingBalance = dataManipFunctionsObj.convertToBigDecimal("outstandingBalance", temp, mappings);
+		unexpiredInterest = dataManipFunctionsObj.convertToBigDecimal("unexpiredInterest", temp, mappings);
+		GSTOutstanding = dataManipFunctionsObj.convertToBigDecimal("GSTOutstanding", temp, mappings);
+		theoreticalPrincipal = dataManipFunctionsObj.convertToBigDecimal("theoreticalPrincipal", temp, mappings);
+		maxLimit = dataManipFunctionsObj.convertToBigDecimal("maxLimit", temp, mappings);
+		PDIOutstanding = dataManipFunctionsObj.convertToBigDecimal("PDIOutstanding", temp, mappings);
+		totalArrears = dataManipFunctionsObj.convertToBigDecimal("totalArrears", temp, mappings);
+		currentArrears = dataManipFunctionsObj.convertToBigDecimal("currentArrears", temp, mappings);
+		arrears30Days = dataManipFunctionsObj.convertToBigDecimal("arrears30Days", temp, mappings);
+		arrears60Days = dataManipFunctionsObj.convertToBigDecimal("arrears60Days", temp, mappings);
+		arrears90Days = dataManipFunctionsObj.convertToBigDecimal("arrears90Days", temp, mappings);
+		arrears120PlusDays = dataManipFunctionsObj.convertToBigDecimal("arrears120PlusDays", temp, mappings);
+		contractDate = dataManipFunctionsObj.convertToDate("contractDate", temp, mappings);
+		expiryDate = dataManipFunctionsObj.convertToDate("expiryDate", temp, mappings);
+		cutOffDate = dataManipFunctionsObj.convertToDate("cutOffDate", temp, mappings);
+		fundingdate = dataManipFunctionsObj.convertToDate("fundingdate", temp, mappings);
+		arrearsDateLME = dataManipFunctionsObj.convertToDate("arrearsDateLME", temp, mappings);
+		oldestDueDate = dataManipFunctionsObj.convertToDate("oldestDueDate", temp, mappings);
+		paidOutWrittenOffDate = dataManipFunctionsObj.convertToDate("paidOutWrittenOffDate", temp, mappings);
 		productCode = temp.get(Integer.parseInt(mappings.get("productCode").get("index")));
 		interestType = temp.get(Integer.parseInt(mappings.get("interestType").get("index")));
 		dealerCode = temp.get(Integer.parseInt(mappings.get("dealerCode").get("index")));
 		dealerName = temp.get(Integer.parseInt(mappings.get("dealerName").get("index")));
 		paidOutWrittenOffFlag = temp.get(Integer.parseInt(mappings.get("paidOutWrittenOffFlag").get("index")));
-		monthlyRental = convertToBigDecimal("monthlyRental", temp, mappings);
+		monthlyRental = dataManipFunctionsObj.convertToBigDecimal("monthlyRental", temp, mappings);
 		paymentFrequency = temp.get(Integer.parseInt(mappings.get("paymentFrequency").get("index")));
-		term = convertToBigDecimal("term", temp, mappings);
-		monthsExpired = convertToBigDecimal("monthsExpired", temp, mappings);
-		termsRemaining = convertToBigDecimal("termsRemaining", temp, mappings);
+		term = dataManipFunctionsObj.convertToBigDecimal("term", temp, mappings);
+		monthsExpired = dataManipFunctionsObj.convertToBigDecimal("monthsExpired", temp, mappings);
+		termsRemaining = dataManipFunctionsObj.convertToBigDecimal("termsRemaining", temp, mappings);
 
-
-
-
-		
-		if (!errMsg.equals("")) { 
-			
-			System.out.println(errMsg);
+		if (!dataManipFunctionsObj.getErrMsg().trim().equals("")) { 
+			System.out.println(dataManipFunctionsObj.getErrMsg());
 		}
 	}
-	
-	
-
-	
-	
 }

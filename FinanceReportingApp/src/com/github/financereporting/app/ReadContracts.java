@@ -58,34 +58,25 @@ public class ReadContracts{
 					Object[] keyset = contractItems.keySet().toArray();
 					for (int k = 0; k < keyset.length; k++)
 					{
-						
-						if (!Objects.isNull(contractItems.get(keyset[k]).get("map")) && !Objects.isNull(headings.get(j))) {
-								
+						if (!Objects.isNull(contractItems.get(keyset[k]).get("map")) && !Objects.isNull(headings.get(j))) {	
 							if( contractItems.get(keyset[k]).get("map").toString().replaceAll("\\n",",").trim().equals(headings.get(j).toString().replaceAll("^\"|\"$", "").replaceAll("\\n","").trim())) {
 								contractItems.get(keyset[k]).put("index", Integer.toString(j));
-								
-	
 							}
 						} else {
 
 						}
-						
 					}
 				}
 
-				
-		
 				Log.logInfo("Successfully read a contract file from " + path);
 			
 			} catch (FileNotFoundException e) {
 				Warning.addAttentionRequiredMessage("File not found error: '" + path + "' does not exist");
-			
 			} catch (Exception f) {
 				f.printStackTrace();
 			}
-			
-		
 		}
+		
 		Contracts[] contracts = new Contracts[contractDataArray.size()-1];
 		
 		for (int j=0; j < contractDataArray.size(); j++) {
@@ -97,13 +88,7 @@ public class ReadContracts{
 				//System.out.println(g);
 				//System.out.println(contractDataArray.get(g));
 				contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
-				
-
 			} 
-
-		}
-
-		
-		
+		}		
 	}
 }
