@@ -20,15 +20,16 @@ public class ReadContracts{
 	
 	/**
 	 * Reads contracts from the contracts file (requires the file mappings and other configuration settings to be extracted first)
+	 * @return 
 	 * 
 	 */
-	public static void readContracts() {
+	public static Contracts[] readContracts() {
 		ArrayList<ArrayList<String>> contractDataArray = new ArrayList<ArrayList<String>>();
 		
 		String individualContractFileName;
 		String path;
 		
-		String disincludedCharacters = "$"; //The characters in the excel file which must be ignored or else they may break the program
+		String disincludedCharacters = "$"; //The "$" sign must be removed so the numbers can be used as numbers, not strings
 		
 		
 		
@@ -80,15 +81,20 @@ public class ReadContracts{
 		Contracts[] contracts = new Contracts[contractDataArray.size()-1];
 		
 		for (int j=0; j < contractDataArray.size(); j++) {
+			//System.out.println(contractDataArray.get(j));
 			//System.out.println(contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))));
 			//System.out.println(contractItems.get("contractNumber").get("map"));
 			if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
+				
 				//System.out.println(contractDataArray.get(j).get(0));
 				contracts[j-1] = new Contracts(j-1);
 				//System.out.println(g);
 				//System.out.println(contractDataArray.get(g));
 				contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
 			} 
-		}		
+		}	
+		
+		return contracts;
 	}
+	
 }

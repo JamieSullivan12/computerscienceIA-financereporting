@@ -1,18 +1,24 @@
 package com.github.financereporting.logic;
 
+
+
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DataManipulationFunctions {
-
+	
 	
 	String errMsg = "";
 	boolean invalid = false;
 	String defErrMsg = "";
+	
 	
 	public DataManipulationFunctions(String m) {
 		defErrMsg = m;
@@ -25,13 +31,14 @@ public class DataManipulationFunctions {
 	 * @param mappings each field f
 	 * @return the date object
 	 */
-	public Date convertToDate(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
+	public LocalDate convertToDate(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
 		
-		Date date = new Date();
+		
 
 		String stringDate = null;
 		try {
 			stringDate = temp.get(Integer.parseInt(mappings.get(valueName).get("index")));
+			//System.out.println(stringDate);
 		} catch (Exception e1) {
 		}
 		
@@ -48,16 +55,18 @@ public class DataManipulationFunctions {
 				if (listDate[1].length() == 1) {
 					listDate[1] = "0" + listDate[1];
 				}
+				if (listDate[2].length() == 2) {
+					listDate[2] = "20" + listDate[2];
+				}
 				
-			
-				date = new SimpleDateFormat("dd/MM/yy").parse(listDate[0] + "/" + listDate[1] + "/" + listDate[2]); 
-			
-		
+				//System.out.println(listDate[2]);
+				LocalDate date = LocalDate.of(Integer.parseInt(listDate[2]), Integer.parseInt(listDate[1]), Integer.parseInt(listDate[0]));
+				return date;
 				}
 				
 				
 				else {
-					date = null;
+
 				}
 		
 		
@@ -70,8 +79,8 @@ public class DataManipulationFunctions {
 		
 		}
 		
-		return date;
 		
+		return null;
 	}
 	
 	
@@ -97,4 +106,8 @@ public class DataManipulationFunctions {
 		return errMsg;
 	}
 	
+	
+	
+	
+
 }

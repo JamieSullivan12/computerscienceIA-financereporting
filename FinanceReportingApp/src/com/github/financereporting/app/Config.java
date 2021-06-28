@@ -67,6 +67,7 @@ public class Config {
 		//This creates a LinkedHashMap (similair to a dictionary in python) of keys from the configuration file, with the values containing information such as the default value, actual value (which is populated later) and the datatype
 		updateConfigItems("Name", "Funding App", "0");
 		updateConfigItems("DefaultInputDirectoryFunding", "", "0");
+		updateConfigItems("DefaultOutputDirectoryFunding", "", "0");
 		updateConfigItems("ContractFileNamesFunding", "", "0");
 		updateConfigItems("TransactionFileNamesMonthEnd", "", "0");
 		updateConfigItems("ContractFileNamesMonthEnd", "", "0");
@@ -106,6 +107,15 @@ public class Config {
 	public static String getDefaultInputDirectoryFunding() {
 		return CI.get("DefaultInputDirectoryFunding").get("value");
 	}
+	
+	
+	/**
+	 * @return the defaultOutputDirectoryFunding
+	 */
+	public static String getDefaultOutputDirectoryFunding() {
+		return CI.get("DefaultOutputDirectoryFunding").get("value");
+	}
+	
 	
 	/**
 	 * @return the name

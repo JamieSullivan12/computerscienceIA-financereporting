@@ -6,13 +6,16 @@ import java.net.ServerSocket;
 
 import com.github.financereporting.user.interfaces.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;    
 
 
 public class Main {
 	
 
-	
-	
+	private static LocalDate date;
 	
 	
 	
@@ -85,11 +88,10 @@ public class Main {
 
 
 			fileMappings.contractFileMappings();
-				
-
+	
 			
+			date = LocalDate.now();
 
-			
 			
 			try {
 				TextBasedUI.initializeUI();
@@ -177,7 +179,9 @@ public class Main {
 	}
 
 
-
+	public static LocalDate getCurDate() {
+		return date;
+	}
 
 }
 

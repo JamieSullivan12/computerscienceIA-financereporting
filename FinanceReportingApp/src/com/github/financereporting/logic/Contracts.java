@@ -3,6 +3,7 @@ package com.github.financereporting.logic;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -34,15 +35,15 @@ public class Contracts {
 	private String customerPostalCode;
 	private String occupationCode;
 	private String occupationDescription;
-	private Date contractDate;
-	private Date expiryDate;
+	private LocalDate contractDate;
+	private LocalDate expiryDate;
 	private BigDecimal principalInvoicePriceTotalRep;
 	private BigDecimal brokerageStampDutyAgreeFee;
 	private BigDecimal otherCharges;
 	private BigDecimal termsCharges;
 	private BigDecimal newContractPayment;
-	private Date cutOffDate;
-	private Date fundingdate;
+	private LocalDate cutOffDate;
+	private LocalDate fundingdate;
 	private BigDecimal fundingAmount;
 	private String legalEntityCode;
 	private String legalEntity;
@@ -53,7 +54,7 @@ public class Contracts {
 	private BigDecimal unearnedIncomeLME_M1;
 	private BigDecimal GSTOutstandingBalanceLME;
 	private BigDecimal GSTOutstandingBalanceLME_M1;
-	private Date arrearsDateLME;
+	private LocalDate arrearsDateLME;
 	private BigDecimal currentArrearsLME;
 	private BigDecimal arrears30DaysLME;
 	private BigDecimal arrears60DaysLME;
@@ -72,22 +73,22 @@ public class Contracts {
 	private BigDecimal arrears60Days;
 	private BigDecimal arrears90Days;
 	private BigDecimal arrears120PlusDays;
-	private Date oldestDueDate;
+	private LocalDate oldestDueDate;
 	private String productCode;
 	private String interestType;
 	private String dealerCode;
 	private String dealerName;
 	private String paidOutWrittenOffFlag;
-	private Date paidOutWrittenOffDate;
+	private LocalDate paidOutWrittenOffDate;
 	private BigDecimal monthlyRental;
 	private String paymentFrequency;
 	private BigDecimal term;
 	private BigDecimal monthsExpired;
 	private BigDecimal termsRemaining;
 	private BigDecimal interestRate;
-	private String principalBalanceLME_M1;
-	private String principalBalance;
-	private String newFundingAmount;
+	private BigDecimal currentPrincipalBalanceLME_M1;
+	private BigDecimal currentPrincipalBalance;
+	private BigDecimal newFundingAmount;
 	private String groupExposureLLS_exclRTR;
 	private String groupExposureOther;
 	private String advanceRate;
@@ -97,7 +98,7 @@ public class Contracts {
 	private String advanceAmount;
 	private String creditEnchancement;
 	private String adjustedExposure;
-	private String newCutoffDate;
+	private LocalDate newCutoffDate;
 	private String Transactions;
 
 	
@@ -157,12 +158,12 @@ public class Contracts {
 	}
 
 
-	public Date getContractDate() {
+	public LocalDate getContractDate() {
 		return contractDate;
 	}
 
 
-	public Date getExpiryDate() {
+	public LocalDate getExpiryDate() {
 		return expiryDate;
 	}
 
@@ -192,12 +193,12 @@ public class Contracts {
 	}
 
 
-	public Date getCutOffDate() {
+	public LocalDate getCutOffDate() {
 		return cutOffDate;
 	}
 
 
-	public Date getFundingdate() {
+	public LocalDate getFundingdate() {
 		return fundingdate;
 	}
 
@@ -252,7 +253,7 @@ public class Contracts {
 	}
 
 
-	public Date getArrearsDateLME() {
+	public LocalDate getArrearsDateLME() {
 		return arrearsDateLME;
 	}
 
@@ -347,7 +348,7 @@ public class Contracts {
 	}
 
 
-	public Date getOldestDueDate() {
+	public LocalDate getOldestDueDate() {
 		return oldestDueDate;
 	}
 
@@ -377,7 +378,7 @@ public class Contracts {
 	}
 
 
-	public Date getPaidOutWrittenOffDate() {
+	public LocalDate getPaidOutWrittenOffDate() {
 		return paidOutWrittenOffDate;
 	}
 
@@ -412,17 +413,17 @@ public class Contracts {
 	}
 
 
-	public String getPrincipalBalanceLME_M1() {
-		return principalBalanceLME_M1;
+	public BigDecimal getCurrentPrincipalBalanceLME_M1() {
+		return currentPrincipalBalanceLME_M1;
 	}
 
 
-	public String getPrincipalBalance() {
-		return principalBalance;
+	public BigDecimal getCurrentPrincipalBalance() {
+		return currentPrincipalBalance;
 	}
 
 
-	public String getNewFundingAmount() {
+	public BigDecimal getNewFundingAmount() {
 		return newFundingAmount;
 	}
 
@@ -472,7 +473,7 @@ public class Contracts {
 	}
 
 
-	public String getNewCutoffDate() {
+	public LocalDate getNewCutoffDate() {
 		return newCutoffDate;
 	}
 
@@ -562,5 +563,385 @@ public class Contracts {
 		if (!dataManipFunctionsObj.getErrMsg().trim().equals("")) { 
 			System.out.println(dataManipFunctionsObj.getErrMsg());
 		}
+	}
+
+
+	public String getErrMsg() {
+		return errMsg;
+	}
+
+
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
+	}
+
+
+	public void setContractValues(LinkedHashMap<String, LinkedHashMap<String, String>> contractValues) {
+		this.contractValues = contractValues;
+	}
+
+
+	public void setInvalid(boolean invalid) {
+		this.invalid = invalid;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public void setContractNumber(String contractNumber) {
+		this.contractNumber = contractNumber;
+	}
+
+
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
+
+
+	public void setLargeLongstandingClient(String largeLongstandingClient) {
+		this.largeLongstandingClient = largeLongstandingClient;
+	}
+
+
+	public void setCustomerPostalCode(String customerPostalCode) {
+		this.customerPostalCode = customerPostalCode;
+	}
+
+
+	public void setOccupationCode(String occupationCode) {
+		this.occupationCode = occupationCode;
+	}
+
+
+	public void setOccupationDescription(String occupationDescription) {
+		this.occupationDescription = occupationDescription;
+	}
+
+
+	public void setContractDate(LocalDate contractDate) {
+		this.contractDate = contractDate;
+	}
+
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+
+	public void setPrincipalInvoicePriceTotalRep(BigDecimal principalInvoicePriceTotalRep) {
+		this.principalInvoicePriceTotalRep = principalInvoicePriceTotalRep;
+	}
+
+
+	public void setBrokerageStampDutyAgreeFee(BigDecimal brokerageStampDutyAgreeFee) {
+		this.brokerageStampDutyAgreeFee = brokerageStampDutyAgreeFee;
+	}
+
+
+	public void setOtherCharges(BigDecimal otherCharges) {
+		this.otherCharges = otherCharges;
+	}
+
+
+	public void setTermsCharges(BigDecimal termsCharges) {
+		this.termsCharges = termsCharges;
+	}
+
+
+	public void setNewContractPayment(BigDecimal newContractPayment) {
+		this.newContractPayment = newContractPayment;
+	}
+
+
+	public void setCutOffDate(LocalDate cutOffDate) {
+		this.cutOffDate = cutOffDate;
+	}
+
+
+	public void setFundingdate(LocalDate fundingdate) {
+		this.fundingdate = fundingdate;
+	}
+
+
+	public void setFundingAmount(BigDecimal fundingAmount) {
+		this.fundingAmount = fundingAmount;
+	}
+
+
+	public void setLegalEntityCode(String legalEntityCode) {
+		this.legalEntityCode = legalEntityCode;
+	}
+
+
+	public void setLegalEntity(String legalEntity) {
+		this.legalEntity = legalEntity;
+	}
+
+
+	public void setSellerCode(String sellerCode) {
+		this.sellerCode = sellerCode;
+	}
+
+
+	public void setOutstandingBalanceLME(BigDecimal outstandingBalanceLME) {
+		this.outstandingBalanceLME = outstandingBalanceLME;
+	}
+
+
+	public void setOutstandingBalanceLME_M1(BigDecimal outstandingBalanceLME_M1) {
+		this.outstandingBalanceLME_M1 = outstandingBalanceLME_M1;
+	}
+
+
+	public void setUnearnedIncomeLME(BigDecimal unearnedIncomeLME) {
+		this.unearnedIncomeLME = unearnedIncomeLME;
+	}
+
+
+	public void setUnearnedIncomeLME_M1(BigDecimal unearnedIncomeLME_M1) {
+		this.unearnedIncomeLME_M1 = unearnedIncomeLME_M1;
+	}
+
+
+	public void setGSTOutstandingBalanceLME(BigDecimal gSTOutstandingBalanceLME) {
+		GSTOutstandingBalanceLME = gSTOutstandingBalanceLME;
+	}
+
+
+	public void setGSTOutstandingBalanceLME_M1(BigDecimal gSTOutstandingBalanceLME_M1) {
+		GSTOutstandingBalanceLME_M1 = gSTOutstandingBalanceLME_M1;
+	}
+
+
+	public void setArrearsDateLME(LocalDate arrearsDateLME) {
+		this.arrearsDateLME = arrearsDateLME;
+	}
+
+
+	public void setCurrentArrearsLME(BigDecimal currentArrearsLME) {
+		this.currentArrearsLME = currentArrearsLME;
+	}
+
+
+	public void setArrears30DaysLME(BigDecimal arrears30DaysLME) {
+		this.arrears30DaysLME = arrears30DaysLME;
+	}
+
+
+	public void setArrears60DaysLME(BigDecimal arrears60DaysLME) {
+		this.arrears60DaysLME = arrears60DaysLME;
+	}
+
+
+	public void setArrears90DaysLME(BigDecimal arrears90DaysLME) {
+		this.arrears90DaysLME = arrears90DaysLME;
+	}
+
+
+	public void setArrears120DaysLME(BigDecimal arrears120DaysLME) {
+		this.arrears120DaysLME = arrears120DaysLME;
+	}
+
+
+	public void setArrears150PlusDaysLME(BigDecimal arrears150PlusDaysLME) {
+		this.arrears150PlusDaysLME = arrears150PlusDaysLME;
+	}
+
+
+	public void setOutstandingBalance(BigDecimal outstandingBalance) {
+		this.outstandingBalance = outstandingBalance;
+	}
+
+
+	public void setUnexpiredInterest(BigDecimal unexpiredInterest) {
+		this.unexpiredInterest = unexpiredInterest;
+	}
+
+
+	public void setGSTOutstanding(BigDecimal gSTOutstanding) {
+		GSTOutstanding = gSTOutstanding;
+	}
+
+
+	public void setTheoreticalPrincipal(BigDecimal theoreticalPrincipal) {
+		this.theoreticalPrincipal = theoreticalPrincipal;
+	}
+
+
+	public void setMaxLimit(BigDecimal maxLimit) {
+		this.maxLimit = maxLimit;
+	}
+
+
+	public void setPDIOutstanding(BigDecimal pDIOutstanding) {
+		PDIOutstanding = pDIOutstanding;
+	}
+
+
+	public void setTotalArrears(BigDecimal totalArrears) {
+		this.totalArrears = totalArrears;
+	}
+
+
+	public void setCurrentArrears(BigDecimal currentArrears) {
+		this.currentArrears = currentArrears;
+	}
+
+
+	public void setArrears30Days(BigDecimal arrears30Days) {
+		this.arrears30Days = arrears30Days;
+	}
+
+
+	public void setArrears60Days(BigDecimal arrears60Days) {
+		this.arrears60Days = arrears60Days;
+	}
+
+
+	public void setArrears90Days(BigDecimal arrears90Days) {
+		this.arrears90Days = arrears90Days;
+	}
+
+
+	public void setArrears120PlusDays(BigDecimal arrears120PlusDays) {
+		this.arrears120PlusDays = arrears120PlusDays;
+	}
+
+
+	public void setOldestDueDate(LocalDate oldestDueDate) {
+		this.oldestDueDate = oldestDueDate;
+	}
+
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+
+	public void setInterestType(String interestType) {
+		this.interestType = interestType;
+	}
+
+
+	public void setDealerCode(String dealerCode) {
+		this.dealerCode = dealerCode;
+	}
+
+
+	public void setDealerName(String dealerName) {
+		this.dealerName = dealerName;
+	}
+
+
+	public void setPaidOutWrittenOffFlag(String paidOutWrittenOffFlag) {
+		this.paidOutWrittenOffFlag = paidOutWrittenOffFlag;
+	}
+
+
+	public void setPaidOutWrittenOffDate(LocalDate paidOutWrittenOffDate) {
+		this.paidOutWrittenOffDate = paidOutWrittenOffDate;
+	}
+
+
+	public void setMonthlyRental(BigDecimal monthlyRental) {
+		this.monthlyRental = monthlyRental;
+	}
+
+
+	public void setPaymentFrequency(String paymentFrequency) {
+		this.paymentFrequency = paymentFrequency;
+	}
+
+
+	public void setTerm(BigDecimal term) {
+		this.term = term;
+	}
+
+
+	public void setMonthsExpired(BigDecimal monthsExpired) {
+		this.monthsExpired = monthsExpired;
+	}
+
+
+	public void setTermsRemaining(BigDecimal termsRemaining) {
+		this.termsRemaining = termsRemaining;
+	}
+
+
+	public void setInterestRate(BigDecimal interestRate) {
+		this.interestRate = interestRate;
+	}
+
+
+	public void setCurrentPrincipalBalanceLME_M1(BigDecimal principalBalanceLME_M1) {
+		this.currentPrincipalBalanceLME_M1 = principalBalanceLME_M1;
+	}
+
+
+	public void setCurrentPrincipalBalance(BigDecimal principalBalance) {
+		this.currentPrincipalBalance = principalBalance;
+	}
+
+
+	public void setNewFundingAmount(BigDecimal newFundingAmount) {
+		this.newFundingAmount = newFundingAmount;
+	}
+
+
+	public void setGroupExposureLLS_exclRTR(String groupExposureLLS_exclRTR) {
+		this.groupExposureLLS_exclRTR = groupExposureLLS_exclRTR;
+	}
+
+
+	public void setGroupExposureOther(String groupExposureOther) {
+		this.groupExposureOther = groupExposureOther;
+	}
+
+
+	public void setAdvanceRate(String advanceRate) {
+		this.advanceRate = advanceRate;
+	}
+
+
+	public void setRtraa(String rtraa) {
+		this.rtraa = rtraa;
+	}
+
+
+	public void setCappedRtraa(String cappedRtraa) {
+		this.cappedRtraa = cappedRtraa;
+	}
+
+
+	public void setAdjustmentRate(String adjustmentRate) {
+		this.adjustmentRate = adjustmentRate;
+	}
+
+
+	public void setAdvanceAmount(String advanceAmount) {
+		this.advanceAmount = advanceAmount;
+	}
+
+
+	public void setCreditEnchancement(String creditEnchancement) {
+		this.creditEnchancement = creditEnchancement;
+	}
+
+
+	public void setAdjustedExposure(String adjustedExposure) {
+		this.adjustedExposure = adjustedExposure;
+	}
+
+
+	public void setNewCutoffDate(LocalDate newCutoffDate) {
+		this.newCutoffDate = newCutoffDate;
+	}
+
+
+	public void setTransactions(String transactions) {
+		Transactions = transactions;
 	}
 }
