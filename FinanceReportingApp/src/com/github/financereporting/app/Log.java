@@ -136,6 +136,7 @@ public class Log {
 	public static void logSevere(String message) {
 		try {
 			logger.severe(message);
+			
 		} catch (Exception e) { }
 		
 

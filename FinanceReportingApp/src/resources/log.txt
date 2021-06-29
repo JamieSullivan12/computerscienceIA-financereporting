@@ -1,4 +1,4 @@
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Resources Directory Files:
 src/resources/ExitStatusWebsite
 src/resources/logging.properties
@@ -8,144 +8,147 @@ src/resources/serverSocket.properties
 src/resources/log.txt
 src/resources/config.properties
 
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Resources Deleted Files:
 
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: 
 ####################
 Program Started on Port: 32567
 ####################
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Reading data from the src/resources/config.properties file
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'Name'; value: 'Funding App'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'DefaultInputDirectoryFunding'; value: '/Users/jamiesullivan/git/finance-reporting/FinanceReportingApp/test-data/Raw data'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'DefaultOutputDirectoryFunding'; value: '/Users/jamiesullivan/git/finance-reporting/FinanceReportingApp/test-data/Raw data'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'ContractFileNamesFunding'; value: 'contracts_WRF_UDG.csv, contracts_LLC_UDG.csv'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'TransactionFileNamesMonthEnd'; value: 'transactions_LLC.csv, transactions_WRF.csv'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/config.properties: key: 'ContractFileNamesMonthEnd'; value: 'contracts_LLC_UDF.csv, contracts_WRF_UDF.csv'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Reading data from the null file
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'contractNumber'; value: 'Contract Number'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'customerCode'; value: 'Customer Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'largeLongstandingClient'; value: 'Large Longstanding Client'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'customerPostalCode'; value: 'Customer Postal Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'occupationCode'; value: 'Ocupation Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'occupationDescription'; value: 'Occupation Description'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'contractDate'; value: 'Contract Date'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'expiryDate'; value: 'Expiry Date'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'principalInvoicePriceTotalRep'; value: 'Principal Inv Price Total Rep'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'brokerageStampDutyAgreeFee'; value: 'Brokerage/Stamp Duty/Agree Fee'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'otherCharges'; value: 'Other Charges'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'termsCharges'; value: 'Terms Charges'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'newContractPayment'; value: 'New Contract Payment'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'cutOffDate'; value: 'Cut Off Date'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
-INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'fundingdate'; value: 'null'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
+INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'fundingDate'; value: 'Funding Date'
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'fundingAmount'; value: 'Funding Amount'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'legalEntityCode'; value: 'Legal Entity Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'legalEntity'; value: 'Legal Entity'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'sellerCode'; value: 'Seller Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'outstandingBalanceLME'; value: 'O/S Balance (last month end)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'outstandingBalanceLME_M1'; value: 'O/S Balance (last mth end -1)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'unearnedIncomeLME'; value: 'Unearned Inc (last month end)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'unearnedIncomeLME_M1'; value: 'Unearned Inc (last mth end -1)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'GSTOutstandingBalanceLME'; value: 'GST O/s (last month end)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'GSTOutstandingBalanceLME_M1'; value: 'GST O/s (last month end -1)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrearsDateLME'; value: 'Last mth end Arrears Date'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'currentArrearsLME'; value: 'Last mth end Current Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears30DaysLME'; value: 'Last mth end 30 Days Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears60DaysLME'; value: 'Last mth end 60 Days Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears90DaysLME'; value: 'Last mth end 90 Days Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears120DaysLME'; value: 'Last mth end 120 Days Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears150PlusDaysLME'; value: 'Last mth end 150+ Days Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'outstandingBalance'; value: 'Outstanding Balance'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'unexpiredInterest'; value: 'Unexpired Interest'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'GSTOutstanding'; value: 'GST Outstanding'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'theoreticalPrincipal'; value: 'Theoretical Principal'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'maxLimit'; value: 'Max Limit'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'PDIOutstanding'; value: 'PDI Outstanding'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'totalArrears'; value: 'Total Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'currentArrears'; value: 'Current Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears30Days'; value: '30 Day Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears60Days'; value: '60 Day Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears90Days'; value: '90 Day Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'arrears120PlusDays'; value: '120+ Day Arrears'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'oldestDueDate'; value: 'Oldest Due Date'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'productCode'; value: 'Product Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'interestType'; value: 'Interest Type'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'dealerCode'; value: 'Dealer Code'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'dealerName'; value: 'Dealer Name'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'paidOutWrittenOffFlag'; value: 'Paid Out\Written Off Flag'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'paidOutWrittenOffDate'; value: 'Status Date (Paid Out/W Off)'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'monthlyRental'; value: 'Monthly Rental'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'paymentFrequency'; value: 'Payment Frequency'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'term'; value: 'Term'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'monthsExpired'; value: 'Months Expired'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'termsRemaining'; value: 'Term Remaining'
-Jun 29, 2021 11:33:34 AM com.github.financereporting.app.Log logInfo
+Jun 29, 2021 3:27:54 PM com.github.financereporting.app.Log logInfo
 INFO: Successful retrieval from properties file src/resources/contractFileMappings.properties: key: 'interestRate'; value: 'Interest Rate'
-Jun 29, 2021 11:33:37 AM com.github.financereporting.app.Log logSevere
+Jun 29, 2021 3:27:55 PM com.github.financereporting.app.Log logSevere
 SEVERE: ERROR CODE 3: A fatal error has occured. 
 Message: Unknown error occured
+Jun 29, 2021 3:27:55 PM com.github.financereporting.app.Log logInfo
+INFO: Trace Back (Useful for debugging): 
+No line found

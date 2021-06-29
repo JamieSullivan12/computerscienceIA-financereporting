@@ -12,6 +12,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.github.financereporting.app.Log;
+
 public class DataManipulationFunctions {
 	
 	
@@ -38,7 +40,7 @@ public class DataManipulationFunctions {
 		String stringDate = null;
 		try {
 			stringDate = temp.get(Integer.parseInt(mappings.get(valueName).get("index")));
-			//System.out.println(stringDate);
+
 		} catch (Exception e1) {
 		}
 		
@@ -73,7 +75,7 @@ public class DataManipulationFunctions {
 		} catch (Exception e) { 
 			
 			invalid = true;
-			errMsg += defErrMsg + " - " + mappings.get(valueName).get("map") + " is invalid" ; 
+			errMsg += defErrMsg + " - " + mappings.get(valueName).get("map") + " is invalid. " ; 
 		
 		
 		
@@ -94,10 +96,12 @@ public class DataManipulationFunctions {
 	public BigDecimal convertToBigDecimal(String valueName, ArrayList<String> temp, LinkedHashMap<String, LinkedHashMap<String, String>> mappings) {
 		BigDecimal newValue = null;
 		try {
+			
 			newValue = new BigDecimal(temp.get(Integer.parseInt(mappings.get(valueName).get("index"))).replaceAll("^\"|\"$", "").replaceAll("%", "").trim());
 		} catch (Exception e) {
+			Log.logWarning(e.getMessage());
 			invalid = true;
-			errMsg += defErrMsg + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number";
+			errMsg += defErrMsg + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number. ";
 		}
 		return newValue;
 	}

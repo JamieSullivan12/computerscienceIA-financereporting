@@ -9,7 +9,8 @@ import com.github.financereporting.user.interfaces.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;    
+import java.util.Date;
+import java.util.Objects;    
 
 
 public class Main {
@@ -142,9 +143,14 @@ public class Main {
 			Log.logSevere("ERROR CODE " + exitStatus + ": A fatal error has occured.");
 			System.out.println("ERROR CODE " + exitStatus + ": A fatal error has occured.");
 		}
-		if (!traceBack.toString().isBlank()) {
-			Log.logInfo("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
-			System.out.println("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
+		if (!Objects.isNull(traceBack)) {
+			if (!traceBack.toString().isBlank()) {
+				Log.logInfo("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
+				System.out.println("Trace Back (Useful for debugging): \n" + traceBack.getLocalizedMessage());
+			} else {
+				Log.logInfo("No traceback found");
+				System.out.println("No traceback found");
+			}
 		} else {
 			Log.logInfo("No traceback found");
 			System.out.println("No traceback found");

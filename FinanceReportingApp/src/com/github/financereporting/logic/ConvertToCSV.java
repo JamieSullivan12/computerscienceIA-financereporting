@@ -18,15 +18,13 @@ public class ConvertToCSV {
 		for (var i=0; i < data.size(); i++) {
 			ArrayList<String > newData = new ArrayList<String>();
 			for (var g=0; g<data.get(i).length; g++) {
-				//System.out.println(escapeSpecialCharacters(data.get(i)[g]));
+
 				newData.add(escapeSpecialCharacters(data.get(i)[g]));
 				
 				
 			}
 			String joinedResult = newData.stream().collect(Collectors.joining(",")).replace("null", "");
 			returnData.add(joinedResult );
-			System.out.println(newData);
-			System.out.println(joinedResult);
 
 		}
 		

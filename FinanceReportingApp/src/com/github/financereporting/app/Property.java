@@ -137,7 +137,7 @@ public class Property {
 
 	
 	/**
-	 * Reads an item prom a properties object. Will automatically set any warnings or error messages regarding the retrieval of the value
+	 * Reads an item from a properties object. Will automatically set any warnings or error messages regarding the retrieval of the value
 	 * @param key			The key of the item from the configuration file
 	 * @param defaultValue	The default value of that item (if null, then there is no default value, meaning if it doesn't exist in the configuration file, the program will terminate
 

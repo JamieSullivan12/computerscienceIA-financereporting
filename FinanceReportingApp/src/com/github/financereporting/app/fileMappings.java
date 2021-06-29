@@ -91,7 +91,7 @@ public class fileMappings {
 		setContractMappingValues("termsCharges", "", "0");
 		setContractMappingValues("newContractPayment", "", "0");
 		setContractMappingValues("cutOffDate", "", "0");
-		setContractMappingValues("fundingdate", "", "0");
+		setContractMappingValues("fundingDate", "", "0");
 		setContractMappingValues("fundingAmount", "", "0");
 		setContractMappingValues("legalEntityCode", "", "0");
 		setContractMappingValues("legalEntity", "", "0");

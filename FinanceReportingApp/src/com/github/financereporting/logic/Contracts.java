@@ -43,7 +43,7 @@ public class Contracts {
 	private BigDecimal termsCharges;
 	private BigDecimal newContractPayment;
 	private LocalDate cutOffDate;
-	private LocalDate fundingdate;
+	private LocalDate fundingDate;
 	private BigDecimal fundingAmount;
 	private String legalEntityCode;
 	private String legalEntity;
@@ -198,8 +198,8 @@ public class Contracts {
 	}
 
 
-	public LocalDate getFundingdate() {
-		return fundingdate;
+	public LocalDate getFundingDate() {
+		return fundingDate;
 	}
 
 
@@ -209,6 +209,7 @@ public class Contracts {
 
 
 	public String getLegalEntityCode() {
+		
 		return legalEntityCode;
 	}
 
@@ -545,7 +546,7 @@ public class Contracts {
 		contractDate = dataManipFunctionsObj.convertToDate("contractDate", temp, mappings);
 		expiryDate = dataManipFunctionsObj.convertToDate("expiryDate", temp, mappings);
 		cutOffDate = dataManipFunctionsObj.convertToDate("cutOffDate", temp, mappings);
-		fundingdate = dataManipFunctionsObj.convertToDate("fundingdate", temp, mappings);
+		fundingDate = dataManipFunctionsObj.convertToDate("fundingDate", temp, mappings);
 		arrearsDateLME = dataManipFunctionsObj.convertToDate("arrearsDateLME", temp, mappings);
 		oldestDueDate = dataManipFunctionsObj.convertToDate("oldestDueDate", temp, mappings);
 		paidOutWrittenOffDate = dataManipFunctionsObj.convertToDate("paidOutWrittenOffDate", temp, mappings);
@@ -662,7 +663,7 @@ public class Contracts {
 
 
 	public void setFundingdate(LocalDate fundingdate) {
-		this.fundingdate = fundingdate;
+		this.fundingDate = fundingDate;
 	}
 
 

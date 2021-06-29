@@ -27,13 +27,15 @@ public class FundingProcess {
 		Contracts[] contracts = ReadContracts.readContracts();
 		for (var i=0; i < contracts.length; i ++) {
 			if (!Objects.isNull(contracts[i])) {
+				
 				Contracts c = contracts[i];
+
 				calculatePrincipalBalance(c);
 				calculateNewFundingAmount(c);
 				calculateNewCutoffDate(c);
 				
 				
-				dataLines.add(new String[] {String.valueOf(c.getContractNumber()), String.valueOf(c.getContractDate()), String.valueOf(c.getPrincipalInvoicePriceTotalRep()), String.valueOf(c.getBrokerageStampDutyAgreeFee()), String.valueOf(c.getOtherCharges()), String.valueOf(c.getCutOffDate()), String.valueOf(c.getFundingdate()), String.valueOf(c.getFundingAmount()), String.valueOf(c.getLegalEntityCode()), String.valueOf(c.getSellerCode()), String.valueOf(c.getOutstandingBalanceLME_M1()), String.valueOf(c.getUnearnedIncomeLME_M1()), String.valueOf(c.getGSTOutstandingBalanceLME_M1()), String.valueOf(c.getOutstandingBalance()), String.valueOf(c.getUnexpiredInterest()), String.valueOf(c.getGSTOutstanding()), String.valueOf(c.getPaidOutWrittenOffFlag()), String.valueOf(c.getCurrentPrincipalBalance()), String.valueOf(c.getNewFundingAmount()), String.valueOf(c.getNewCutoffDate())}); 
+				dataLines.add(new String[] {String.valueOf(c.getContractNumber()), String.valueOf(c.getContractDate()), String.valueOf(c.getPrincipalInvoicePriceTotalRep()), String.valueOf(c.getBrokerageStampDutyAgreeFee()), String.valueOf(c.getOtherCharges()), String.valueOf(c.getCutOffDate()), String.valueOf(c.getFundingDate()), String.valueOf(c.getFundingAmount()), String.valueOf(c.getLegalEntityCode()), String.valueOf(c.getSellerCode()), String.valueOf(c.getOutstandingBalanceLME_M1()), String.valueOf(c.getUnearnedIncomeLME_M1()), String.valueOf(c.getGSTOutstandingBalanceLME_M1()), String.valueOf(c.getOutstandingBalance()), String.valueOf(c.getUnexpiredInterest()), String.valueOf(c.getGSTOutstanding()), String.valueOf(c.getPaidOutWrittenOffFlag()), String.valueOf(c.getCurrentPrincipalBalance()), String.valueOf(c.getNewFundingAmount()), String.valueOf(c.getNewCutoffDate())}); 
 				
 				
 			}
@@ -70,10 +72,9 @@ public class FundingProcess {
 			
 		
 			if (RemoveQuotes.remove(c.getLegalEntityCode()).equals("1")) {
-				//System.out.println(c.getContractNumber().charAt(0));
-				//System.out.println(RemoveQuotes.remove(Character.toString(c.getContractNumber().charAt(0))).equals("H"));
+				
 				if (RemoveQuotes.remove(Character.toString(c.getContractNumber().charAt(0))).equals("H")) {
-					//System.out.println("g");
+					
 					newFundingAmount = c.getPrincipalInvoicePriceTotalRep().add(c.getBrokerageStampDutyAgreeFee().add(c.getOtherCharges()));
 				} else {
 					newFundingAmount = c.getPrincipalInvoicePriceTotalRep().add(c.getBrokerageStampDutyAgreeFee().add(c.getOtherCharges())).multiply(BigDecimal.valueOf(1.1));
@@ -124,7 +125,6 @@ public class FundingProcess {
 				if (checkSameMonth( current_date, c.getContractDate())) {
 					
 					if (RemoveQuotes.remove(Character.toString(c.getContractNumber().charAt(0))).equals("H")) {
-
 						currentPrincipalBalance = c.getOutstandingBalance().subtract(c.getUnexpiredInterest().multiply(BigDecimal.valueOf(1.1)));
 					} else {
 						currentPrincipalBalance = c.getOutstandingBalance().subtract(c.getUnexpiredInterest());
@@ -158,7 +158,7 @@ public class FundingProcess {
 		newCutoffDate = LocalDate.of(1, 1, 1);
 		
 		LocalDate currentDate = Main.getCurDate();
-		System.out.println(c.getContractNumber());		
+		
 		if (checkSameMonth( currentDate, c.getContractDate())) {
 			newCutoffDate = c.getContractDate();
 			
@@ -176,8 +176,7 @@ public class FundingProcess {
 			newCutoffDate = LocalDate.of(1, 1, 1);
 		}
 
-	
-		System.out.println(newCutoffDate);
+
 		c.setNewCutoffDate(newCutoffDate);
 		
 	}
