@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,14 +18,29 @@ import com.github.financereporting.app.Config;
 import com.github.financereporting.app.Log;
 import com.github.financereporting.app.Main;
 import com.github.financereporting.app.ReadContracts;
+import com.github.financereporting.app.fileMappings;
 
 public class FundingProcess {
 	
 	public static void initialize() {
+
+		
+		
+		
+		
+		Contracts[] contracts = ReadContracts.readContracts();
+		
+		LinkedHashMap<String, LinkedHashMap<String, String>> contractItems = fileMappings.getContractMappings();
+		
+
 		ArrayList<String[]> dataLines = new ArrayList<>();
 		String path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "poolcut.csv".trim(); 
 		
-		Contracts[] contracts = ReadContracts.readContracts();
+		String currentPrincipalHeading = "Current Principal Balance";
+		String newFundingAmountHeading = "New Funding Amount";
+		String newCutoffDateHeading = "New Cut Off Date";
+		dataLines.add(new String[] {contractItems.get("contractNumber").get("map"), contractItems.get("contractDate").get("map"), contractItems.get("principalInvoicePriceTotalRep").get("map"), contractItems.get("brokerageStampDutyAgreeFee").get("map"), contractItems.get("otherCharges").get("map"), contractItems.get("cutOffDate").get("map"), contractItems.get("fundingDate").get("map"), contractItems.get("fundingAmount").get("map"), contractItems.get("legalEntityCode").get("map"), contractItems.get("sellerCode").get("map"), contractItems.get("outstandingBalanceLME_M1").get("map"), contractItems.get("unearnedIncomeLME_M1").get("map"), contractItems.get("GSTOutstandingBalanceLME_M1").get("map"), contractItems.get("outstandingBalance").get("map"), contractItems.get("unexpiredInterest").get("map"), contractItems.get("GSTOutstanding").get("map"), contractItems.get("paidOutWrittenOffFlag").get("map"), currentPrincipalHeading, newFundingAmountHeading, newCutoffDateHeading}); 		
+
 		for (var i=0; i < contracts.length; i ++) {
 			if (!Objects.isNull(contracts[i])) {
 				
