@@ -14,6 +14,8 @@ import java.util.stream.Stream;
 
 import com.github.financereporting.app.Log;
 
+import jamiesullivan.packages.code.CreateLocalDateObjectFromString;
+
 public class DataManipulationFunctions {
 	
 	
@@ -47,31 +49,9 @@ public class DataManipulationFunctions {
 		
 		try { 
 		
-			if (!Objects.isNull(stringDate) && !stringDate.replaceAll("^\"|\"$", "").trim().isBlank()) {
-				
-				String[] listDate = stringDate.replaceAll("^\"|\"$", "").split("/");
-	
-				if (listDate[0].length() == 1) {
-					listDate[0] = "0" + listDate[0];
-				}
-				if (listDate[1].length() == 1) {
-					listDate[1] = "0" + listDate[1];
-				}
-				if (listDate[2].length() == 2) {
-					listDate[2] = "20" + listDate[2];
-				}
-				
-				//System.out.println(listDate[2]);
-				LocalDate date = LocalDate.of(Integer.parseInt(listDate[2]), Integer.parseInt(listDate[1]), Integer.parseInt(listDate[0]));
-				return date;
-				}
-				
-				
-				else {
-
-				}
-		
-		
+			LocalDate date = CreateLocalDateObjectFromString.createDate(stringDate);
+			return date;
+			
 		} catch (Exception e) { 
 			
 			invalid = true;

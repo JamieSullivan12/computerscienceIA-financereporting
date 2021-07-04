@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;    
-
+import com.github.financereporting.gui.*;
 
 public class Main {
 	
@@ -92,12 +92,14 @@ public class Main {
 	
 			
 			date = LocalDate.now();
-
+			
 			
 			try {
 				TextBasedUI.initializeUI();
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 				endProgramUnsuccessful(3, "Unknown error occured", e);
 			}

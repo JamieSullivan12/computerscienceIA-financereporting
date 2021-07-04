@@ -20,7 +20,7 @@ public class TextBasedUI {
 	/**
 	 * Create the initial menu which the user uses to make an initial selection regarding what they would like to do
 	 */
-	private static void initialMenu() throws Exception {
+	private static void initialMenu()  {
 		boolean exit = false;
 		
 		while (!exit) {		
@@ -54,7 +54,7 @@ public class TextBasedUI {
 	 * Initialize the text based user interface which the user will use to interact with the program
 	 * Ensure all configuration settings have been set previously
 	 */
-	public static void initializeUI()  throws Exception {
+	public static void initializeUI()   {
 		initialMenu();
 
 	}

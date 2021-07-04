@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Objects;
@@ -22,25 +23,33 @@ import com.github.financereporting.app.fileMappings;
 
 public class FundingProcess {
 	
-	public static void initialize() {
-
-		
-		
-		
+	public static void initialize(LocalDate settlementDate) {
 		
 		Contracts[] contracts = ReadContracts.readContracts();
 		
 		LinkedHashMap<String, LinkedHashMap<String, String>> contractItems = fileMappings.getContractMappings();
 		
 
-		ArrayList<String[]> dataLines = new ArrayList<>();
-		String path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "poolcut.csv".trim(); 
+		ArrayList<String[]> dataLinesPoolcut = new ArrayList<>();
+		ArrayList<String[]> dataLinesOfferWholesale = new ArrayList<>();
+		ArrayList<String[]> dataLinesOfferAsset = new ArrayList<>();
+		ArrayList<String[]> dataLinesUploadWholesale = new ArrayList<>();
+		ArrayList<String[]> dataLinesUploadAsset = new ArrayList<>();
+		
+		String formattedSettlementDate = settlementDate.format(DateTimeFormatter.ofPattern("yyMMdd"));
 		
 		String currentPrincipalHeading = "Current Principal Balance";
 		String newFundingAmountHeading = "New Funding Amount";
 		String newCutoffDateHeading = "New Cut Off Date";
-		dataLines.add(new String[] {contractItems.get("contractNumber").get("map"), contractItems.get("contractDate").get("map"), contractItems.get("principalInvoicePriceTotalRep").get("map"), contractItems.get("brokerageStampDutyAgreeFee").get("map"), contractItems.get("otherCharges").get("map"), contractItems.get("cutOffDate").get("map"), contractItems.get("fundingDate").get("map"), contractItems.get("fundingAmount").get("map"), contractItems.get("legalEntityCode").get("map"), contractItems.get("sellerCode").get("map"), contractItems.get("outstandingBalanceLME_M1").get("map"), contractItems.get("unearnedIncomeLME_M1").get("map"), contractItems.get("GSTOutstandingBalanceLME_M1").get("map"), contractItems.get("outstandingBalance").get("map"), contractItems.get("unexpiredInterest").get("map"), contractItems.get("GSTOutstanding").get("map"), contractItems.get("paidOutWrittenOffFlag").get("map"), currentPrincipalHeading, newFundingAmountHeading, newCutoffDateHeading}); 		
+		dataLinesPoolcut.add(new String[] {contractItems.get("contractNumber").get("map"), contractItems.get("contractDate").get("map"), contractItems.get("principalInvoicePriceTotalRep").get("map"), contractItems.get("brokerageStampDutyAgreeFee").get("map"), contractItems.get("otherCharges").get("map"), contractItems.get("cutOffDate").get("map"), contractItems.get("fundingDate").get("map"), contractItems.get("fundingAmount").get("map"), contractItems.get("legalEntityCode").get("map"), contractItems.get("sellerCode").get("map"), contractItems.get("outstandingBalanceLME_M1").get("map"), contractItems.get("unearnedIncomeLME_M1").get("map"), contractItems.get("GSTOutstandingBalanceLME_M1").get("map"), contractItems.get("outstandingBalance").get("map"), contractItems.get("unexpiredInterest").get("map"), contractItems.get("GSTOutstanding").get("map"), contractItems.get("paidOutWrittenOffFlag").get("map"), currentPrincipalHeading, newFundingAmountHeading, newCutoffDateHeading}); 		
+		
+		dataLinesOfferWholesale.add(new String[] {"Business","Cut-Off Date","Funding Date","Funding Amount","Contract Number"}); 		
+		dataLinesOfferAsset.add(new String[] {"Business","Cut-Off Date","Funding Date","Funding Amount","Contract Number"}); 		
+		dataLinesUploadWholesale.add(new String[] {"Contract Number","Funding Date","Funding Amount","Legal Entity","Cut Off Date","Seller Code"}); 		
+		dataLinesUploadAsset.add(new String[] {"Contract Number","Funding Date","Funding Amount","Legal Entity","Cut Off Date","Seller Code"}); 		
 
+		
+		
 		for (var i=0; i < contracts.length; i ++) {
 			if (!Objects.isNull(contracts[i])) {
 				
@@ -50,19 +59,64 @@ public class FundingProcess {
 				calculateNewFundingAmount(c);
 				calculateNewCutoffDate(c);
 				
+				if (c.getLegalEntityCode().equals("1")) {
+					dataLinesOfferWholesale.add(new String[] { c.getLegalEntity().toString(), c.getNewCutoffDate().toString(), settlementDate.toString(), c.getNewFundingAmount().toString(), c.getContractNumber().toString()});
 				
-				dataLines.add(new String[] {String.valueOf(c.getContractNumber()), String.valueOf(c.getContractDate()), String.valueOf(c.getPrincipalInvoicePriceTotalRep()), String.valueOf(c.getBrokerageStampDutyAgreeFee()), String.valueOf(c.getOtherCharges()), String.valueOf(c.getCutOffDate()), String.valueOf(c.getFundingDate()), String.valueOf(c.getFundingAmount()), String.valueOf(c.getLegalEntityCode()), String.valueOf(c.getSellerCode()), String.valueOf(c.getOutstandingBalanceLME_M1()), String.valueOf(c.getUnearnedIncomeLME_M1()), String.valueOf(c.getGSTOutstandingBalanceLME_M1()), String.valueOf(c.getOutstandingBalance()), String.valueOf(c.getUnexpiredInterest()), String.valueOf(c.getGSTOutstanding()), String.valueOf(c.getPaidOutWrittenOffFlag()), String.valueOf(c.getCurrentPrincipalBalance()), String.valueOf(c.getNewFundingAmount()), String.valueOf(c.getNewCutoffDate())}); 
+					String formattedNewCutoffDate = c.getNewCutoffDate().format(DateTimeFormatter.ofPattern("yyMMdd"));
+					dataLinesUploadWholesale.add(new String[] { c.getContractNumber().toString(), formattedSettlementDate, c.getNewFundingAmount().toString(), "3", formattedNewCutoffDate, c.getSellerCode().toString()});
+
+				
+				}
+				if (c.getLegalEntityCode().equals("2")) {
+					dataLinesOfferAsset.add(new String[] { c.getLegalEntity().toString(), c.getNewCutoffDate().toString(), settlementDate.toString(), c.getNewFundingAmount().toString(), c.getContractNumber().toString()});
+				
+					String formattedNewCutoffDate = c.getNewCutoffDate().format(DateTimeFormatter.ofPattern("yyMMdd"));
+					dataLinesUploadAsset.add(new String[] { c.getContractNumber().toString(), formattedSettlementDate, c.getNewFundingAmount().toString(), "3", formattedNewCutoffDate, c.getSellerCode().toString()});
+
+				
+				}
+				
+				
+				
+				
+	
+				
+				
+				dataLinesPoolcut.add(new String[] {String.valueOf(c.getContractNumber()), String.valueOf(c.getContractDate()), String.valueOf(c.getPrincipalInvoicePriceTotalRep()), String.valueOf(c.getBrokerageStampDutyAgreeFee()), String.valueOf(c.getOtherCharges()), String.valueOf(c.getCutOffDate()), String.valueOf(c.getFundingDate()), String.valueOf(c.getFundingAmount()), String.valueOf(c.getLegalEntityCode()), String.valueOf(c.getSellerCode()), String.valueOf(c.getOutstandingBalanceLME_M1()), String.valueOf(c.getUnearnedIncomeLME_M1()), String.valueOf(c.getGSTOutstandingBalanceLME_M1()), String.valueOf(c.getOutstandingBalance()), String.valueOf(c.getUnexpiredInterest()), String.valueOf(c.getGSTOutstanding()), String.valueOf(c.getPaidOutWrittenOffFlag()), String.valueOf(c.getCurrentPrincipalBalance()), String.valueOf(c.getNewFundingAmount()), String.valueOf(c.getNewCutoffDate())}); 
 				
 				
 			}
 		}
 		
 		ConvertToCSV CSVconverter = new ConvertToCSV();
-		ArrayList<String> csvFormat = CSVconverter.convertToCSV(dataLines);
+		ArrayList<String> csvFormatPoolcut = CSVconverter.convertToCSV(dataLinesPoolcut);
+		ArrayList<String> csvFormatOfferWholesale = CSVconverter.convertToCSV(dataLinesOfferWholesale);
+		ArrayList<String> csvFormatOfferAsset = CSVconverter.convertToCSV(dataLinesOfferAsset);
+		ArrayList<String> csvFormatUploadWholesale = CSVconverter.convertToCSV(dataLinesUploadWholesale);
+		ArrayList<String> csvFormatUploadAsset = CSVconverter.convertToCSV(dataLinesUploadAsset);
 
 
 		try {
-			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormat);
+			
+			String path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "poolcut.csv".trim(); 
+			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormatPoolcut);
+			
+			
+			path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "OfferWholesale.csv".trim(); 
+			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormatOfferWholesale);
+			
+			
+			path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "OfferAsset.csv".trim();
+			
+			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormatOfferAsset);
+			
+			
+			path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "UploadWholesale.csv".trim(); 
+			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormatUploadWholesale);
+			
+			path = Config.getDefaultOutputDirectoryFunding().trim() + "/" + "UploadAsset.csv".trim(); 
+			CSVconverter.givenDataArray_whenConvertToCSV_thenOutputCreated(path,csvFormatUploadAsset);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -197,10 +251,24 @@ public class FundingProcess {
 		
 	}
 
+	
+	private static String generateOfferReports(Contracts c, LocalDate settlementDate) {
+
+		
+	}
+	
+	private static void generateUpoloadReports(Contracts c, LocalDate settlementDate) {
+		
+	}
 
 	private static boolean checkSameMonth(LocalDate date1, LocalDate date2) {	
-		if ( date1.getMonthValue() == date2.getMonthValue() &&  date1.getYear() == date2.getYear()) {
-			return true;
+		
+		if (!Objects.isNull(date1) && !Objects.isNull(date2)) {
+			if ( date1.getMonthValue() == date2.getMonthValue() &&  date1.getYear() == date2.getYear()) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}

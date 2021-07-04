@@ -24,7 +24,7 @@ public class EditConfigurationUI {
 	/**
 	 * Load the UI for editing configuration. Needs to be done AFTER initial configuration extraction
 	 */
-	public static void initializeConfigurationUI() throws Exception {
+	public static void initializeConfigurationUI()  {
 		
 		boolean goBack = false;
 		//Endless loop until the user decides to break out of it
@@ -40,13 +40,23 @@ public class EditConfigurationUI {
 			}
 			
 			//If there are unsaved changes that need attending to, print the message(s)
-			unsavedChanges = Config.getUnsavedChanges();
+			try {
+				unsavedChanges = Config.getUnsavedChanges();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			
 			if (!unsavedChanges.isBlank()) {
 				System.out.println("##########\n\nYOU HAVE UNSAVED CHANGES. Enter the correct number below to save:");
-				System.out.println(Config.getUnsavedChanges());
+				try {
+					System.out.println(Config.getUnsavedChanges());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.println("##########");
 			}
 
