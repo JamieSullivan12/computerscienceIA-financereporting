@@ -25,6 +25,7 @@ public class ScannerInput {
 	 */
 	 public static String stringInput(String message) {
 		
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		 if (!Objects.isNull(message) && !message.equals("")) {
 			 System.out.print(message);

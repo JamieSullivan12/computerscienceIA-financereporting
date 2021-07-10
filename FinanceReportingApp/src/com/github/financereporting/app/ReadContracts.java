@@ -35,6 +35,7 @@ public class ReadContracts{
 		
 		contractItems = fileMappings.getContractMappings();
 
+		
 		//Looping through each contract file name from the config file (because the user may have given more than one contracts file if they have two data sources)
 		for (var i=0; i < Config.getContractFileNamesFunding().length; i++) {
 			
@@ -45,10 +46,12 @@ public class ReadContracts{
 			//Trim removes any whitespace around the variables
 			path = Config.getDefaultInputDirectoryFunding().trim() + "/" + individualContractFileName.trim(); 
 			
+
 			//Reading the file from that path - passing an exception if the file couldnt be found
 			try {
 				contractDataArray.addAll(ReadCSV.initReadCSV(path, disincludedCharacters));
-				
+
+
 				
 				ArrayList<String> headings = contractDataArray.get(0);
 
@@ -83,23 +86,26 @@ public class ReadContracts{
 			
 			} catch (FileNotFoundException e) {
 				Warning.addAttentionRequiredMessage("File not found error: '" + path + "' does not exist");
+
 			} catch (Exception f) {
 				f.printStackTrace();
 			}
 		}
-		
-		Contracts[] contracts = new Contracts[contractDataArray.size()-1];
-		
-		for (int j=0; j < contractDataArray.size(); j++) {
+		Contracts[] contracts = new Contracts[0];
+		if (contractDataArray.size() != 0) {
+			contracts = new Contracts[contractDataArray.size()-1];
 
-			if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
-
-				contracts[j-1] = new Contracts(j-1);
-
-				contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
-			} 
-		}	
 		
+			for (int j=0; j < contractDataArray.size(); j++) {
+	
+				if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
+	
+					contracts[j-1] = new Contracts(j-1);
+	
+					contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
+				} 
+			}	
+		}
 		return contracts;
 	}
 	

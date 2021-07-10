@@ -1,14 +1,9 @@
 package com.github.financereporting.logic;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Objects;
-
 
 public class Contracts {
 	
@@ -662,7 +657,7 @@ public class Contracts {
 	}
 
 
-	public void setFundingdate(LocalDate fundingdate) {
+	public void setFundingdate(LocalDate fundingDate) {
 		this.fundingDate = fundingDate;
 	}
 

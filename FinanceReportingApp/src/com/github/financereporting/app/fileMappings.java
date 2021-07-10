@@ -3,7 +3,6 @@
  */
 package com.github.financereporting.app;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 
@@ -42,9 +41,7 @@ public class fileMappings {
 	}
 	
 	
-	
-	
-	private static ArrayList<String> contractNames = new ArrayList<String>();
+
 	
 	private static void setContractMappingValues(String key, String defaultValue, String dataTypeCode) {
 		LinkedHashMap<String, String> mappingItem = new  LinkedHashMap<String, String>();

@@ -2,18 +2,15 @@ package com.github.financereporting.logic;
 
 import jamiesullivan.packages.code.*;
 
-import java.awt.List;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.github.financereporting.app.Config;
 import com.github.financereporting.app.Log;
@@ -23,9 +20,12 @@ import com.github.financereporting.app.fileMappings;
 
 public class FundingProcess {
 	
-	public static void initialize(LocalDate settlementDate) {
+	public static void initialize(LocalDate settlementDate) throws IllegalArgumentException {
 		
 		Contracts[] contracts = ReadContracts.readContracts();
+		if (contracts.length == 0) {
+			throw new IllegalArgumentException ("No contract data was found");
+		}
 		
 		LinkedHashMap<String, LinkedHashMap<String, String>> contractItems = fileMappings.getContractMappings();
 		
@@ -248,16 +248,6 @@ public class FundingProcess {
 
 
 		c.setNewCutoffDate(newCutoffDate);
-		
-	}
-
-	
-	private static String generateOfferReports(Contracts c, LocalDate settlementDate) {
-
-		
-	}
-	
-	private static void generateUpoloadReports(Contracts c, LocalDate settlementDate) {
 		
 	}
 

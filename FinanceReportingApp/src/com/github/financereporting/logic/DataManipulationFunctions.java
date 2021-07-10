@@ -3,14 +3,10 @@ package com.github.financereporting.logic;
 
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import com.github.financereporting.app.Log;
 

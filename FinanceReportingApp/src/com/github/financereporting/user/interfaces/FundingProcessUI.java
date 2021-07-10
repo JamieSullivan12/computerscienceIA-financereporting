@@ -3,10 +3,8 @@ package com.github.financereporting.user.interfaces;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.github.financereporting.app.ReadContracts;
 import jamiesullivan.packages.code.*;
 import com.github.financereporting.logic.FundingProcess;
-import com.github.financereporting.logic.*;
 
 public class FundingProcessUI {
 	public static void initializeFundingUI() {
@@ -18,7 +16,12 @@ public class FundingProcessUI {
 			LocalDate settlementDate = CreateLocalDateObjectFromString.createDate(dateString);
 			if (!Objects.isNull(settlementDate)) {
 				valid = true;
-				FundingProcess.initialize(settlementDate);
+				try {
+					FundingProcess.initialize(settlementDate);
+				} catch (IllegalArgumentException e) {
+					
+					System.out.println(e.getMessage());
+				}
 			} else {System.out.println("INVALID DATE");}
 		}
 

@@ -147,9 +147,7 @@ public class Property {
 	 * @return value		the value of the item from the configuration file
 	 */
 	public String readProperties(String key, String defaultValue, String propertiesFileLocation, int dataType) {
-		
-		boolean successfulCompletion = true;
-		
+
 		
 		//Getting the value from the properties object based on a key given by the user
 		String value = null;
