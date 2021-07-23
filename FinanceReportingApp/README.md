@@ -1,3 +1,5 @@
+# WARNING: This program is still in its initial development phase
+
 ## Finance Reporting Project
 
 The finance reporting project is a program to help finance businesses generate reports on their contracts and transactions.
