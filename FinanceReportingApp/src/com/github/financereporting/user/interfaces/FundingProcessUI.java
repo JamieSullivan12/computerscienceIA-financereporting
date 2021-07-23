@@ -17,9 +17,11 @@ public class FundingProcessUI {
 			if (!Objects.isNull(settlementDate)) {
 				valid = true;
 				try {
+					System.out.println("\nInitialising Funding Process\nPlease wait...");
 					FundingProcess.initialize(settlementDate);
+					System.out.println("Funding Process complete.");
 				} catch (IllegalArgumentException e) {
-					
+					System.out.println("Aborting Funding Process\n");
 					System.out.println(e.getMessage());
 				}
 			} else {System.out.println("INVALID DATE");}

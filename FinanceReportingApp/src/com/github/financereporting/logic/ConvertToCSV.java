@@ -1,10 +1,13 @@
 package com.github.financereporting.logic;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import com.github.financereporting.app.Warning;
 
 public class ConvertToCSV {
 	
@@ -44,7 +47,9 @@ public class ConvertToCSV {
 	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
 	        dataLines.stream()
 	          .forEach(pw::println);
+	    } catch (FileNotFoundException e) {
+	    	Warning.addAttentionRequiredMessage("Output directory: " + path + " does not exist");
 	    }
-	    //assertTrue(csvOutputFile.exists());
+
 	}
 }

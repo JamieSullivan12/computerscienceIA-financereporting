@@ -6,6 +6,9 @@ import jamiesullivan.packages.code.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,13 +19,26 @@ import com.github.financereporting.app.Config;
 import com.github.financereporting.app.Log;
 import com.github.financereporting.app.Main;
 import com.github.financereporting.app.ReadContracts;
+import com.github.financereporting.app.Warning;
 import com.github.financereporting.app.fileMappings;
 
 public class FundingProcess {
 	
 	public static void initialize(LocalDate settlementDate) throws IllegalArgumentException {
-		
+		Warning.resetAttentionRequiredMessage();
 		Contracts[] contracts = ReadContracts.readContracts();
+		
+		//Checking if output directory exists
+		
+		Path outputPath = Paths.get(Config.getDefaultOutputDirectoryFunding().trim());
+		if(!Files.exists(outputPath)) {
+			throw new IllegalArgumentException ("Output directory, '" + Config.getDefaultOutputDirectoryFunding().trim() + "' does not exist");
+
+		}
+		
+		if (Objects.isNull(contracts)) {
+			throw new IllegalArgumentException ("Error(s) occured when reading the contract file(s). This could be to do with the headings in the contract file and/or file mappings configuration file.");
+		}
 		if (contracts.length == 0) {
 			throw new IllegalArgumentException ("No contract data was found");
 		}

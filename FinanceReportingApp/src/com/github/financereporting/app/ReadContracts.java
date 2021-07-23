@@ -34,12 +34,13 @@ public class ReadContracts{
 		
 		
 		contractItems = fileMappings.getContractMappings();
-
+		
+		boolean error = false;
 		
 		//Looping through each contract file name from the config file (because the user may have given more than one contracts file if they have two data sources)
 		for (var i=0; i < Config.getContractFileNamesFunding().length; i++) {
 			
-
+			
 			
 			individualContractFileName = Config.getContractFileNamesFunding()[i];
 			//Merging the directory and file name into a single path
@@ -75,8 +76,10 @@ public class ReadContracts{
 						}
 					}
 					
-					if (foundHeadingIndex == false) {
-						Main.endProgramUnsuccessful(5, "Reading input file headings: Unknown field heading: " + headings.get(j) + ". Please ensure this matches the settings in the mapping file", null);
+					if (foundHeadingIndex == false) {;
+						Warning.addAttentionRequiredMessage("Reading input file headings: Unknown field heading: " + headings.get(j) + ". Please ensure this matches the settings in the mapping file");
+						error = true;
+						Log.logSevere("Reading input file headings: Unknown field heading: " + headings.get(j) + ". Please ensure this matches the settings in the mapping file");
 					}
 					
 					
@@ -86,27 +89,36 @@ public class ReadContracts{
 			
 			} catch (FileNotFoundException e) {
 				Warning.addAttentionRequiredMessage("File not found error: '" + path + "' does not exist");
+				Log.logSevere("File not found error: '" + path + "' does not exist");
 
 			} catch (Exception f) {
 				f.printStackTrace();
 			}
 		}
 		Contracts[] contracts = new Contracts[0];
-		if (contractDataArray.size() != 0) {
-			contracts = new Contracts[contractDataArray.size()-1];
-
+		if (!error) {
 		
-			for (int j=0; j < contractDataArray.size(); j++) {
+			
+			if (contractDataArray.size() != 0) {
+				contracts = new Contracts[contractDataArray.size()-1];
 	
-				if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
-	
-					contracts[j-1] = new Contracts(j-1);
-	
-					contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
-				} 
-			}	
+			
+				for (int j=0; j < contractDataArray.size(); j++) {
+		
+					if(!contractDataArray.get(j).get(Integer.parseInt(contractItems.get("contractNumber").get("index"))).replaceAll("^\"|\"$", "").trim().equals(contractItems.get("contractNumber").get("map").replaceAll("^\"|\"$", "").trim())) {
+		
+						contracts[j-1] = new Contracts(j-1);
+		
+						contracts[j-1].fillValues(contractDataArray.get(j), contractItems);
+					} 
+				}	
+			}
 		}
+		if (error == true) {
+			return null; //If an error has occured, prevent the program from continuing by returning null
+		} 
 		return contracts;
+		
 	}
 	
 }
