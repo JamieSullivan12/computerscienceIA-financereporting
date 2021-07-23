@@ -1,4 +1,0 @@
-Apr 13, 2021 3:30:26 AM com.github.financereporting.app.ReadConfigFile readConfigFile
-INFO: Reading Config File
-Apr 13, 2021 3:30:26 AM com.github.financereporting.app.Config$ConfigItem setInteger
-WARNING: Reading configuration file: log.maxSize is not a number (1000000g)
