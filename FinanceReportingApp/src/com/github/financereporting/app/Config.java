@@ -65,12 +65,12 @@ public class Config {
 		
 		
 		//This creates a LinkedHashMap (similair to a dictionary in python) of keys from the configuration file, with the values containing information such as the default value, actual value (which is populated later) and the datatype
-		updateConfigItems("Name", "Funding App", "0");
-		updateConfigItems("DefaultInputDirectoryFunding", "", "0");
-		updateConfigItems("DefaultOutputDirectoryFunding", "", "0");
-		updateConfigItems("ContractFileNamesFunding", "", "0");
-		updateConfigItems("TransactionFileNamesMonthEnd", "", "0");
-		updateConfigItems("ContractFileNamesMonthEnd", "", "0");
+		updateConfigItems("Company Name", "Funding App", "0");
+		updateConfigItems("Input Directory", "", "0");
+		updateConfigItems("Input File Names", "", "0");
+		updateConfigItems("Output Directory", "", "0");
+		
+
 		
 		
 		//Uses the LinkedHashMap from above and populates the value section using the Properties class
@@ -85,27 +85,13 @@ public class Config {
 
 	
 	
-	
-	
-	
-	/**
-	 * @return the contractsFileNamesMonthEnd as a String Array. Will return null if empty
-	 */
-	public static String[] getContractFileNamesMonthEnd() {
-		String returnValue = CI.get("contractFileNamesMonthEnd").get("value");
-		
-		try {
-			return returnValue.split(",");
-		} catch (Exception e) {
-			return null;
-		}		
-	}
+
 	
 	/**
 	 * @return the defaultInputDirectoryFunding
 	 */
 	public static String getDefaultInputDirectoryFunding() {
-		return CI.get("DefaultInputDirectoryFunding").get("value");
+		return CI.get("Input Directory").get("value");
 	}
 	
 	
@@ -113,7 +99,7 @@ public class Config {
 	 * @return the defaultOutputDirectoryFunding
 	 */
 	public static String getDefaultOutputDirectoryFunding() {
-		return CI.get("DefaultOutputDirectoryFunding").get("value");
+		return CI.get("Output Directory").get("value");
 	}
 	
 	
@@ -121,7 +107,7 @@ public class Config {
 	 * @return the name
 	 */
 	public static String getName() {
-		return CI.get("Name").get("value");
+		return CI.get("Company Name").get("value");
 	}
 
 	/**
@@ -129,7 +115,7 @@ public class Config {
 	 */
 	
 	public static String[] getContractFileNamesFunding() {
-		String returnValue = CI.get("ContractFileNamesFunding").get("value");
+		String returnValue = CI.get("Input File Names").get("value");
 		
 		try {
 			return returnValue.split(",");
@@ -139,20 +125,6 @@ public class Config {
 		 
 	}
 	
-	/**
-	 * @return the transactionFileNamesFunding as a String Array. Will return null if empty
-	 */
-	public static String[] getTransactionFileNamesMonthEnd() {
-		String returnValue = CI.get("transactionFileNamesMonthEnd").get("value");
-		
-		try {
-			return returnValue.split(",");
-		} catch (Exception e) {
-			return null;
-		}
-		
-		
-	}
 	
 	/**
 	 * Returns the hashed map which contains all the fields of a config file plus additional information such as: Name, Value, Default Value and Data Type
