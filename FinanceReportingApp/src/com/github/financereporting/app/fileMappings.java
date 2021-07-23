@@ -75,62 +75,26 @@ public class fileMappings {
 		contractMappingsHolder = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
 
 		setContractMappingValues("contractNumber", "", "0");
-		setContractMappingValues("customerCode", "", "0");
-		setContractMappingValues("largeLongstandingClient", "", "0");
-		setContractMappingValues("customerPostalCode", "", "0");
-		setContractMappingValues("occupationCode", "", "0");
-		setContractMappingValues("occupationDescription", "", "0");
-		setContractMappingValues("contractDate", "", "0");
-		setContractMappingValues("expiryDate", "", "0");
 		setContractMappingValues("principalInvoicePriceTotalRep", "", "0");
 		setContractMappingValues("brokerageStampDutyAgreeFee", "", "0");
 		setContractMappingValues("otherCharges", "", "0");
-		setContractMappingValues("termsCharges", "", "0");
-		setContractMappingValues("newContractPayment", "", "0");
+
 		setContractMappingValues("cutOffDate", "", "0");
 		setContractMappingValues("fundingDate", "", "0");
 		setContractMappingValues("fundingAmount", "", "0");
 		setContractMappingValues("legalEntityCode", "", "0");
 		setContractMappingValues("legalEntity", "", "0");
 		setContractMappingValues("sellerCode", "", "0");
-		setContractMappingValues("outstandingBalanceLME", "", "0");
 		setContractMappingValues("outstandingBalanceLME_M1", "", "0");
-		setContractMappingValues("unearnedIncomeLME", "", "0");
 		setContractMappingValues("unearnedIncomeLME_M1", "", "0");
-		setContractMappingValues("GSTOutstandingBalanceLME", "", "0");
 		setContractMappingValues("GSTOutstandingBalanceLME_M1", "", "0");
-		setContractMappingValues("arrearsDateLME", "", "0");
-		setContractMappingValues("currentArrearsLME", "", "0");
-		setContractMappingValues("arrears30DaysLME", "", "0");
-		setContractMappingValues("arrears60DaysLME", "", "0");
-		setContractMappingValues("arrears90DaysLME", "", "0");
-		setContractMappingValues("arrears120DaysLME", "", "0");
-		setContractMappingValues("arrears150PlusDaysLME", "", "0");
+		
 		setContractMappingValues("outstandingBalance", "", "0");
 		setContractMappingValues("unexpiredInterest", "", "0");
 		setContractMappingValues("GSTOutstanding", "", "0");
-		setContractMappingValues("theoreticalPrincipal", "", "0");
-		setContractMappingValues("maxLimit", "", "0");
-		setContractMappingValues("PDIOutstanding", "", "0");
-		setContractMappingValues("totalArrears", "", "0");
-		setContractMappingValues("currentArrears", "", "0");
-		setContractMappingValues("arrears30Days", "", "0");
-		setContractMappingValues("arrears60Days", "", "0");
-		setContractMappingValues("arrears90Days", "", "0");
-		setContractMappingValues("arrears120PlusDays", "", "0");
-		setContractMappingValues("oldestDueDate", "", "0");
-		setContractMappingValues("productCode", "", "0");
-		setContractMappingValues("interestType", "", "0");
-		setContractMappingValues("dealerCode", "", "0");
-		setContractMappingValues("dealerName", "", "0");
+
 		setContractMappingValues("paidOutWrittenOffFlag", "", "0");
-		setContractMappingValues("paidOutWrittenOffDate", "", "0");
-		setContractMappingValues("monthlyRental", "", "0");
-		setContractMappingValues("paymentFrequency", "", "0");
-		setContractMappingValues("term", "", "0");
-		setContractMappingValues("monthsExpired", "", "0");
-		setContractMappingValues("termsRemaining", "", "0");
-		setContractMappingValues("interestRate", "", "0");
+
 		
 		
 		contractMappings = new LinkedHashMap<String, LinkedHashMap<String, String>> ();
