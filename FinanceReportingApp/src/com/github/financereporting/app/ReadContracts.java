@@ -66,9 +66,9 @@ public class ReadContracts{
 					for (int k = 0; k < keyset.length; k++)
 					{
 						if (!Objects.isNull(contractItems.get(keyset[k]).get("map")) && !Objects.isNull(headings.get(j))) {	
-							//System.out.println(contractItems.get(keyset[k]).get("map").toString().replaceAll("\\n",",").trim());
 							if( contractItems.get(keyset[k]).get("map").toString().replaceAll("\\n",",").trim().equals(headings.get(j).toString().replaceAll("^\"|\"$", "").replaceAll("\\n","").trim())) {
 								contractItems.get(keyset[k]).put("index", Integer.toString(j));
+
 								foundHeadingIndex = true;
 							}
 						} else {
