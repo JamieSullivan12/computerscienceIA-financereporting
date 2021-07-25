@@ -232,7 +232,7 @@ public class FundingProcess {
 		} else {
 			currentPrincipalBalanceLME_M1 = c.getOutstandingBalanceLME_M1();
 		}
-		System.out.println(currentPrincipalBalance);
+
 		c.setCurrentPrincipalBalanceLME_M1(currentPrincipalBalanceLME_M1);
 		c.setCurrentPrincipalBalance(currentPrincipalBalance);
 		
