@@ -204,7 +204,8 @@ public class FundingProcess {
 		BigDecimal currentPrincipalBalanceLME_M1 = BigDecimal.ZERO;
 
 		LocalDate current_date = Main.getCurDate();
-		if (RemoveQuotes.remove(c.getPaidOutWrittenOffFlag()).equals("N")) {
+
+		if (RemoveQuotes.remove(c.getPaidOutWrittenOffFlag()).strip().equals("N")) {
 			
 			if (RemoveQuotes.remove(c.getSellerCode()).equals("1")) {
 				
@@ -231,7 +232,7 @@ public class FundingProcess {
 		} else {
 			currentPrincipalBalanceLME_M1 = c.getOutstandingBalanceLME_M1();
 		}
-		
+		System.out.println(currentPrincipalBalance);
 		c.setCurrentPrincipalBalanceLME_M1(currentPrincipalBalanceLME_M1);
 		c.setCurrentPrincipalBalance(currentPrincipalBalance);
 		
