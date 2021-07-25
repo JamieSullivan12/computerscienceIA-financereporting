@@ -78,6 +78,7 @@ public class DataManipulationFunctions {
 			Log.logWarning(e.getMessage());
 			invalid = true;
 			errMsg += defErrMsg + " - " + mappings.get(valueName).get("map") + " is invalid. Must be a number. ";
+			newValue = new BigDecimal(0);
 		}
 		return newValue;
 	}

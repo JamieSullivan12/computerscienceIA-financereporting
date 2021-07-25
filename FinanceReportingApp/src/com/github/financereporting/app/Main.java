@@ -35,12 +35,11 @@ public class Main {
 			socket = new ServerSocket(serverSocketPort);
 			
 			
-			/**
-			 * Creating the log file
-			 * initializeLog(Log file location, maximum size of log file in bytes, maximum number of log files which can be created, Whether the log file should be overwritten each time the program is run); 
-			 */
+			
+			//initializeLog(Log file location, maximum size of log file in bytes, maximum number of log files which can be created, Whether the log file should be overwritten each time the program is run); 
 			Log.initializeLog("src/resources/", "log.txt", false); 
 			Log.logInfo("\n####################\nProgram Started on Port: " + serverSocketPort + "\n####################");
+			
 			
 		} catch (IOException ex) {
 	    	//If the port is already running or is invalid
@@ -73,40 +72,25 @@ public class Main {
 			//
 			// MAIN CODE BELOW
 			
-			
-
-
-			
-			//Using the configuration settings, the ExtractConfig class is responsible for saving all the configuration values to an attribute, ensuring all the values required are in the log file
-
+			//Read all contents from the configuration files
 			Config.readAllConfigContents();
-
-
 			fileMappings.contractFileMappings();
-	
 			
+			//Date will be used and referenced throughout the program
 			date = LocalDate.now();
-			
-			
+				
 			try {
 				TextBasedUI.initializeUI();
-				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-
 				e.printStackTrace();
 				endProgramUnsuccessful(3, "Unknown error occured", e);
 			}
 
-			
 			// MAIN CODE ABOVE ^^
 			//
 			//
 			//
 			
-		
-	    
-		
 		
 	    finally {
 
